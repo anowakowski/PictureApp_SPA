@@ -10,12 +10,14 @@ import { RegisterComponent } from './register/register.component';
 
 import { AuthService } from './_services/auth.service';
 import { AlertifyService } from './_services/alertify.service';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
    declarations: [
       AppComponent,
       NavComponent,
-      RegisterComponent
+      RegisterComponent,
+      HomeComponent
    ],
    imports: [
       BrowserModule,
