@@ -12,6 +12,11 @@ import { NavLoginComponent } from './nav/nav-login/nav-login.component';
 
 import { AuthService } from './_services/auth.service';
 import { AlertifyService } from './_services/alertify.service';
+import { ErrorInterceptorProvider } from './_services/error.interceptor';
+
+export function tokenGetter() {
+    return localStorage.getItem('token');
+}
 
 @NgModule({
    declarations: [
@@ -29,7 +34,8 @@ import { AlertifyService } from './_services/alertify.service';
    ],
    providers: [
       AuthService,
-      AlertifyService
+      AlertifyService,
+      ErrorInterceptorProvider
    ],
    bootstrap: [
       AppComponent
