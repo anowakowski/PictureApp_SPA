@@ -4,13 +4,13 @@
     
     <ul *ngIf="loggedIn" class="navbar-nav mr-auto">
       <li class="nav-item"r outerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/view1']">view1</a>
+        <a class="nav-link" [routerLink]="['/you']">you</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/view2']">view2</a>
+        <a class="nav-link" [routerLink]="['/discover']">Discover</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/view3']">view3</a>
+        <a class="nav-link" [routerLink]="['/group']">Group</a>
       </li>
     </ul>
     <app-nav-login (LoggedIntoApplication)="currentLoggedIn($event)"></app-nav-login>

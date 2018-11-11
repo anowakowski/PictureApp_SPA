@@ -14,6 +14,9 @@ import { AuthService } from './_services/auth.service';
 import { AlertifyService } from './_services/alertify.service';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { RouterModule } from '@angular/router';
+import { YouComponent } from './you/you.component';
+import { DiscoverComponent } from './discover/discover.component';
+import { GroupComponent } from './group/group.component';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -25,7 +28,10 @@ export function tokenGetter() {
       NavComponent,
       RegisterComponent,
       HomeComponent,
-      NavLoginComponent
+      NavLoginComponent,
+      YouComponent,
+      DiscoverComponent,
+      GroupComponent
    ],
    imports: [
       BrowserModule,
