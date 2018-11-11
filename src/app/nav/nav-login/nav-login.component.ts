@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from 'src/app/_services/auth.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Router } from '@angular/router';
+import { RoutePathService } from 'src/app/_services/RoutePath.service';
 
 @Component({
   selector: 'app-nav-login',
@@ -16,7 +17,8 @@ export class NavLoginComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private alertifyService: AlertifyService,
-    private router: Router
+    private router: Router,
+    private routePathService: RoutePathService
   ) {}
 
   ngOnInit() {}
@@ -35,7 +37,7 @@ export class NavLoginComponent implements OnInit {
         this.alertifyService.error(error);
       },
       () => {
-        this.router.navigate(['/discover']);
+        this.router.navigate([this.routePathService.basePath]);
       }
     );
   }

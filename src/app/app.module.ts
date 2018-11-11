@@ -17,6 +17,7 @@ import { RouterModule } from '@angular/router';
 import { YouComponent } from './you/you.component';
 import { DiscoverComponent } from './discover/discover.component';
 import { GroupComponent } from './group/group.component';
+import { RoutePathService } from './_services/RoutePath.service';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -42,6 +43,7 @@ export function tokenGetter() {
    providers: [
       AuthService,
       AlertifyService,
+      RoutePathService,
       ErrorInterceptorProvider
    ],
    bootstrap: [
