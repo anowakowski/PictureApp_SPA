@@ -13,6 +13,6 @@
         <a class="nav-link" [routerLink]="['/view3']">view3</a>
       </li>
     </ul>
-    <app-nav-login></app-nav-login>
+    <app-nav-login (LoggedIntoApplication)="currentLoggedIn($event)"></app-nav-login>
   </div>
 </nav>
