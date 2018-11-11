@@ -10,9 +10,10 @@ export class NavComponent implements OnInit {
   model: any = {};
   loggedIn = false;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.loggedIn = this.authService.loggedIn();
   }
 
   currentLoggedIn(loggedIntoApplication: boolean): void {
