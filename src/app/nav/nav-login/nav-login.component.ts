@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from 'src/app/_services/auth.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 
@@ -8,9 +8,12 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
   styleUrls: ['./nav-login.component.scss']
 })
 export class NavLoginComponent implements OnInit {
+
+  @Output() LoggedIntoApplication = new EventEmitter();
+  
   model: any = {};
 
-  constructor(private authService: AuthService, private alertifyService: AlertifyService) { }
+  constructor(public authService: AuthService, private alertifyService: AlertifyService) { }
 
   ngOnInit() {
   }
@@ -22,6 +25,7 @@ export class NavLoginComponent implements OnInit {
   login(): void {
     this.authService.login(this.model).subscribe((response) => {
       this.alertifyService.success('loggin succesful');
+      this.LoggedIntoApplication.emit(this.loggedIn());
     }, error => {
       this.alertifyService.error(error);
     });
