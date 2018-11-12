@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from './app-routing.module';
+import { appRoutes } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -13,6 +13,11 @@ import { NavLoginComponent } from './nav/nav-login/nav-login.component';
 import { AuthService } from './_services/auth.service';
 import { AlertifyService } from './_services/alertify.service';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
+import { RouterModule } from '@angular/router';
+import { YouComponent } from './you/you.component';
+import { DiscoverComponent } from './discover/discover.component';
+import { GroupComponent } from './group/group.component';
+import { RoutePathService } from './_services/RoutePath.service';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -24,17 +29,21 @@ export function tokenGetter() {
       NavComponent,
       RegisterComponent,
       HomeComponent,
-      NavLoginComponent
+      NavLoginComponent,
+      YouComponent,
+      DiscoverComponent,
+      GroupComponent
    ],
    imports: [
       BrowserModule,
-      AppRoutingModule,
+      RouterModule.forRoot(appRoutes),
       FormsModule,
       HttpClientModule
    ],
    providers: [
       AuthService,
       AlertifyService,
+      RoutePathService,
       ErrorInterceptorProvider
    ],
    bootstrap: [
