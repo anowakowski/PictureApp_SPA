@@ -9,15 +9,16 @@ import { NavComponent } from './nav/nav.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { NavLoginComponent } from './nav/nav-login/nav-login.component';
-
-import { AuthService } from './_services/auth.service';
-import { AlertifyService } from './_services/alertify.service';
-import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { RouterModule } from '@angular/router';
 import { YouComponent } from './you/you.component';
 import { DiscoverComponent } from './discover/discover.component';
 import { GroupComponent } from './group/group.component';
+
+import { AuthService } from './_services/auth.service';
+import { AlertifyService } from './_services/alertify.service';
+import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { RoutePathService } from './_services/RoutePath.service';
+import { AuthGuard } from './_guards/auth.guard';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -44,7 +45,8 @@ export function tokenGetter() {
       AuthService,
       AlertifyService,
       RoutePathService,
-      ErrorInterceptorProvider
+      ErrorInterceptorProvider,
+      AuthGuard
    ],
    bootstrap: [
       AppComponent
