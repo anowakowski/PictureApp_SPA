@@ -20,6 +20,8 @@ import { AlertifyService } from './_services/alertify.service';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { RoutePathService } from './_services/RoutePath.service';
 import { AuthGuard } from './_guards/auth.guard';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberListComponent } from './members/member-list/member-list.component';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -34,14 +36,16 @@ export function tokenGetter() {
       NavLoginComponent,
       YouComponent,
       DiscoverComponent,
-      GroupComponent
+      GroupComponent,
+      MemberEditComponent,
+      MemberListComponent
    ],
    imports: [
       BrowserModule,
       FormsModule,
       HttpClientModule,
       BsDropdownModule.forRoot(),
-      RouterModule.forRoot(appRoutes)      
+      RouterModule.forRoot(appRoutes)
    ],
    providers: [
       AuthService,
