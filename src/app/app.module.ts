@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BsDropdownModule } from 'ngx-bootstrap';
 import { appRoutes } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -37,9 +38,10 @@ export function tokenGetter() {
    ],
    imports: [
       BrowserModule,
-      RouterModule.forRoot(appRoutes),
       FormsModule,
-      HttpClientModule
+      HttpClientModule,
+      BsDropdownModule.forRoot(),
+      RouterModule.forRoot(appRoutes)      
    ],
    providers: [
       AuthService,
