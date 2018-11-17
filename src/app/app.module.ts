@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BsDropdownModule } from 'ngx-bootstrap';
 import { appRoutes } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -19,6 +20,8 @@ import { AlertifyService } from './_services/alertify.service';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { RoutePathService } from './_services/RoutePath.service';
 import { AuthGuard } from './_guards/auth.guard';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberListComponent } from './members/member-list/member-list.component';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -33,13 +36,16 @@ export function tokenGetter() {
       NavLoginComponent,
       YouComponent,
       DiscoverComponent,
-      GroupComponent
+      GroupComponent,
+      MemberEditComponent,
+      MemberListComponent
    ],
    imports: [
       BrowserModule,
-      RouterModule.forRoot(appRoutes),
       FormsModule,
-      HttpClientModule
+      HttpClientModule,
+      BsDropdownModule.forRoot(),
+      RouterModule.forRoot(appRoutes)
    ],
    providers: [
       AuthService,

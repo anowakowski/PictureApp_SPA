@@ -42,7 +42,11 @@ export class NavLoginComponent implements OnInit {
     );
   }
 
-  logout(): void {}
+  logout() {
+    localStorage.removeItem('token');
+    this.alertifyService.message('logged out');
+    this.router.navigate(['/home']);
+  }
 
   private LogginExpirationFromToken(): boolean {
     return this.authService.loggedIn();
