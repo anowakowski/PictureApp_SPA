@@ -22,6 +22,7 @@ import { RoutePathService } from './_services/RoutePath.service';
 import { AuthGuard } from './_guards/auth.guard';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
+import { DiscoverResolver } from './_reslovers/discover.resolver';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -52,7 +53,8 @@ export function tokenGetter() {
       AlertifyService,
       RoutePathService,
       ErrorInterceptorProvider,
-      AuthGuard
+      AuthGuard,
+      DiscoverResolver
    ],
    bootstrap: [
       AppComponent
