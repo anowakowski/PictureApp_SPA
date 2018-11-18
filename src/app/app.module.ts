@@ -4,6 +4,7 @@ import {FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { appRoutes } from './app-routing.module';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -46,7 +47,14 @@ export function tokenGetter() {
       FormsModule,
       HttpClientModule,
       BsDropdownModule.forRoot(),
-      RouterModule.forRoot(appRoutes)
+      RouterModule.forRoot(appRoutes),
+      JwtModule.forRoot({
+         config: {
+             tokenGetter: tokenGetter,
+             whitelistedDomains: ['localhost:5000'],
+             blacklistedRoutes: ['localhost:5000/api/auth']
+         }
+     })
    ],
    providers: [
       AuthService,
