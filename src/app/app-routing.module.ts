@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { YouComponent } from './you/you.component';
-import { DiscoverComponent } from './discover/discover.component';
 import { GroupComponent } from './group/group.component';
 import { AuthGuard } from './_guards/auth.guard';
-import { DiscoverResolver } from './_reslovers/discover.resolver';
+import { MemberExploreResolver } from './_reslovers/member-explore.resolver';
+import { MemberExploreComponent } from './members/member-explore/member-explore.component';
 
 
 export const appRoutes: Routes = [
@@ -16,7 +15,7 @@ export const appRoutes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {path: 'you', component: YouComponent},
-      {path: 'discover', component: DiscoverComponent, resolve: {users: DiscoverResolver}},
+      {path: 'member-explore', component: MemberExploreComponent, resolve: {users: MemberExploreResolver}},
       {path: 'group', component: GroupComponent}
     ]
   },

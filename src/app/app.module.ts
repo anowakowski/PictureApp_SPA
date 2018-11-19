@@ -22,8 +22,9 @@ import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { RoutePathService } from './_services/RoutePath.service';
 import { AuthGuard } from './_guards/auth.guard';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
-import { MemberListComponent } from './members/member-list/member-list.component';
-import { DiscoverResolver } from './_reslovers/discover.resolver';
+//import { MemberListComponent } from './members/member-list/member-list.component';
+import { MemberExploreResolver } from './_reslovers/member-explore.resolver';
+import { MemberExploreComponent } from './members/member-explore/member-explore.component';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -40,7 +41,8 @@ export function tokenGetter() {
       DiscoverComponent,
       GroupComponent,
       MemberEditComponent,
-      MemberListComponent
+      //MemberListComponent,
+      MemberExploreComponent
    ],
    imports: [
       BrowserModule,
@@ -62,7 +64,7 @@ export function tokenGetter() {
       RoutePathService,
       ErrorInterceptorProvider,
       AuthGuard,
-      DiscoverResolver
+      MemberExploreResolver
    ],
    bootstrap: [
       AppComponent
