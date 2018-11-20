@@ -5,6 +5,7 @@ import { GroupComponent } from './group/group.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { MemberExploreResolver } from './_reslovers/member-explore.resolver';
 import { MemberExploreComponent } from './members/member-explore/member-explore.component';
+import { DiscoverComponent } from './discover/discover.component';
 
 
 export const appRoutes: Routes = [
@@ -15,8 +16,9 @@ export const appRoutes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {path: 'you', component: YouComponent},
-      {path: 'member-explore', component: MemberExploreComponent, resolve: {users: MemberExploreResolver}},
-      {path: 'group', component: GroupComponent}
+      {path: 'discover', component: DiscoverComponent},
+      {path: 'group', component: GroupComponent},
+      {path: 'member-explore', component: MemberExploreComponent, resolve: {users: MemberExploreResolver}}
     ]
   },
   {path: '**', redirectTo: '', pathMatch: 'full'}
