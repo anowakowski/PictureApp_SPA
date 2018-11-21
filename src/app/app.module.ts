@@ -12,9 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { NavLoginComponent } from './nav/nav-login/nav-login.component';
 import { RouterModule } from '@angular/router';
-import { YouComponent } from './you/you.component';
-import { DiscoverComponent } from './discover/discover.component';
-import { GroupComponent } from './group/group.component';
+import { PhotoExploreModule } from './photo-explore/photo-explore.module';
 
 import { AuthService } from './_services/auth.service';
 import { AlertifyService } from './_services/alertify.service';
@@ -36,9 +34,6 @@ export function tokenGetter() {
       RegisterComponent,
       HomeComponent,
       NavLoginComponent,
-      YouComponent,
-      DiscoverComponent,
-      GroupComponent,
       MemberEditComponent,
       MemberExploreComponent
    ],
@@ -46,6 +41,7 @@ export function tokenGetter() {
       BrowserModule,
       FormsModule,
       HttpClientModule,
+      PhotoExploreModule,
       BsDropdownModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       JwtModule.forRoot({
