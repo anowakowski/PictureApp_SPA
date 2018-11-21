@@ -3,17 +3,20 @@ import { CommonModule } from '@angular/common';
 import { YouComponent } from './you/you.component';
 import { DiscoverComponent } from './discover/discover.component';
 import { GroupComponent } from './group/group.component';
+import { ExploreComponent } from './explore/explore.component';
 
 @NgModule({
   declarations: [
     YouComponent,
     DiscoverComponent,
-    GroupComponent
+    GroupComponent,
+    ExploreComponent
   ],
   exports: [
     YouComponent,
     DiscoverComponent,
-    GroupComponent
+    GroupComponent,
+    ExploreComponent
   ],
   imports: [CommonModule]
 })
