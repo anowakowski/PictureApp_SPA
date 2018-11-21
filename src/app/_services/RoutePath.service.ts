@@ -8,7 +8,7 @@ import { promise } from 'protractor';
 })
 export class RoutePathService {
 
-  basePath = '/discover';
+  basePath = '/member-explore';
 
   constructor(private router: Router) { }
 

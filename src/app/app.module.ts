@@ -4,6 +4,7 @@ import {FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { appRoutes } from './app-routing.module';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -21,7 +22,8 @@ import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { RoutePathService } from './_services/RoutePath.service';
 import { AuthGuard } from './_guards/auth.guard';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
-import { MemberListComponent } from './members/member-list/member-list.component';
+import { MemberExploreResolver } from './_reslovers/member-explore.resolver';
+import { MemberExploreComponent } from './members/member-explore/member-explore.component';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -38,21 +40,29 @@ export function tokenGetter() {
       DiscoverComponent,
       GroupComponent,
       MemberEditComponent,
-      MemberListComponent
+      MemberExploreComponent
    ],
    imports: [
       BrowserModule,
       FormsModule,
       HttpClientModule,
       BsDropdownModule.forRoot(),
-      RouterModule.forRoot(appRoutes)
+      RouterModule.forRoot(appRoutes),
+      JwtModule.forRoot({
+         config: {
+             tokenGetter: tokenGetter,
+             whitelistedDomains: ['localhost:5000'],
+             blacklistedRoutes: ['localhost:5000/api/auth']
+         }
+     })
    ],
    providers: [
       AuthService,
       AlertifyService,
       RoutePathService,
       ErrorInterceptorProvider,
-      AuthGuard
+      AuthGuard,
+      MemberExploreResolver
    ],
    bootstrap: [
       AppComponent
