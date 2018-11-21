@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/_models/user';
 import { ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/_models/user';
 
 @Component({
-  selector: 'app-member-explore',
-  templateUrl: './member-explore.component.html',
-  styleUrls: ['./member-explore.component.scss']
+  selector: 'app-explore',
+  templateUrl: './explore.component.html',
+  styleUrls: ['./explore.component.scss']
 })
-export class MemberExploreComponent implements OnInit {
+export class ExploreComponent implements OnInit {
 
   users: User[];
 
