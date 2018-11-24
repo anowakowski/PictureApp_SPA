@@ -7,6 +7,10 @@ import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [RegisterComponent, LoginComponent],
+  exports: [
+    RegisterComponent,
+    LoginComponent
+  ],
   imports: [
     CommonModule,
     FormsModule

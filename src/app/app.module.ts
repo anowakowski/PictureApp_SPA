@@ -5,23 +5,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { appRoutes } from './app-routing.module';
 import { JwtModule } from '@auth0/angular-jwt';
+import { RouterModule } from '@angular/router';
 
 import { PhotoExploreModule } from './photo-explore/photo-explore.module';
 import { PhotoMembersModule } from './photo-members/photo-members.module';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
-import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
-import { NavLoginComponent } from './nav/nav-login/nav-login.component';
-import { RouterModule } from '@angular/router';
 
 import { AuthService } from './_services/auth.service';
 import { AlertifyService } from './_services/alertify.service';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { RoutePathService } from './_services/RoutePath.service';
 import { AuthGuard } from './_guards/auth.guard';
-import { MemberExploreResolver } from './_reslovers/member-explore.resolver';
+import { AuthModule } from './auth/auth.module';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -31,9 +29,7 @@ export function tokenGetter() {
    declarations: [
       AppComponent,
       NavComponent,
-      RegisterComponent,
-      HomeComponent,
-      NavLoginComponent
+      HomeComponent
    ],
    imports: [
       BrowserModule,
@@ -41,6 +37,7 @@ export function tokenGetter() {
       HttpClientModule,
       PhotoExploreModule,
       PhotoMembersModule,
+      AuthModule,
       BsDropdownModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       JwtModule.forRoot({
@@ -56,8 +53,7 @@ export function tokenGetter() {
       AlertifyService,
       RoutePathService,
       ErrorInterceptorProvider,
-      AuthGuard,
-      MemberExploreResolver
+      AuthGuard
    ],
    bootstrap: [
       AppComponent
