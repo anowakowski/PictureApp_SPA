@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { BsDropdownModule } from 'ngx-bootstrap';
 import { appRoutes } from './app-routing.module';
 import { JwtModule } from '@auth0/angular-jwt';
 import { RouterModule } from '@angular/router';
@@ -33,12 +31,10 @@ export function tokenGetter() {
    ],
    imports: [
       BrowserModule,
-      FormsModule,
       HttpClientModule,
       PhotoExploreModule,
       PhotoMembersModule,
       AuthModule,
-      BsDropdownModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       JwtModule.forRoot({
          config: {
