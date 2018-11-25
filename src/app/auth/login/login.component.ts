@@ -1,15 +1,16 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Routes, Router } from '@angular/router';
+import { OnInit, EventEmitter, Output, Component } from '@angular/core';
 import { AuthService } from 'src/app/_services/auth.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
-import { Router } from '@angular/router';
 import { RoutePathService } from 'src/app/_services/RoutePath.service';
 
 @Component({
-  selector: 'app-nav-login',
-  templateUrl: './nav-login.component.html',
-  styleUrls: ['./nav-login.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class NavLoginComponent implements OnInit {
+export class LoginComponent implements OnInit {
+
   @Output() LoggedIntoApplication = new EventEmitter();
 
   model: any = {};
@@ -55,4 +56,5 @@ export class NavLoginComponent implements OnInit {
   private emitLogin() {
     this.LoggedIntoApplication.emit(this.LogginExpirationFromToken);
   }
+
 }
