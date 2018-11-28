@@ -21,6 +21,8 @@ export class PhotoCardComponent implements OnInit {
   followUser(user: User) {
     this.userService.setFollower(user.id).subscribe(() => {
       this.alertifyService.success('you are follow ' + user.username + 'now');
+      this.user.isFollowerForCurrentUser = true;
+      this.isFollower = true;
     }, error => {
       this.alertifyService.error(error);
     });
@@ -28,7 +30,9 @@ export class PhotoCardComponent implements OnInit {
 
   unfollowUser(user: User) {
     this.userService.setUnFollowUser(user.id).subscribe(() => {
-      this.alertifyService.success('you are unfollow ' + user.username + 'now');
+      this.alertifyService.warning('you are unfollow ' + user.username + 'now');
+      this.user.isFollowerForCurrentUser = false;
+      this.isFollower = false;
     }, error => {
       this.alertifyService.error(error);
     });
