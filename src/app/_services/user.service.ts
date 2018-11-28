@@ -23,7 +23,7 @@ export class UserService {
     const url: string = this.baseUrl + 'users/' + this.authService.decodedToken.nameid + '/followers' + '/allUserWithFollowerInfo';
     return this.httpClient.get<User[]>(url);
   }
-  
+
   setFollower(id: number) {
     const url: string = this.baseUrl + 'users/' + this.authService.decodedToken.nameid + '/followers/' + id + '/setfollow';
     return this.httpClient.post(url, {});
