@@ -19,8 +19,18 @@ export class UserService {
     return this.httpClient.get<User>(this.baseUrl + 'users/' + id);
   }
 
-  getUnFollowedUsers(): Observable<User[]> {
+  getAllUsersWithFollowers(): Observable<User[]> {
     const url: string = this.baseUrl + 'users/' + this.authService.decodedToken.nameid + '/followers' + '/allUserWithFollowerInfo';
     return this.httpClient.get<User[]>(url);
+  }
+  
+  setFollower(id: number) {
+    const url: string = this.baseUrl + 'users/' + this.authService.decodedToken.nameid + '/followers/' + id + '/setfollow';
+    return this.httpClient.post(url, {});
+  }
+
+  setUnFollowUser(id: number) {
+    const url: string = this.baseUrl + 'users/' + this.authService.decodedToken.nameid + '/followers/' + id + '/setunfollow';
+    return this.httpClient.post(url, {});
   }
 }

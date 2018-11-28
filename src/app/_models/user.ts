@@ -1,10 +1,9 @@
-import { Photo } from "./photo";
+import { Photo } from './photo';
 
 export class User {
     id: number;
     username: string;
-    IsFollowerForCurrentUser: boolean;
+    isFollowerForCurrentUser: boolean;
     email: string;
     photos: Photo[];
-
 }

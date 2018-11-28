@@ -4,13 +4,15 @@ import { YouComponent } from './you/you.component';
 import { DiscoverComponent } from './discover/discover.component';
 import { GroupComponent } from './group/group.component';
 import { ExploreComponent } from './explore/explore.component';
+import { PhotoCardComponent } from './explore/photo-card/photo-card.component';
 
 @NgModule({
   declarations: [
     YouComponent,
     DiscoverComponent,
     GroupComponent,
-    ExploreComponent
+    ExploreComponent,
+    PhotoCardComponent
   ],
   exports: [
     YouComponent,

@@ -15,7 +15,7 @@ export class ExploreUsersListResolver implements Resolve<User[]> {
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<User[]> {
-      return this.userService.getUnFollowedUsers().pipe(
+      return this.userService.getAllUsersWithFollowers().pipe(
           catchError(error => {
               this.alertify.error('problem retriving data');
               this.router.navigate(['/home']);
