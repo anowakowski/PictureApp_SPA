@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 
 import { PhotoExploreModule } from './photo-explore/photo-explore.module';
 import { PhotoMembersModule } from './photo-members/photo-members.module';
+import { AuthModule } from './auth/auth.module';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -17,7 +18,7 @@ import { AlertifyService } from './_services/alertify.service';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { RoutePathService } from './_services/RoutePath.service';
 import { AuthGuard } from './_guards/auth.guard';
-import { AuthModule } from './auth/auth.module';
+import { ExploreUsersListResolver } from './_resolvers/explore-users-list.resolver';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -34,7 +35,7 @@ export function tokenGetter() {
       HttpClientModule,
       PhotoExploreModule,
       PhotoMembersModule,
-      AuthModule,
+      AuthModule,      
       RouterModule.forRoot(appRoutes),
       JwtModule.forRoot({
          config: {
@@ -49,7 +50,8 @@ export function tokenGetter() {
       AlertifyService,
       RoutePathService,
       ErrorInterceptorProvider,
-      AuthGuard
+      AuthGuard,
+      ExploreUsersListResolver
    ],
    bootstrap: [
       AppComponent
