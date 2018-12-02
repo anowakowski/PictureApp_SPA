@@ -29,13 +29,14 @@ export class PhotoCardComponent implements OnInit {
   }
 
   unfollowUser(user: User) {
-    this.userService.setUnFollowUser(user.id).subscribe(() => {
-      this.alertifyService.warning('you are unfollow ' + user.username + 'now');
-      this.user.isFollowerForCurrentUser = false;
-      this.isFollower = false;
-    }, error => {
-      this.alertifyService.error(error);
+    this.alertifyService.confirm('Are you sure you want to unfollow ' + user.username + '?', () => {
+      this.userService.setUnFollowUser(user.id).subscribe(() => {
+        this.alertifyService.warning('you are unfollow ' + user.username + 'now');
+        this.user.isFollowerForCurrentUser = false;
+        this.isFollower = false;
+      }, error => {
+        this.alertifyService.error(error);
+      });
     });
   }
-
 }
