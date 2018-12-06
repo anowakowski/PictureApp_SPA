@@ -20,7 +20,7 @@ export class UserService {
   }
 
   getAllUsersWithFollowers(): Observable<User[]> {
-    const url: string = this.baseUrl + 'users/' + this.authService.decodedToken.nameid + '/followers' + '/allUserWithFollowerInfo';
+    const url: string = this.baseUrl + 'users/allUserWithFollowerInfo';
     return this.httpClient.get<User[]>(url);
   }
 
