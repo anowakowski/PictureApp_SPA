@@ -35,7 +35,7 @@ export function tokenGetter() {
       HttpClientModule,
       PhotoExploreModule,
       PhotoMembersModule,
-      AuthModule,      
+      AuthModule,
       RouterModule.forRoot(appRoutes),
       JwtModule.forRoot({
          config: {

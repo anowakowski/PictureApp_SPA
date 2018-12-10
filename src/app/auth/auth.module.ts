@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BsDropdownModule } from 'ngx-bootstrap';
 
@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     BsDropdownModule.forRoot()
   ]
 })
