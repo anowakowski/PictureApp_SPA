@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { appRoutes } from './app-routing.module';
+// import { appRoutes } from './app-routing.module';
 import { JwtModule } from '@auth0/angular-jwt';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { PhotoExploreModule } from './photo-explore/photo-explore.module';
 import { PhotoMembersModule } from './photo-members/photo-members.module';
@@ -23,6 +23,11 @@ export function tokenGetter() {
     return localStorage.getItem('token');
 }
 
+const routes: Routes = [
+   {path: 'demo', loadChildren: '../app/demo/demo.module#DemoModule'},
+   {path: '**', redirectTo: 'demo'}
+];
+
 @NgModule({
    declarations: [
       AppComponent,
@@ -35,7 +40,7 @@ export function tokenGetter() {
       PhotoExploreModule,
       PhotoMembersModule,
       AuthModule,
-      RouterModule.forRoot(appRoutes),
+      RouterModule.forRoot(routes),
       JwtModule.forRoot({
          config: {
              tokenGetter: tokenGetter,

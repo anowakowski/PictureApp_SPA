@@ -18,7 +18,7 @@ export const appRoutes: Routes = [
       {path: 'you', component: YouComponent},
       {path: 'discover', component: DiscoverComponent},
       {path: 'group', component: GroupComponent},
-      {path: 'explore', component: ExploreComponent,resolve: {users:ExploreUsersListResolver}}
+      {path: 'explore', component: ExploreComponent, resolve: {users: ExploreUsersListResolver}}
     ]
   },
   {path: '**', redirectTo: '', pathMatch: 'full'}
