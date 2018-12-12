@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/_models/user';
-import { UserService } from 'src/app/_services/user.service';
-import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-explore',
@@ -19,8 +17,6 @@ export class ExploreComponent implements OnInit {
       this.users = data['users'];
     });
   }
-
-
 
   shouldDisplay(isFollower: boolean): boolean {
     return isFollower !== true;

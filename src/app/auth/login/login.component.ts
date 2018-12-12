@@ -1,7 +1,6 @@
 import { Routes, Router } from '@angular/router';
 import { OnInit, EventEmitter, Output, Component } from '@angular/core';
 import { AuthService } from 'src/app/_services/auth.service';
-import { AlertifyService } from 'src/app/_services/alertify.service';
 import { RoutePathService } from 'src/app/_services/RoutePath.service';
 
 @Component({
@@ -17,7 +16,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
-    private alertifyService: AlertifyService,
     private router: Router,
     private routePathService: RoutePathService
   ) {}
@@ -31,11 +29,11 @@ export class LoginComponent implements OnInit {
   login(): void {
     this.authService.login(this.model).subscribe(
       response => {
-        this.alertifyService.success('loggin succesful');
+
         this.emitLogin();
       },
       error => {
-        this.alertifyService.error(error);
+
       },
       () => {
         this.router.navigate([this.routePathService.basePath]);
@@ -45,7 +43,7 @@ export class LoginComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token');
-    this.alertifyService.message('logged out');
+
     this.router.navigate(['/home']);
   }
 
