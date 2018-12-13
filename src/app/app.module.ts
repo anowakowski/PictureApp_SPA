@@ -18,7 +18,6 @@ import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { RoutePathService } from './_services/RoutePath.service';
 import { AuthGuard } from './_guards/auth.guard';
 import { ExploreUsersListResolver } from './_resolvers/explore-users-list.resolver';
-import { PictureappComponent } from './PictureAppExploring/pictureapp/pictureapp.component';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -26,15 +25,15 @@ export function tokenGetter() {
 
 const routes: Routes = [
    {path: 'demo', loadChildren: '../app/demo/demo.module#DemoModule'},
-   {path: '**', redirectTo: 'demo'}
+   {path: 'pictureEexplore', loadChildren: '../app/pictureapp-exploring/pictureapp-exploring.module#PictureappExploringModule'},
+   {path: '**', redirectTo: 'pictureEexplore'}
 ];
 
 @NgModule({
    declarations: [
       AppComponent,
       NavComponent,
-      HomeComponent,
-      PictureappComponent
+      HomeComponent
    ],
    imports: [
       BrowserModule,
