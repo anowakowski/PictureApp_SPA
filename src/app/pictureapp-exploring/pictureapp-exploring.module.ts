@@ -13,6 +13,7 @@ const routes: Routes = [
   {path: '', component: PictureappExploringComponent,
     children: [
       {path: '', component: HomeComponent},
+      {path: 'auth', component: AuthComponent},
       {path: 'main-content', component: MainContentComponent}
     ]},
   {path: '**', redirectTo: ''}
