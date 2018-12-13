@@ -3,9 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-pictureapp-exploring',
   template: `
-    <p>
-      pictureapp-exploring works!
-    </p>
+    <app-sidenav></app-sidenav>
   `,
   styles: []
 })
