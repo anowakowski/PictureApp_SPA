@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 // import { appRoutes } from './app-routing.module';
@@ -37,6 +38,7 @@ const routes: Routes = [
    ],
    imports: [
       BrowserModule,
+      BrowserAnimationsModule,
       HttpClientModule,
       PhotoExploreModule,
       PhotoMembersModule,

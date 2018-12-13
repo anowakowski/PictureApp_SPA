@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MatSidenav, MatDrawer } from '@angular/material';
+
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
