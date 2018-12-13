@@ -8,7 +8,10 @@ import { MainContentComponent } from './components/main-content/main-content.com
 import { MaterialModule } from '../shared/material/material.module';
 
 const routes: Routes = [
-  {path: '', component: PictureappExploringComponent},
+  {path: '', component: PictureappExploringComponent,
+    children: [
+      {path: '', component: MainContentComponent}
+    ]},
   {path: '**', redirectTo: ''}
 ];
 

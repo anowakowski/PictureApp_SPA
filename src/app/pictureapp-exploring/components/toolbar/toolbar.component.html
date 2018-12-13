@@ -1,3 +1,16 @@
 <mat-toolbar color="primary"> 
-  <span>PictureApp</span> 
+  <button mat-button class="sidenav-toggle" (click)="emitMenu()">
+          <mat-icon>menu</mat-icon>
+  </button>
+  <span>Contacts manager</span> 
+
+  <span class="example-spacer"></span>
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>  
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>edit profile</button>
+    <button mat-menu-item>logout</button>
+  </mat-menu>    
+
 </mat-toolbar>

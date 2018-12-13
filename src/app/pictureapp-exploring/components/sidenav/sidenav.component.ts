@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { MatSidenav, MatDrawer } from '@angular/material';
 
+const SMALL_WIDTH_BREAKPOINT = 720;
+
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
@@ -9,9 +11,17 @@ import { MatSidenav, MatDrawer } from '@angular/material';
 })
 export class SidenavComponent implements OnInit {
 
+  private mediaMatcher: MediaQueryList =
+    matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`);
+
   constructor() { }
 
   ngOnInit() {
   }
+
+  isScreenSmall(): boolean {
+    return this.mediaMatcher.matches;
+  }
+
 
 }
