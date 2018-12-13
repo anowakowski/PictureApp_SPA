@@ -7,6 +7,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { MainContentComponent } from './components/main-content/main-content.component';
 import { MaterialModule } from '../shared/material/material.module';
 import { HomeComponent } from './components/home/home.component';
+import { AuthComponent } from './components/auth/auth.component';
 
 const routes: Routes = [
   {path: '', component: PictureappExploringComponent,
@@ -23,7 +24,8 @@ const routes: Routes = [
     SidenavComponent,
     ToolbarComponent,
     MainContentComponent,
-    HomeComponent
+    HomeComponent,
+    AuthComponent
   ],
   imports: [
     CommonModule,
