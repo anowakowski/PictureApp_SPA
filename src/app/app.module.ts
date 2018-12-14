@@ -23,7 +23,10 @@ export function tokenGetter() {
 }
 
 const routes: Routes = [
-   {path: '', loadChildren: '../app/layouts/regiser-login-layout/regiser-login-layout.module#RegiserLoginLayoutModule'}
+   {path: 'register', loadChildren: '../app/layouts/regiser-login-layout/regiser-login-layout.module#RegiserLoginLayoutModule'},
+   {path: 'photo-exp',
+      loadChildren: '../app/layouts/pictureapp-explore-layout/pictureapp-explore-layout.module#PictureAppExploreLayoutModule'},
+   {path: '**', redirectTo: 'register'}
 ];
 
 @NgModule({
