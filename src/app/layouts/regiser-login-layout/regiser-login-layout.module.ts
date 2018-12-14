@@ -9,6 +9,8 @@ import { CreateShareSectionComponent } from './register/components/create-share-
 import { FooterSectionComponent } from './register/components/footer-section/footer-section.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterFormComponent } from 'src/app/components/register-form/register-form.component';
+import { LoginDialogComponent } from 'src/app/components/login-dialog/login-dialog.component';
+import { MaterialModule } from 'src/app/shared/material/material.module';
 
 const routes: Routes = [
   {path: '', component: RegisterComponent},
@@ -23,12 +25,17 @@ const routes: Routes = [
     ExploreSectionComponent,
     CreateShareSectionComponent,
     FooterSectionComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    LoginDialogComponent
+  ],
+  entryComponents: [
+    LoginDialogComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MaterialModule,
     RouterModule.forChild(routes)
   ]
 })
