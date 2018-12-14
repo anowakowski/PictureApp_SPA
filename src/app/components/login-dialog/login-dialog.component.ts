@@ -7,6 +7,7 @@ import { MatDialogRef } from '@angular/material';
   styleUrls: ['./login-dialog.component.scss']
 })
 export class LoginDialogComponent implements OnInit {
+  hide = true;
 
   constructor(
     private dialogRef: MatDialogRef<LoginDialogComponent>) { }
@@ -15,7 +16,7 @@ export class LoginDialogComponent implements OnInit {
   }
 
   save() {
-
+    console.log('login');
   }
   dismiss() {
     this.dialogRef.close(null);
