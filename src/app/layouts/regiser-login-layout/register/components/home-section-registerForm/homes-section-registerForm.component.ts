@@ -10,6 +10,6 @@ export class HomeSectionRegisterFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  }
 
+  }
 }

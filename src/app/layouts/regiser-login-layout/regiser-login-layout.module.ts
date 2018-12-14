@@ -7,7 +7,8 @@ import { NavComponent } from './register/components/nav/nav.component';
 import { ExploreSectionComponent } from './register/components/explore-section/explore-section.component';
 import { CreateShareSectionComponent } from './register/components/create-share-section/create-share-section.component';
 import { FooterSectionComponent } from './register/components/footer-section/footer-section.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegisterFormComponent } from 'src/app/components/register-form/register-form.component';
 
 const routes: Routes = [
   {path: '', component: RegisterComponent},
@@ -15,17 +16,20 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes)
-  ],
   declarations: [
     RegisterComponent,
     HomeSectionRegisterFormComponent,
     NavComponent,
     ExploreSectionComponent,
     CreateShareSectionComponent,
-    FooterSectionComponent
+    FooterSectionComponent,
+    RegisterFormComponent
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(routes)
   ]
 })
 export class RegiserLoginLayoutModule { }
