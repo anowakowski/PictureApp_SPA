@@ -21,7 +21,8 @@ export class UserService {
 
   getAllUsersWithFollowers(): Observable<User[]> {
     const url: string = this.baseUrl + 'users/allUserWithFollowerInfo';
-    return this.httpClient.get<User[]>(url);
+    const userObs = this.httpClient.get<User[]>(url);
+    return userObs;
   }
 
   setFollower(id: number) {

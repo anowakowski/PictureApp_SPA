@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/_models/user';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-photo-explore',
@@ -6,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./photo-explore.component.scss']
 })
 export class PhotoExploreComponent implements OnInit {
-
-  constructor() { }
+  users: User[];
+  constructor(private route: ActivatedRoute, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+    this.spinner.show();
+    this.route.data.subscribe(data => {
+      this.users = data['users'];
+      this.spinner.hide();
+    }, error => {
+    });
   }
 
 }

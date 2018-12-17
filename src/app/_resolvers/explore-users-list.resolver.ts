@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
-import { UserService } from '../_services/user.service';
-import { User } from '../_models/user';
+
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { User } from 'src/app/_models/user';
+import { UserService } from 'src/app/_services/user.service';
 
 @Injectable()
 export class ExploreUsersListResolver implements Resolve<User[]> {
@@ -15,7 +16,7 @@ export class ExploreUsersListResolver implements Resolve<User[]> {
   resolve(route: ActivatedRouteSnapshot): Observable<User[]> {
       return this.userService.getAllUsersWithFollowers().pipe(
           catchError(error => {
-              this.router.navigate(['/home']);
+              this.router.navigate(['']);
               return of(null);
           })
       );

@@ -6,16 +6,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PhotoExploreModule } from './photo-explore/photo-explore.module';
-
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 
 import { AuthService } from './_services/auth.service';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { RoutePathService } from './_services/RoutePath.service';
-import { AuthGuard } from './_guards/auth.guard';
-import { ExploreUsersListResolver } from './_resolvers/explore-users-list.resolver';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -31,14 +26,12 @@ const routes: Routes = [
 
 @NgModule({
    declarations: [
-      AppComponent,
-      HomeComponent
+      AppComponent
    ],
    imports: [
       BrowserModule,
       BrowserAnimationsModule,
       HttpClientModule,
-      PhotoExploreModule,
       RouterModule.forRoot(routes),
       JwtModule.forRoot({
          config: {
@@ -51,9 +44,7 @@ const routes: Routes = [
    providers: [
       AuthService,
       RoutePathService,
-      ErrorInterceptorProvider,
-      AuthGuard,
-      ExploreUsersListResolver
+      ErrorInterceptorProvider
    ],
    bootstrap: [
       AppComponent
