@@ -15,7 +15,7 @@ export class NavComponent implements OnInit {
   }
 
 
-  openLoginDialog(): void {
+   openLoginDialog(): void {
     const dialogRef = this.dialog.open(LoginDialogComponent, {
       width: '450px'
     });

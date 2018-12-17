@@ -5,6 +5,8 @@ import { AuthService } from 'src/app/_services/auth.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/_models/user';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { ComponentType } from '@angular/core/src/render3';
+import { SnacbarAlertService } from 'src/app/_services/snacbar-alert.service';
 
 @Component({
   selector: 'app-login-dialog',
@@ -14,42 +16,50 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 export class LoginDialogComponent implements OnInit {
   hide = true;
   user: User;
-  registerForm: FormGroup;
+  loginForm: FormGroup;
 
   constructor(
     private dialogRef: MatDialogRef<LoginDialogComponent>,
     private authService: AuthService,
     private router: Router,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private snackbarAlertSerice: SnacbarAlertService) { }
 
   ngOnInit() {
     this.createRegisterForm();
   }
 
   login() {
-    if (this.registerForm.valid) {
-      this.user = Object.assign({}, this.registerForm.value);
+    if (this.loginForm.valid) {
+
+      this.user = Object.assign({}, this.loginForm.value);
       this.authService.login(this.user).subscribe(() => {
-          // view allert
-        }, error => {
-          // view error
-        }, () => {
+          this.snackbarAlertSerice.openSnackbar('login to app', 500, null, 'orange-register-login-snackbar');
           this.dialogRef.close(this.user);
           this.router.navigate(['/photo-exp']);
+        }, error => {
+          this.snackbarAlertSerice.openSnackbar(error, 7000, null, 'orange-register-login-snackbar');
         });
-    }
-
+     }
   }
   dismiss() {
     this.dialogRef.close(null);
   }
 
   createRegisterForm() {
-    this.registerForm = this.formBuilder.group({
+    this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
   }
 
+  getEmailErrorMessage() {
+    return this.loginForm.get('email').hasError('required') ? 'You must enter a value' :
+        this.loginForm.get('email').hasError('email') ? 'Not a valid email' :
+            '';
+  }
 
+  getPasswordErrorMessage() {
+    return this.loginForm.get('password').hasError('required') ? 'You must enter a value' : '';
+  }
 }

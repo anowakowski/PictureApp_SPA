@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterFormComponent } from 'src/app/components/register-form/register-form.component';
 import { LoginDialogComponent } from 'src/app/components/login-dialog/login-dialog.component';
 import { MaterialModule } from 'src/app/shared/material/material.module';
+import { SnacbarAlertService } from 'src/app/_services/snacbar-alert.service';
 
 const routes: Routes = [
   {path: '', component: RegisterComponent},
@@ -37,6 +38,9 @@ const routes: Routes = [
     ReactiveFormsModule,
     MaterialModule,
     RouterModule.forChild(routes)
+  ],
+  providers: [
+    SnacbarAlertService
   ]
 })
 export class RegiserLoginLayoutModule { }
