@@ -7,6 +7,7 @@ import { User } from 'src/app/_models/user';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ComponentType } from '@angular/core/src/render3';
 import { SnacbarAlertService } from 'src/app/_services/snacbar-alert.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login-dialog',
@@ -23,7 +24,8 @@ export class LoginDialogComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private snackbarAlertSerice: SnacbarAlertService) { }
+    private snackbarAlertSerice: SnacbarAlertService,
+    private spinnerService: NgxSpinnerService) { }
 
   ngOnInit() {
     this.createRegisterForm();
@@ -31,7 +33,7 @@ export class LoginDialogComponent implements OnInit {
 
   login() {
     if (this.loginForm.valid) {
-
+      this.spinnerService.show();
       this.user = Object.assign({}, this.loginForm.value);
       this.authService.login(this.user).subscribe(() => {
           this.snackbarAlertSerice.openSnackbar('login to app', 500, null, 'orange-register-login-snackbar');
@@ -39,6 +41,8 @@ export class LoginDialogComponent implements OnInit {
           this.router.navigate(['/photo-exp']);
         }, error => {
           this.snackbarAlertSerice.openSnackbar(error, 7000, null, 'orange-register-login-snackbar');
+        }, () => {
+          this.spinnerService.hide();
         });
      }
   }

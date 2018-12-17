@@ -8,6 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { PhotoExploreModule } from './photo-explore/photo-explore.module';
 import { PhotoMembersModule } from './photo-members/photo-members.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -40,6 +41,7 @@ const routes: Routes = [
       HttpClientModule,
       PhotoExploreModule,
       PhotoMembersModule,
+      NgxSpinnerModule,
       RouterModule.forRoot(routes),
       JwtModule.forRoot({
          config: {
