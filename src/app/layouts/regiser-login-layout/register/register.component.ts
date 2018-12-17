@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
 
     if (this.authService.loggedIn()) {
       this.spinner.show();
-      this.router.navigate(['/photo-exp']);
+      this.router.navigate(['']);
     }
   }
 }

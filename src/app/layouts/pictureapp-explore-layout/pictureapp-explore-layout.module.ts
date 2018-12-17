@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: '',
     component: PictureExploreLayoutComponent,
     canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always',
     children: [
       {path: 'photo-exp', component: PhotoExploreComponent}
   ]},
