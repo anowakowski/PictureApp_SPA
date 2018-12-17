@@ -7,8 +7,6 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { RouterModule, Routes } from '@angular/router';
 
 import { PhotoExploreModule } from './photo-explore/photo-explore.module';
-import { PhotoMembersModule } from './photo-members/photo-members.module';
-import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -24,10 +22,11 @@ export function tokenGetter() {
 }
 
 const routes: Routes = [
-   {path: 'register', loadChildren: '../app/layouts/regiser-login-layout/regiser-login-layout.module#RegiserLoginLayoutModule'},
-   {path: 'photo-exp',
+   {path: 'register',
+      loadChildren: '../app/layouts/regiser-login-layout/regiser-login-layout.module#RegiserLoginLayoutModule'},
+   {path: '',
       loadChildren: '../app/layouts/pictureapp-explore-layout/pictureapp-explore-layout.module#PictureAppExploreLayoutModule'},
-   {path: '**', redirectTo: 'register'}
+   {path: '**', redirectTo: ''}
 ];
 
 @NgModule({
@@ -40,8 +39,6 @@ const routes: Routes = [
       BrowserAnimationsModule,
       HttpClientModule,
       PhotoExploreModule,
-      PhotoMembersModule,
-      NgxSpinnerModule,
       RouterModule.forRoot(routes),
       JwtModule.forRoot({
          config: {

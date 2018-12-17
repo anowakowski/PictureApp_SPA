@@ -38,7 +38,7 @@ export class LoginDialogComponent implements OnInit {
       this.authService.login(this.user).subscribe(() => {
           this.snackbarAlertSerice.openSnackbar('login to app', 500, null, 'orange-register-login-snackbar');
           this.dialogRef.close(this.user);
-          this.router.navigate(['/photo-exp']);
+          this.router.navigate(['']);
         }, error => {
           this.snackbarAlertSerice.openSnackbar(error, 7000, null, 'orange-register-login-snackbar');
         }, () => {
