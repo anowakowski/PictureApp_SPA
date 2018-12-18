@@ -1,0 +1,13 @@
+<p>{{user.username}}
+  <button 
+    *ngIf="!isFollower" 
+    class="btn btn-primary"
+    (click)="followUser(user)">Follow
+  </button>
+  <button 
+  *ngIf="isFollower" 
+    class="btn btn-success"
+    (click)="unfollowUser(user)"> Unfollow
+  </button>
+</p>
+
