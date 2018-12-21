@@ -9,7 +9,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 
 import { AuthService } from './services/auth.service';
-import { ErrorInterceptorProvider } from './services/error.interceptor';
+import { ErrorInterceptorProvider } from './interceptors/error.interceptor';
 import { RoutePathService } from './services/RoutePath.service';
 
 export function tokenGetter() {
