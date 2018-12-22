@@ -5,9 +5,18 @@ import { NavComponent } from './nav/nav.component';
 import { MaterialModule } from '../shared/material/material.module';
 import { LoginComponent } from './login/login.component';
 import { Routes, RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SnacbarAlertService } from 'src/app/services/snacbar-alert.service';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent}
+  {
+    path: '',
+    component: HomeComponent,
+    children: [
+      {path: '', redirectTo: 'auth-login'},
+      {path: 'auth-login', component: LoginComponent}
+    ]
+  }
 ];
 
 @NgModule({
@@ -19,7 +28,12 @@ const routes: Routes = [
   imports: [
     CommonModule,
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
+  ],
+  providers: [
+    SnacbarAlertService
   ]
 })
 export class HomeModule { }

@@ -1,3 +1,45 @@
-<p>
-  login works!
-</p>
+<div class="row align-items-center justify-content-center box">
+    <div class="col-12 col-sm-10 col-md-7 col-xl-5">
+      <div class="form-box text-center">
+        <h1 class="mat-display-2">Login</h1>
+  
+        <form class="mb-3">
+          <mat-form-field class="mb-2">
+            <input
+              matInput
+              required
+              autocomplete="email"
+              placeholder="test"
+            />
+          </mat-form-field>
+  
+          <mat-form-field class="mb-3">
+            <input
+              matInput
+              required
+              pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,30}$"
+              placeholder="test"
+            />
+          </mat-form-field>
+  
+          <button mat-raised-button type="submit" color="primary">
+              Login
+          </button>
+        </form>
+  
+        <div class="row">
+          <div class="col-6">
+            <button mat-raised-button type="button">
+                Sign up
+            </button>
+          </div>
+          <div class="col-6">
+            <button mat-raised-button type="button" [routerLink]="['/auth', 'register']">
+                test
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
