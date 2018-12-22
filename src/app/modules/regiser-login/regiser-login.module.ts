@@ -45,4 +45,4 @@ const routes: Routes = [
     SnacbarAlertService
   ]
 })
-export class RegiserLoginLayoutModule { }
+export class RegiserLoginModule { }
