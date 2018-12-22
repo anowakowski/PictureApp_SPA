@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
   ></ngx-spinner>
   <app-photo-explore></app-photo-explore>
   `})
-export class PictureExploreLayoutComponent implements OnInit {
+export class PictureExploreComponent implements OnInit {
 
   constructor() { }
 

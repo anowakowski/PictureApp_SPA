@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/_services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { User } from 'src/app/_models/user';
-import { MatSnackBar } from '@angular/material';
-import { SnacbarAlertService } from 'src/app/_services/snacbar-alert.service';
+import { User } from '../../models/user';
+import { SnacbarAlertService } from '../../services/snacbar-alert.service';
 
 @Component({
   selector: 'app-register-form',

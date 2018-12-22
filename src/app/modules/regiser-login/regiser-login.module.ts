@@ -10,8 +10,8 @@ import { FooterSectionComponent } from './register/components/footer-section/foo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterFormComponent } from 'src/app/components/register-form/register-form.component';
 import { LoginDialogComponent } from 'src/app/components/login-dialog/login-dialog.component';
-import { MaterialModule } from 'src/app/shared/material/material.module';
-import { SnacbarAlertService } from 'src/app/_services/snacbar-alert.service';
+import { MaterialModule } from '../shared/material/material.module';
+import { SnacbarAlertService } from '../../services/snacbar-alert.service';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 const routes: Routes = [
@@ -45,4 +45,4 @@ const routes: Routes = [
     SnacbarAlertService
   ]
 })
-export class RegiserLoginLayoutModule { }
+export class RegiserLoginModule { }

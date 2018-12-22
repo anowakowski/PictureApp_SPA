@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
-import { UserService } from 'src/app/_services/user.service';
-import { AuthService } from 'src/app/_services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { User } from 'src/app/_models/user';
+import { User } from '../../models/user';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { ComponentType } from '@angular/core/src/render3';
-import { SnacbarAlertService } from 'src/app/_services/snacbar-alert.service';
+import { SnacbarAlertService } from '../../services/snacbar-alert.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({

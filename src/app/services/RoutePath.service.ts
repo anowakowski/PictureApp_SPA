@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
-import { promise } from 'protractor';
 
 @Injectable({
   providedIn: 'root'

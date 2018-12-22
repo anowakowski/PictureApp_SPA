@@ -8,9 +8,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
-import { AuthService } from './_services/auth.service';
-import { ErrorInterceptorProvider } from './_services/error.interceptor';
-import { RoutePathService } from './_services/RoutePath.service';
+import { AuthService } from './services/auth.service';
+import { ErrorInterceptorProvider } from './interceptors/error.interceptor';
+import { RoutePathService } from './services/RoutePath.service';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -18,9 +18,9 @@ export function tokenGetter() {
 
 const routes: Routes = [
    {path: 'register',
-      loadChildren: '../app/layouts/regiser-login-layout/regiser-login-layout.module#RegiserLoginLayoutModule'},
+      loadChildren: '../app/modules/regiser-login/regiser-login.module#RegiserLoginModule'},
    {path: '',
-      loadChildren: '../app/layouts/pictureapp-explore-layout/pictureapp-explore-layout.module#PictureAppExploreLayoutModule'},
+      loadChildren: '../app/modules/pictureapp-explore/pictureapp-explore.module#PictureAppExploreModule'},
    {path: '**', redirectTo: ''}
 ];
 
