@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { LoginDialogComponent } from 'src/app/components/login-dialog/login-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -9,20 +10,13 @@ import { LoginDialogComponent } from 'src/app/components/login-dialog/login-dial
 })
 export class NavComponent implements OnInit {
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
 
-   openLoginDialog(): void {
-    const dialogRef = this.dialog.open(LoginDialogComponent, {
-      width: '450px'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
-    });
+  goToDialoginPage(): void {
+    this.router.navigate(['/login']);
   }
-
 }
