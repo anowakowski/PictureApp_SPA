@@ -5,6 +5,7 @@ button {
 }
 
 $toolbarHeight: 64px;
+$backGroundColor: #e7e7e7;
 
 .box {
     min-height: calc(100vh - #{$toolbarHeight});
@@ -13,9 +14,13 @@ $toolbarHeight: 64px;
 
 .form-box {
     padding: 30px;
-    background: #e7e7e7;
+    background: $backGroundColor;
     box-shadow: 0 0 6px rgb(99, 99, 99);
     border-radius: 12px;
     margin-top: 30px;
     margin-bottom: 30px;
+}
+
+input.base-style {
+    background-color: $backGroundColor !important;
 }

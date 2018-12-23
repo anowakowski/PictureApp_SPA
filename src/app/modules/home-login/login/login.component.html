@@ -3,39 +3,36 @@
       <div class="form-box text-center">
         <h1 class="mat-display-2">Login</h1>
   
-        <form class="mb-3">
+        <form [formGroup]="loginForm" (ngSubmit)="login()" class="mb-3">
           <mat-form-field class="mb-2">
-            <input
-              matInput
-              required
-              autocomplete="email"
-              placeholder="test"
-            />
+            <input matInput placeholder="email" formControlName="email" class="base-style" required>
+            <mat-error *ngIf="this.loginForm.get('email').invalid">{{getEmailErrorMessage()}}</mat-error>
           </mat-form-field>
   
           <mat-form-field class="mb-3">
-            <input
-              matInput
-              required
-              pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,30}$"
-              placeholder="test"
-            />
+            <input matInput placeholder="Enter your password" formControlName="password" [type]="hide ? 'password' : 'text'" class="base-style" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="this.loginForm.get('password').invalid">{{getPasswordErrorMessage()}}</mat-error>
           </mat-form-field>
-  
+
+          <div class="row">
+            <div class="col-6">
+              <button mat-raised-button type="submit" color="primary" [disabled]="!loginForm.valid">
+                <mat-icon>exit_to_app</mat-icon> 
+                Login
+              </button>
+            </div>
+            <div class="col-6">
+              <button mat-raised-button type="button" [routerLink]="['/register']">
+                <mat-icon>cancel</mat-icon>   
+                Back to Register
+              </button>
+            </div>
+          </div>
+
         </form>
   
-        <div class="row">
-          <div class="col-6">
-            <button mat-raised-button type="submit" color="primary">
-              Login
-            </button>
-          </div>
-          <div class="col-6">
-            <button mat-raised-button type="button" [routerLink]="['/register']">
-                Back to Register
-            </button>
-          </div>
-        </div>
+
       </div>
     </div>
   </div>

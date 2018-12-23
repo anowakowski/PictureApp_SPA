@@ -12,6 +12,7 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  hide = true;
   user: User;
   loginForm: FormGroup;
 
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
     private spinnerService: NgxSpinnerService) { }
 
   ngOnInit() {
+    this.createRegisterForm();
   }
 
   login() {
