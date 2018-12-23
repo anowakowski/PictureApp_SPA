@@ -6,7 +6,7 @@
 @import '~@angular/material/theming';
 @include mat-core();
 
-$candy-app-primary: mat-palette($mat-deep-orange, 700);
+$candy-app-primary: mat-palette($mat-blue-grey, 300);
 $candy-app-accent:  mat-palette($mat-pink, A200, A100, A400);
 $candy-app-warn:    mat-palette($mat-red);
 
@@ -15,8 +15,6 @@ $candy-app-theme: mat-light-theme(
 
 @include angular-material-theme($candy-app-theme);
 
-
-
 .orange-register-login-snackbar {
     background: #c77158;
-  }
+}
