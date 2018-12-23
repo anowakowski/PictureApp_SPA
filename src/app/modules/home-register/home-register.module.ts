@@ -9,8 +9,6 @@ import { CreateShareSectionComponent } from './register/components/create-share-
 import { FooterSectionComponent } from './register/components/footer-section/footer-section.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterFormComponent } from 'src/app/components/register-form/register-form.component';
-import { LoginDialogComponent } from 'src/app/components/login-dialog/login-dialog.component';
-import { MaterialModule } from '../shared/material/material.module';
 import { SnacbarAlertService } from '../../services/snacbar-alert.service';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
@@ -27,17 +25,12 @@ const routes: Routes = [
     ExploreSectionComponent,
     CreateShareSectionComponent,
     FooterSectionComponent,
-    RegisterFormComponent,
-    LoginDialogComponent
-  ],
-  entryComponents: [
-    LoginDialogComponent
+    RegisterFormComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule,
     NgxSpinnerModule,
     RouterModule.forChild(routes)
   ],
