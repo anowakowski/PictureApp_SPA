@@ -15,6 +15,6 @@ export class NavComponent implements OnInit {
   ngOnInit() {
   }
   openSearchDialog(): void {
-    this.dialogService.openDialog(SearchPicturesDialogComponent, null, '115px', {top: '100px'});
+    this.dialogService.openDialog(SearchPicturesDialogComponent, null, '150px', {top: '100px'});
   }
 }

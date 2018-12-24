@@ -2,7 +2,6 @@
     <div class="col-12 col-sm-10 col-md-7 col-xl-5">
       <div class="form-box text-center">
         <p class="mat-display-1" color="primary">Login <mat-icon>camera</mat-icon>  </p>
-
         <form [formGroup]="loginForm" (ngSubmit)="login()" class="mb-3">
           <mat-form-field class="mb-2">
             <input matInput placeholder="email" formControlName="email" class="base-style" required>
@@ -24,15 +23,12 @@
             </div>
             <div class="col-6">
               <button mat-raised-button type="button" [routerLink]="['/register']">
-                <mat-icon>cancel</mat-icon>   
+                <mat-icon>clear</mat-icon>   
                 Back to Register
               </button>
             </div>
           </div>
-
         </form>
-  
-
       </div>
     </div>
   </div>
