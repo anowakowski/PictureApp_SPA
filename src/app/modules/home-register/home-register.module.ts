@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterFormComponent } from 'src/app/components/register-form/register-form.component';
 import { SnacbarAlertService } from '../../services/snacbar-alert.service';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { MaterialModule } from '../shared/material/material.module';
 
 const routes: Routes = [
   {path: '', component: RegisterComponent},
@@ -31,6 +32,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MaterialModule,
     NgxSpinnerModule,
     RouterModule.forChild(routes)
   ],

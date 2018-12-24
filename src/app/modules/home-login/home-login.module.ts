@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SnacbarAlertService } from 'src/app/services/snacbar-alert.service';
+import { SearchPicturesDialogComponent } from './search-pictures-dialog/search-pictures-dialog.component';
 
 const routes: Routes = [
   {
@@ -23,7 +24,11 @@ const routes: Routes = [
   declarations: [
     HomeComponent,
     NavComponent,
-    LoginComponent
+    LoginComponent,
+    SearchPicturesDialogComponent
+  ],
+  entryComponents: [
+    SearchPicturesDialogComponent
   ],
   imports: [
     CommonModule,

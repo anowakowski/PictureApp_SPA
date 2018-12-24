@@ -1,11 +1,15 @@
 <mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <span>
+    <span>
         PictureApp
         <mat-icon>camera</mat-icon>
-      </span>
-      <span class="example-spacer"></span>
-      <mat-icon class="example-icon">more_vert</mat-icon>      
-    </mat-toolbar-row>
+    </span>
+    <span class="example-spacer"></span>
+    <button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>  
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="openSearchDialog()">Search photos
+      <mat-icon>search</mat-icon>
+    </button>
+    </mat-menu>  
 </mat-toolbar>
-
