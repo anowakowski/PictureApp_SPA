@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { SearchPicturesDialogComponent } from '../search-pictures-dialog/search-pictures-dialog.component';
+import { DialogService } from '../../services/dialog.service';
 
 @Component({
   selector: 'app-nav',
@@ -9,20 +10,11 @@ import { SearchPicturesDialogComponent } from '../search-pictures-dialog/search-
 })
 export class NavComponent implements OnInit {
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private dialogService: DialogService) { }
 
   ngOnInit() {
   }
   openSearchDialog(): void {
-    const dialogRef = this.dialog.open(SearchPicturesDialogComponent, {
-      width: '450px',
-      height: '115px',
-      position: {top: '100px'}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
-    });
+    this.dialogService.openDialog(SearchPicturesDialogComponent, null, '115px', {top: '100px'});
   }
-
 }

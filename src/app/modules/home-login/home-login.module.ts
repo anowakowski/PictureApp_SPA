@@ -8,6 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SnacbarAlertService } from 'src/app/services/snacbar-alert.service';
 import { SearchPicturesDialogComponent } from './search-pictures-dialog/search-pictures-dialog.component';
+import { DialogService } from '../services/dialog.service';
 
 const routes: Routes = [
   {
@@ -38,7 +39,8 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   providers: [
-    SnacbarAlertService
+    SnacbarAlertService,
+    DialogService
   ]
 })
 export class HomeLoginModule { }
