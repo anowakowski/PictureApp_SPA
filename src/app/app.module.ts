@@ -23,7 +23,7 @@ const routes: Routes = [
    },
    {
       path: 'login',
-      loadChildren: '../app/modules/home-login/home-login.module#HomeLoginModule'
+      loadChildren: '../app/modules/register-login/register-login.module#RegisterLoginModule'
    },
    {
       path: '',

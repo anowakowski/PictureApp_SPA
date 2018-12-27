@@ -43,4 +43,4 @@ const routes: Routes = [
     DialogService
   ]
 })
-export class HomeLoginModule { }
+export class RegisterLoginModule { }
