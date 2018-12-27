@@ -22,7 +22,6 @@ export class SearchPicturesDialogComponent implements OnInit {
     });
   }
   searchPictures() {
-    console.log('serac photos');
     console.log(this.searchPhotosForm.value);
   }
 

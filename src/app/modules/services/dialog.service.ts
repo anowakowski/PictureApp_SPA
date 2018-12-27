@@ -17,9 +17,7 @@ export class DialogService {
       panelClass: (panelClass === null || panelClass === undefined) ? null : panelClass
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
-    });
+    dialogRef.afterClosed().subscribe(result => {});
   }
 
 }
