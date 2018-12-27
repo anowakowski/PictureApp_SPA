@@ -9,10 +9,9 @@ import { CreateShareSectionComponent } from './register/components/create-share-
 import { FooterSectionComponent } from './register/components/footer-section/footer-section.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterFormComponent } from 'src/app/components/register-form/register-form.component';
-import { LoginDialogComponent } from 'src/app/components/login-dialog/login-dialog.component';
-import { MaterialModule } from '../shared/material/material.module';
 import { SnacbarAlertService } from '../../services/snacbar-alert.service';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { MaterialModule } from '../shared/material/material.module';
 
 const routes: Routes = [
   {path: '', component: RegisterComponent},
@@ -27,11 +26,7 @@ const routes: Routes = [
     ExploreSectionComponent,
     CreateShareSectionComponent,
     FooterSectionComponent,
-    RegisterFormComponent,
-    LoginDialogComponent
-  ],
-  entryComponents: [
-    LoginDialogComponent
+    RegisterFormComponent
   ],
   imports: [
     CommonModule,
@@ -45,4 +40,4 @@ const routes: Routes = [
     SnacbarAlertService
   ]
 })
-export class RegiserLoginModule { }
+export class HomeRegisterModule { }
