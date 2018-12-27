@@ -2,7 +2,7 @@
     <div class="col-12 col-sm-10 col-md-7 col-xl-5">
       <div class="form-box text-center">
         <p class="mat-display-1" color="primary">Login <mat-icon>camera</mat-icon>  </p>
-        <form [formGroup]="loginForm" (ngSubmit)="login()" class="mb-3">
+         <form [formGroup]="loginForm" (ngSubmit)="login()" class="mb-3">
           <mat-form-field class="mb-2">
             <input matInput placeholder="email" formControlName="email" class="base-style" required>
             <mat-error *ngIf="this.loginForm.get('email').invalid">{{getEmailErrorMessage()}}</mat-error>
@@ -15,20 +15,18 @@
           </mat-form-field>
 
           <div class="row">
-            <div class="col-6">
-              <button mat-raised-button type="submit" color="primary" [disabled]="!loginForm.valid">
-                <mat-icon>exit_to_app</mat-icon> 
-                Login
-              </button>
-            </div>
-            <div class="col-6">
-              <button mat-raised-button type="button" [routerLink]="['/register']">
-                <mat-icon>clear</mat-icon>   
-                Back to Register
-              </button>
-            </div>
+            <button mat-raised-button type="submit" color="primary" [disabled]="!loginForm.valid">
+              <mat-icon>exit_to_app</mat-icon> 
+              Login
+            </button>
           </div>
         </form>
+        <hr />
+        <div class="row btn-margin">
+          <button mat-raised-button class="btn-margin-bottom fb-style">Contiune with Facebook</button>
+          <button mat-raised-button >Contiune with Google</button>
+        </div>
+
       </div>
     </div>
   </div>
