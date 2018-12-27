@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home.component';
-import { HomeSectionRegisterFormComponent } from './components/home-section-registerForm/homes-section-registerForm.component';
+import { HomeSectionComponent } from './components/home-section-registerForm/homes-section.component';
 import { NavComponent } from './components/nav/nav.component';
 import { ExploreSectionComponent } from './components/explore-section/explore-section.component';
 import { CreateShareSectionComponent } from './components/create-share-section/create-share-section.component';
@@ -21,7 +21,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     HomeComponent,
-    HomeSectionRegisterFormComponent,
+    HomeSectionComponent,
     NavComponent,
     ExploreSectionComponent,
     CreateShareSectionComponent,
