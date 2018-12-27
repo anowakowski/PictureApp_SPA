@@ -17,10 +17,18 @@ export function tokenGetter() {
 }
 
 const routes: Routes = [
-   {path: 'register',
-      loadChildren: '../app/modules/regiser-login/regiser-login.module#RegiserLoginModule'},
-   {path: '',
-      loadChildren: '../app/modules/pictureapp-explore/pictureapp-explore.module#PictureAppExploreModule'},
+   {
+      path: 'register',
+      loadChildren: '../app/modules/home-register/home-register.module#HomeRegisterModule'
+   },
+   {
+      path: 'login',
+      loadChildren: '../app/modules/home-login/home-login.module#HomeLoginModule'
+   },
+   {
+      path: '',
+      loadChildren: '../app/modules/pictureapp-explore/pictureapp-explore.module#PictureAppExploreModule'
+   },
    {path: '**', redirectTo: ''}
 ];
 

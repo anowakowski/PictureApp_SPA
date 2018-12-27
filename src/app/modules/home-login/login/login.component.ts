@@ -1,24 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import { User } from '../../models/user';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { SnacbarAlertService } from '../../services/snacbar-alert.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SnacbarAlertService } from 'src/app/services/snacbar-alert.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { User } from 'src/app/models/user';
 
 @Component({
-  selector: 'app-login-dialog',
-  templateUrl: './login-dialog.component.html',
-  styleUrls: ['./login-dialog.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class LoginDialogComponent implements OnInit {
+export class LoginComponent implements OnInit {
   hide = true;
   user: User;
   loginForm: FormGroup;
 
   constructor(
-    private dialogRef: MatDialogRef<LoginDialogComponent>,
     private authService: AuthService,
     private router: Router,
     private formBuilder: FormBuilder,
@@ -35,17 +33,12 @@ export class LoginDialogComponent implements OnInit {
       this.user = Object.assign({}, this.loginForm.value);
       this.authService.login(this.user).subscribe(() => {
           this.snackbarAlertSerice.openSnackbar('login to app', 500, null, 'orange-register-login-snackbar');
-          this.dialogRef.close(this.user);
           this.router.navigate(['']);
         }, error => {
           this.snackbarAlertSerice.openSnackbar(error, 7000, null, 'orange-register-login-snackbar');
         }, () => {
-          this.spinnerService.hide();
         });
      }
-  }
-  dismiss() {
-    this.dialogRef.close(null);
   }
 
   createRegisterForm() {
@@ -64,4 +57,5 @@ export class LoginDialogComponent implements OnInit {
   getPasswordErrorMessage() {
     return this.loginForm.get('password').hasError('required') ? 'You must enter a value' : '';
   }
+
 }
