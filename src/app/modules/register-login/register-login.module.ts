@@ -9,7 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SnacbarAlertService } from 'src/app/services/snacbar-alert.service';
 import { SearchPicturesDialogComponent } from './components/search-pictures-dialog/search-pictures-dialog.component';
 import { DialogService } from '../services/dialog.service';
-import { RegisterComponent } from '../home-register/register/register.component';
+import { RegisterComponent } from './components/register/register.component';
+
 
 const routes: Routes = [
   {

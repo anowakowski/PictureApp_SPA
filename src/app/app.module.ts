@@ -19,7 +19,7 @@ export function tokenGetter() {
 const routes: Routes = [
    {
       path: 'home',
-      loadChildren: '../app/modules/home-register/home-register.module#HomeRegisterModule'
+      loadChildren: '../app/modules/home/home.module#HomeModule'
    },
    {
       path: 'auth',

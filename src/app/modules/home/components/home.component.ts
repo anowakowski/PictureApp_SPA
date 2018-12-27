@@ -20,9 +20,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
     <app-footer-section></app-footer-section>
   </div>
   `,
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./home.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class HomeComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router, private spinner: NgxSpinnerService) { }
 
