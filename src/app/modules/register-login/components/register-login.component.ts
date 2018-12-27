@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
     <div class="container"><router-outlet></router-outlet></div>
   </div>
 `,
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./register-login.component.scss']
 })
 export class HomeComponent implements OnInit {
 

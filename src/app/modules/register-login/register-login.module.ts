@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './components/home-login.component';
+import { HomeComponent } from './components/register-login.component';
 import { NavComponent } from './components/nav/nav.component';
 import { MaterialModule } from '../shared/material/material.module';
 import { LoginComponent } from './components/login/login.component';
@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SnacbarAlertService } from 'src/app/services/snacbar-alert.service';
 import { SearchPicturesDialogComponent } from './components/search-pictures-dialog/search-pictures-dialog.component';
 import { DialogService } from '../services/dialog.service';
+import { RegisterComponent } from '../home-register/register/register.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,8 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       {path: '', redirectTo: 'auth', pathMatch: 'full'},
-      {path: 'auth', component: LoginComponent}
+      {path: 'login', component: LoginComponent},
+      {path: 'register', component: RegisterComponent}
     ]
   }
 ];
@@ -26,6 +28,7 @@ const routes: Routes = [
     HomeComponent,
     NavComponent,
     LoginComponent,
+    RegisterComponent,
     SearchPicturesDialogComponent
   ],
   entryComponents: [

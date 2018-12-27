@@ -18,11 +18,11 @@ export function tokenGetter() {
 
 const routes: Routes = [
    {
-      path: 'register',
+      path: 'home',
       loadChildren: '../app/modules/home-register/home-register.module#HomeRegisterModule'
    },
    {
-      path: 'login',
+      path: 'auth',
       loadChildren: '../app/modules/register-login/register-login.module#RegisterLoginModule'
    },
    {
