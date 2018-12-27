@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home-login.component';
-import { NavComponent } from './nav/nav.component';
+import { HomeComponent } from './components/home-login.component';
+import { NavComponent } from './components/nav/nav.component';
 import { MaterialModule } from '../shared/material/material.module';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SnacbarAlertService } from 'src/app/services/snacbar-alert.service';
-import { SearchPicturesDialogComponent } from './search-pictures-dialog/search-pictures-dialog.component';
+import { SearchPicturesDialogComponent } from './components/search-pictures-dialog/search-pictures-dialog.component';
 import { DialogService } from '../services/dialog.service';
 
 const routes: Routes = [

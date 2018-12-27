@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { SearchPicturesDialogComponent } from '../search-pictures-dialog/search-pictures-dialog.component';
-import { DialogService } from '../../services/dialog.service';
+import { DialogService } from '../../../services/dialog.service';
 
 @Component({
   selector: 'app-nav',
