@@ -3,21 +3,21 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { DebugElement } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
-import { RegisterComponent } from './register.component';
-import { AuthService } from 'src/app/services/auth.service';
-import { Router, RouterModule } from '@angular/router';
-import { SnacbarAlertService } from 'src/app/services/snacbar-alert.service';
-import { NgxSpinnerModule } from 'ngx-spinner';
-import { HomeSectionRegisterFormComponent } from './components/home-section-registerForm/homes-section-registerForm.component';
-import { NavComponent } from './components/nav/nav.component';
-import { ExploreSectionComponent } from './components/explore-section/explore-section.component';
-import { CreateShareSectionComponent } from './components/create-share-section/create-share-section.component';
-import { FooterSectionComponent } from './components/footer-section/footer-section.component';
-import { RegisterFormComponent } from 'src/app/components/register-form/register-form.component';
-import { LoginDialogComponent } from 'src/app/components/login-dialog/login-dialog.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from '../../shared/material/material.module';
 
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '../shared/material/material.module';
+
+import { HomeSectionRegisterFormComponent } from './register/components/home-section-registerForm/homes-section-registerForm.component';
+import { NavComponent } from '../home-login/nav/nav.component';
+import { ExploreSectionComponent } from './register/components/explore-section/explore-section.component';
+import { CreateShareSectionComponent } from './register/components/create-share-section/create-share-section.component';
+import { FooterSectionComponent } from './register/components/footer-section/footer-section.component';
+import { RegisterFormComponent } from 'src/app/components/register-form/register-form.component';
+import { RegisterComponent } from './register/register.component';
+
+import { AuthService } from 'src/app/services/auth.service';
+import { SnacbarAlertService } from 'src/app/services/snacbar-alert.service';
 
 describe('RegisterComponent', () => {
     let component: RegisterComponent;
@@ -34,8 +34,7 @@ describe('RegisterComponent', () => {
               ExploreSectionComponent,
               CreateShareSectionComponent,
               FooterSectionComponent,
-              RegisterFormComponent,
-              LoginDialogComponent
+              RegisterFormComponent
             ],
           providers: [AuthService, SnacbarAlertService],
           imports: [
