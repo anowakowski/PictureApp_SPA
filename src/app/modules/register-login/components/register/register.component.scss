@@ -1,0 +1,39 @@
+mat-form-field,
+button {
+  display: block;
+  width: 100%;
+}
+
+$toolbarHeight: 64px;
+$backGroundColor: #e7e7e7;
+
+.box {
+    min-height: calc(100vh - #{$toolbarHeight});
+    margin-top: $toolbarHeight;
+}
+
+.form-box {
+    padding: 30px;
+    background: $backGroundColor;
+    box-shadow: 0 0 6px rgb(99, 99, 99);
+    border-radius: 12px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+input.base-style {
+    background-color: $backGroundColor !important;
+}
+
+button.btn-margin {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+button.btn-margin-bottom{
+    margin-bottom: 13px;
+}
+button.fb-style {
+    background: #3b5998;
+    color: white;
+}
