@@ -46,8 +46,6 @@ describe('RegisterComponent', () => {
               HttpClientModule,
               RouterTestingModule
             ]
-          // providers: [ {provide: MessageService, useValue: serviceStub} ]
-
         })
         .compileComponents();
       }));
@@ -61,12 +59,39 @@ describe('RegisterComponent', () => {
         fixture.detectChanges();
     });
 
-
-
     it ('should create a `RegisterComponent`', () => {
         expect(component).toBeTruthy();
     });
 
+    it ('should render `ngx-spinner`', () => {
+        const attribiute = fixture.debugElement.query(By.css('ngx-spinner'));
+        expect(attribiute).not.toBeNull();
+    });
+
+    it ('should render `app-nav`', () => {
+        const attribiute = fixture.debugElement.query(By.css('app-nav'));
+        expect(attribiute).not.toBeNull();
+    });
+
+    it ('should render `app-home-section-registerform`', () => {
+        const attribiute = fixture.debugElement.query(By.css('app-home-section-registerform'));
+        expect(attribiute).not.toBeNull();
+    });
+
+    it ('should render `app-explore-section`', () => {
+        const attribiute = fixture.debugElement.query(By.css('app-explore-section'));
+        expect(attribiute).not.toBeNull();
+    });
+
+    it ('should render `app-create-share-section`', () => {
+        const attribiute = fixture.debugElement.query(By.css('app-create-share-section'));
+        expect(attribiute).not.toBeNull();
+    });
+
+    it ('should render `app-footer-section`', () => {
+        const attribiute = fixture.debugElement.query(By.css('app-footer-section'));
+        expect(attribiute).not.toBeNull();
+    });
 });
 
 
