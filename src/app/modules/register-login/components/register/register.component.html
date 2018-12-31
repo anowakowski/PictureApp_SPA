@@ -4,11 +4,11 @@
       <p class="mat-display-1" color="primary">Register<mat-icon>camera</mat-icon>  </p>
        <form [formGroup]="registerForm" (ngSubmit)="register()" class="mb-3">
          <mat-form-field class="mb-2">
-          <input matInput placeholder="user name" formControlName="username" type="text" class="base-style" required>
+          <input matInput placeholder="username" formControlName="username" type="text" class="base-style" required>
           <mat-error *ngIf="this.registerForm.get('username').invalid">{{getUsernameErrorMessage()}}</mat-error>
          </mat-form-field>
         <mat-form-field class="mb-2">
-          <input matInput placeholder="email@" formControlName="email" class="base-style" required>
+          <input matInput placeholder="email" formControlName="email" class="base-style" required>
           <mat-error *ngIf="this.registerForm.get('email').invalid">{{getEmailErrorMessage()}}</mat-error>
         </mat-form-field>
 
@@ -20,7 +20,6 @@
 
         <mat-form-field class="mb-3">
             <input matInput placeholder="Confirm Password" formControlName="confirmPassword" (input)="onPasswordInput()" [type]="hide ? 'password' : 'text'" class="base-style" required>
-            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             <mat-error *ngIf="this.registerForm.get('confirmPassword').invalid">{{getConfirmPasswordErrorMessage()}}</mat-error>
             <mat-error *ngIf="this.registerForm.get('confirmPassword').invalid && !this.registerForm.get('confirmPassword').hasError('required')">{{getConfirmPasswordMismatchErrorMessage()}}</mat-error>
         </mat-form-field>
