@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
     <div class="container"><router-outlet></router-outlet></div>
   </div>
   <ngx-spinner
-  bdColor = "rgba(51, 51, 51, 0.8)"
+  bdColor = "rgba(51, 51, 51, 0.5)"
   size = "large"
   color = "#c77158"
   type = "ball-atom"
