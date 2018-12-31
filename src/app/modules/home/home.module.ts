@@ -8,7 +8,6 @@ import { ExploreSectionComponent } from './components/explore-section/explore-se
 import { CreateShareSectionComponent } from './components/create-share-section/create-share-section.component';
 import { FooterSectionComponent } from './components/footer-section/footer-section.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RegisterFormComponent } from 'src/app/components/register-form/register-form.component';
 import { SnacbarAlertService } from '../../services/snacbar-alert.service';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MaterialModule } from '../shared/material/material.module';
@@ -25,8 +24,7 @@ const routes: Routes = [
     NavComponent,
     ExploreSectionComponent,
     CreateShareSectionComponent,
-    FooterSectionComponent,
-    RegisterFormComponent
+    FooterSectionComponent
   ],
   imports: [
     CommonModule,

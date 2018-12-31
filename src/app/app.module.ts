@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-// import { appRoutes } from './app-routing.module';
 import { JwtModule } from '@auth0/angular-jwt';
 import { RouterModule, Routes } from '@angular/router';
 
