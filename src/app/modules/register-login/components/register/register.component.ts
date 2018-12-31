@@ -7,8 +7,9 @@ import { SnacbarAlertService } from 'src/app/services/snacbar-alert.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 const REQUIRES_MESSAGE = 'You must enter a value';
-const NOTVALID_EMAILMESSAGE = 'Not a valid email';
+const NOTVALID_EMAIL_MESSAGE = 'Not a valid email';
 const BLANK_MESSAGE = '';
+const NOTVALID_PASSWORDMATCHES_MESSAGE = 'Password dont matches';
 
 @Component({
   selector: 'app-register',
@@ -38,7 +39,6 @@ export class RegisterComponent implements OnInit {
 
   }
 
-
   createRegisterForm() {
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -50,8 +50,8 @@ export class RegisterComponent implements OnInit {
 
   getEmailErrorMessage() {
     return this.isRequiredMessage('email') ? REQUIRES_MESSAGE :
-        this.registerForm.get('email').hasError('email') ? NOTVALID_EMAILMESSAGE :
-            '';
+        this.checkFieldError('error', 'error') ? NOTVALID_EMAIL_MESSAGE :
+            BLANK_MESSAGE;
   }
 
   getPasswordErrorMessage() {
@@ -63,36 +63,28 @@ export class RegisterComponent implements OnInit {
   }
 
   getConfirmPasswordMismatchErrorMessage() {
-    return 'mismatch';
+    return NOTVALID_PASSWORDMATCHES_MESSAGE;
   }
 
   getUsernameErrorMessage() {
     return this.isRequiredMessage('username') ? REQUIRES_MESSAGE : BLANK_MESSAGE;
   }
 
-  isInvalid(fieldName: string) {
-    return this.registerForm.get(fieldName).invalid;
-  }
-
   onPasswordInput() {
-    if (this.registerForm.hasError('mismatch')) {
-      this.registerForm.get('confirmPassword').setErrors([{'mismatch': true}]);
-    } else {
-      this.registerForm.get('confirmPassword').setErrors(null);
-    }
-  }
-
-  isMismatch(): boolean {
-    // this.registerForm.get('confirmPassword').setErrors([{'mismatch': true}]);
-    return this.registerForm.hasError('mismatch');
+    this.registerForm.hasError('mismatch')
+      ? this.registerForm.get('confirmPassword').setErrors([{'mismatch': true}])
+      : this.registerForm.get('confirmPassword').setErrors(null);
   }
 
   private isRequiredMessage(fieldName: string): boolean {
-    return this.registerForm.get(fieldName).hasError('required');
+    return this.checkFieldError(fieldName, 'required');
   }
 
-  passwordMatchValidator(g: FormGroup) {
-    return g.get('password').value === g.get('confirmPassword').value ? null : {'mismatch': true};
+  private checkFieldError(fieldName: string, errorType: string) {
+    return this.registerForm.get(fieldName).hasError(errorType);
   }
 
+  private passwordMatchValidator(formGroup: FormGroup) {
+    return formGroup.get('password').value === formGroup.get('confirmPassword').value ? null : {'mismatch': true};
+  }
 }
