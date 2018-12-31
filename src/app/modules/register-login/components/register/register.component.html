@@ -1,10 +1,14 @@
 <div class="row align-items-center justify-content-center box">
   <div class="col-12 col-sm-10 col-md-7 col-xl-5">
     <div class="form-box text-center">
-      <p class="mat-display-1" color="primary">Register <mat-icon>camera</mat-icon>  </p>
+      <p class="mat-display-1" color="primary">Register<mat-icon>camera</mat-icon>  </p>
        <form [formGroup]="registerForm" (ngSubmit)="register()" class="mb-3">
+         <mat-form-field class="mb-2">
+          <input matInput placeholder="user name" formControlName="username" type="text" class="base-style" required>
+          <mat-error *ngIf="this.registerForm.get('username').invalid">{{getUsernameErrorMessage()}}</mat-error>
+         </mat-form-field>
         <mat-form-field class="mb-2">
-          <input matInput placeholder="email" formControlName="email" class="base-style" required>
+          <input matInput placeholder="email@" formControlName="email" class="base-style" required>
           <mat-error *ngIf="this.registerForm.get('email').invalid">{{getEmailErrorMessage()}}</mat-error>
         </mat-form-field>
 
@@ -14,6 +18,13 @@
           <mat-error *ngIf="this.registerForm.get('password').invalid">{{getPasswordErrorMessage()}}</mat-error>
         </mat-form-field>
 
+        <mat-form-field class="mb-3">
+            <input matInput placeholder="Confirm Password" formControlName="confirmPassword" (input)="onPasswordInput()" [type]="hide ? 'password' : 'text'" class="base-style" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="this.registerForm.get('confirmPassword').invalid">{{getConfirmPasswordErrorMessage()}}</mat-error>
+            <mat-error *ngIf="this.registerForm.get('confirmPassword').invalid && !this.registerForm.get('confirmPassword').hasError('required')">mismatch password</mat-error>
+        </mat-form-field>
+
         <div class="row">
           <button mat-raised-button type="submit" color="primary" [disabled]="!registerForm.valid">
             <mat-icon>exit_to_app</mat-icon> 
@@ -21,6 +32,14 @@
           </button>
         </div>
       </form>
+      <hr />
+      <div class="row btn-margin">
+        <button mat-raised-button class="btn-margin-bottom fb-style">Contiune with Facebook</button>
+        <button mat-raised-button >Contiune with Google</button>
+      </div>
+      <hr />
+
+      <p>Have an account? <a [routerLink]="['/auth/login']" >Login</a></p>      
     </div>
   </div>
 </div>
