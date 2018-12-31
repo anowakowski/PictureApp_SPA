@@ -35,8 +35,20 @@ export class RegisterComponent implements OnInit {
     this.createRegisterForm();
   }
 
-  register() {
 
+  register() {
+    if (this.registerForm.valid) {
+      this.user = Object.assign({}, this.registerForm.value);
+      this.authService.register(this.user).subscribe(() => {
+        this.snackbarAlertSerice.openSnackbar('register successfully', 5000);
+      }, error => {
+        this.snackbarAlertSerice.openSnackbar(error, 7000, null, 'orange-register-login-snackbar');
+      }, () => {
+        this.authService.login(this.user).subscribe(() => {
+          this.router.navigate(['/explore']);
+        });
+      });
+    }
   }
 
   createRegisterForm() {
@@ -50,7 +62,7 @@ export class RegisterComponent implements OnInit {
 
   getEmailErrorMessage() {
     return this.isRequiredMessage('email') ? REQUIRES_MESSAGE :
-        this.checkFieldError('error', 'error') ? NOTVALID_EMAIL_MESSAGE :
+        this.checkFieldError('email', 'email') ? NOTVALID_EMAIL_MESSAGE :
             BLANK_MESSAGE;
   }
 
