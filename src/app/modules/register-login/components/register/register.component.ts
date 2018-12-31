@@ -23,7 +23,6 @@ export class RegisterComponent implements OnInit {
   user: User;
   registerForm: FormGroup;
 
-
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -38,13 +37,16 @@ export class RegisterComponent implements OnInit {
 
   register() {
     if (this.registerForm.valid) {
+      this.spinnerService.show();
       this.user = Object.assign({}, this.registerForm.value);
       this.authService.register(this.user).subscribe(() => {
         this.snackbarAlertSerice.openSnackbar('register successfully', 5000);
       }, error => {
+        this.spinnerService.hide();
         this.snackbarAlertSerice.openSnackbar(error, 7000, null, 'orange-register-login-snackbar');
       }, () => {
         this.authService.login(this.user).subscribe(() => {
+          this.spinnerService.hide();
           this.router.navigate(['/explore']);
         });
       });

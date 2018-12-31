@@ -10,6 +10,7 @@ import { SnacbarAlertService } from 'src/app/services/snacbar-alert.service';
 import { SearchPicturesDialogComponent } from './components/search-pictures-dialog/search-pictures-dialog.component';
 import { DialogService } from '../services/dialog.service';
 import { RegisterComponent } from './components/register/register.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 const routes: Routes = [
@@ -40,6 +41,7 @@ const routes: Routes = [
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxSpinnerModule,
     RouterModule.forChild(routes)
   ],
   providers: [
