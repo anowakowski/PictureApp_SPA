@@ -11,22 +11,23 @@ import { MaterialModule } from '../../shared/material/material.module';
 import { AuthService } from 'src/app/services/auth.service';
 import { SnacbarAlertService } from 'src/app/services/snacbar-alert.service';
 import { HomeSectionComponent } from './home-section/homes-section.component';
-import { RegisterComponent } from '../../register-login/components/register/register.component';
 import { NavComponent } from './nav/nav.component';
 import { ExploreSectionComponent } from './explore-section/explore-section.component';
 import { CreateShareSectionComponent } from './create-share-section/create-share-section.component';
 import { FooterSectionComponent } from './footer-section/footer-section.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './home.component';
 
-describe('RegisterComponent', () => {
-    let component: RegisterComponent;
-    let fixture: ComponentFixture<RegisterComponent>;
+describe('HomeComponent', () => {
+    let component: HomeComponent;
+    let fixture: ComponentFixture<HomeComponent>;
     let de: DebugElement;
 
     beforeEach(async(() => {
 
         TestBed.configureTestingModule({
           declarations: [
-              RegisterComponent,
+              HomeComponent,
               HomeSectionComponent,
               NavComponent,
               ExploreSectionComponent,
@@ -40,7 +41,8 @@ describe('RegisterComponent', () => {
               ReactiveFormsModule,
               MaterialModule,
               HttpClientModule,
-              RouterTestingModule
+              RouterTestingModule,
+              BrowserAnimationsModule
             ]
         })
         .compileComponents();
@@ -48,14 +50,14 @@ describe('RegisterComponent', () => {
 
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(RegisterComponent);
+        fixture = TestBed.createComponent(HomeComponent);
         component = fixture.componentInstance;
         de = fixture.debugElement;
 
         fixture.detectChanges();
     });
 
-    it ('should create a `RegisterComponent`', () => {
+    it ('should create a `HomeComponent`', () => {
         expect(component).toBeTruthy();
     });
 
