@@ -6,18 +6,16 @@ import { By } from '@angular/platform-browser';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from '../shared/material/material.module';
-
-import { HomeSectionRegisterFormComponent } from './register/components/home-section-registerForm/homes-section-registerForm.component';
-import { NavComponent } from '../home-login/nav/nav.component';
-import { ExploreSectionComponent } from './register/components/explore-section/explore-section.component';
-import { CreateShareSectionComponent } from './register/components/create-share-section/create-share-section.component';
-import { FooterSectionComponent } from './register/components/footer-section/footer-section.component';
-import { RegisterFormComponent } from 'src/app/components/register-form/register-form.component';
-import { RegisterComponent } from './register/register.component';
+import { MaterialModule } from '../../shared/material/material.module';
 
 import { AuthService } from 'src/app/services/auth.service';
 import { SnacbarAlertService } from 'src/app/services/snacbar-alert.service';
+import { HomeSectionComponent } from './home-section/homes-section.component';
+import { RegisterComponent } from '../../register-login/components/register/register.component';
+import { NavComponent } from './nav/nav.component';
+import { ExploreSectionComponent } from './explore-section/explore-section.component';
+import { CreateShareSectionComponent } from './create-share-section/create-share-section.component';
+import { FooterSectionComponent } from './footer-section/footer-section.component';
 
 describe('RegisterComponent', () => {
     let component: RegisterComponent;
@@ -29,12 +27,11 @@ describe('RegisterComponent', () => {
         TestBed.configureTestingModule({
           declarations: [
               RegisterComponent,
-              HomeSectionRegisterFormComponent,
+              HomeSectionComponent,
               NavComponent,
               ExploreSectionComponent,
               CreateShareSectionComponent,
-              FooterSectionComponent,
-              RegisterFormComponent
+              FooterSectionComponent
             ],
           providers: [AuthService, SnacbarAlertService],
           imports: [
@@ -72,8 +69,8 @@ describe('RegisterComponent', () => {
         expect(attribiute).not.toBeNull();
     });
 
-    it ('should render `app-home-section-registerform`', () => {
-        const attribiute = fixture.debugElement.query(By.css('app-home-section-registerform'));
+    it ('should render `app-home-section`', () => {
+        const attribiute = fixture.debugElement.query(By.css('app-home-section'));
         expect(attribiute).not.toBeNull();
     });
 
