@@ -7,8 +7,14 @@ import { Component, OnInit } from '@angular/core';
     <app-nav></app-nav>
     <div class="container"><router-outlet></router-outlet></div>
   </div>
+  <ngx-spinner
+  bdColor = "rgba(51, 51, 51, 0.5)"
+  size = "large"
+  color = "#c77158"
+  type = "ball-atom"
+  ></ngx-spinner>
 `,
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./register-login.component.scss']
 })
 export class HomeComponent implements OnInit {
 
