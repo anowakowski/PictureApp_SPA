@@ -1,7 +1,9 @@
 <mat-toolbar color="primary">
     <span>
-        PictureApp
-        <mat-icon>camera</mat-icon>
+        <button mat-button (click)="goToHome()">
+            PictureApp         
+            <mat-icon>camera</mat-icon>
+        </button>
     </span>
     <span class="example-spacer"></span>
     <button mat-button [matMenuTriggerFor]="menu">

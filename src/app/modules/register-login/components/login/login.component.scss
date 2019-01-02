@@ -24,3 +24,16 @@ $backGroundColor: #e7e7e7;
 input.base-style {
     background-color: $backGroundColor !important;
 }
+
+button.btn-margin {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+button.btn-margin-bottom{
+    margin-bottom: 13px;
+}
+button.fb-style {
+    background: #3b5998;
+    color: white;
+}
