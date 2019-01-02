@@ -9,7 +9,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 const REQUIRES_MESSAGE = 'You must enter a value';
 const NOTVALID_EMAIL_MESSAGE = 'Not a valid email';
 const BLANK_MESSAGE = '';
-const NOTVALID_PASSWORDMATCHES_MESSAGE = 'Password dont matches';
+const NOTVALID_PASSWORDMATCHES_MESSAGE = 'Password don\'t matches';
 
 @Component({
   selector: 'app-register',
