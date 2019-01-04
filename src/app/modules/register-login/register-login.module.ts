@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './components/register-login.component';
+import { RegisterLoginComponent } from './components/register-login.component';
 import { NavComponent } from './components/nav/nav.component';
 import { MaterialModule } from '../shared/material/material.module';
 import { LoginComponent } from './components/login/login.component';
@@ -16,7 +16,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: RegisterLoginComponent,
     children: [
       {path: '', redirectTo: 'login', pathMatch: 'full'},
       {path: 'login', component: LoginComponent},
@@ -27,7 +27,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    HomeComponent,
+    RegisterLoginComponent,
     NavComponent,
     LoginComponent,
     RegisterComponent,

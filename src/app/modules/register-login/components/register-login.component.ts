@@ -16,7 +16,7 @@ import { Component, OnInit } from '@angular/core';
 `,
   styleUrls: ['./register-login.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class RegisterLoginComponent implements OnInit {
 
   constructor() { }
 
