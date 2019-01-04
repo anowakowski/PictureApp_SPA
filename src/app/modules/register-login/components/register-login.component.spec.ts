@@ -43,7 +43,6 @@ describe('RegisterLoginComponent', () => {
         .compileComponents();
     }));
 
-
     beforeEach(() => {
         fixture = TestBed.createComponent(RegisterLoginComponent);
         component = fixture.componentInstance;
