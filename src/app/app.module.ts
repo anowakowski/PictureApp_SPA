@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 
 import { AuthService } from './services/auth.service';
 import { ErrorInterceptorProvider } from './interceptors/error.interceptor';
-import { RoutePathService } from './services/RoutePath.service';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
