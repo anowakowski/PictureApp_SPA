@@ -8,6 +8,11 @@ import { AuthGuard } from '../../guards/auth.guard';
 import { ExploreUsersListResolver } from '../../resolvers/explore-users-list.resolver';
 import { PhotoCardComponent } from '../../components/photo-card/photo-card.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { MaterialModule } from '../shared/material/material.module';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { NavComponent } from './nav/nav.component';
+
+
 
 const routes: Routes = [
   { path: '',
@@ -25,10 +30,14 @@ const routes: Routes = [
   declarations: [
     PhotoExploreComponent,
     PictureExploreComponent,
-    PhotoCardComponent],
+    PhotoCardComponent,
+    SidenavComponent,
+    NavComponent
+  ],
   imports: [
     CommonModule,
     NgxSpinnerModule,
+    MaterialModule,
     RouterModule.forChild(routes)
   ],
   providers: [
