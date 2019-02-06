@@ -35,4 +35,8 @@ export class PhotoCardComponent implements OnInit {
 
     });
   }
+
+  showImg() {
+    console.log('show img');
+  }
 }
