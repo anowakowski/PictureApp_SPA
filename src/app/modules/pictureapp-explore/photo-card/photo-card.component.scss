@@ -1,5 +1,5 @@
 .card {
-    max-width: 250px;
+    max-width: 350px;
     margin-right: 1.5em;
     margin-bottom: 1.5em;
 }
@@ -26,5 +26,14 @@
    transform: scale(1.02);
    opacity:0.5;
  }
+
+ .parent {
+  overflow: hidden;
+}
+   
+.card img {
+  height: auto;
+}
+   
  
    

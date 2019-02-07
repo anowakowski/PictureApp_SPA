@@ -1,29 +1,32 @@
-<mat-card class="card">
-  <mat-card-header>
-    <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + user.photoUrl + ')'}" class="example-header-image"></div>
-    <mat-card-title>{{ user.username }}</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-  </mat-card-header>
-  <img
-    class="card-img"
-    mat-card-image
-    src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-    alt="Photo of a Shiba Inu"
-    (click)="OpenPhotoDetailDialog(user)"
-  />
-  <mat-card-content>
-    <p class="desc-text">
-      The Shiba Inu is the smallest of the six original and distinct spitz
-      breeds of dog from Japan. A small, agile dog that copes very well with
-      mountainous terrain, the Shiba Inu was originally bred for hunting.
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button *ngIf="!isFollower" (click)="followUser(user)">
-      Follow
-    </button>
-    <button mat-button *ngIf="isFollower" (click)="unfollowUser(user)">
-      Unfollow
-    </button>
-  </mat-card-actions>
-</mat-card>
+<div class="parent" layout="column" flex>
+  <mat-card class="card">
+    <mat-card-header>
+      <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + user.photoUrl + ')'}" class="example-header-image"></div>
+      <mat-card-title>{{ user.username }}</mat-card-title>
+      <mat-card-subtitle>same photo title example</mat-card-subtitle>
+    </mat-card-header>
+    <img
+      class="card-img"
+      mat-card-image
+      src="https://picsum.photos/300/200/?random"
+      alt="Photo of a Shiba Inu"
+      (click)="OpenPhotoDetailDialog(user)"
+    />
+    <mat-card-content>
+      <p class="desc-text">
+        The Shiba Inu is the smallest of the six original and distinct spitz
+        breeds of dog from Japan. A small, agile dog that copes very well with
+        mountainous terrain, the Shiba Inu was originally bred for hunting.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button *ngIf="!isFollower" (click)="followUser(user)">
+        Follow
+      </button>
+      <button mat-button *ngIf="isFollower" (click)="unfollowUser(user)">
+        Unfollow
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
