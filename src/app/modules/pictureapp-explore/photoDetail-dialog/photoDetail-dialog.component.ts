@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { User } from 'src/app/models/user';
+
+export interface DialogData {
+  user: User;
+}
 
 @Component({
   selector: 'app-photo-detail-dialog',
@@ -8,9 +13,10 @@ import { MatDialogRef } from '@angular/material';
 })
 export class PhotoDetailDialogComponent implements OnInit {
 
-  constructor(private dialogRef: MatDialogRef<PhotoDetailDialogComponent>) { }
+  constructor(private dialogRef: MatDialogRef<PhotoDetailDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   ngOnInit() {
+    console.log(this.data);
   }
 
   dismiss() {
