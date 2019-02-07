@@ -1,16 +1,16 @@
-<div class="parent" layout="column" flex>
+<div layout="column" flex>
   <mat-card class="card">
     <mat-card-header>
-      <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + user.photoUrl + ')'}" class="example-header-image"></div>
+      <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + mainPhoto.url + ')'}" class="example-header-image"></div>
       <mat-card-title>{{ user.username }}</mat-card-title>
       <mat-card-subtitle>same photo title example</mat-card-subtitle>
     </mat-card-header>
     <img
       class="card-img"
       mat-card-image
-      src="https://picsum.photos/300/200/?random"
+      src="{{currentPhoto.url}}"
       alt="Photo of a Shiba Inu"
-      (click)="OpenPhotoDetailDialog(user)"
+      (click)="OpenPhotoDetailDialog(user, currentPhoto)"
     />
     <mat-card-content>
       <p class="desc-text">

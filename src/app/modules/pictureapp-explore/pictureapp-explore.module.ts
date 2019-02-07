@@ -8,10 +8,13 @@ import { AuthGuard } from '../../guards/auth.guard';
 import { ExploreUsersListResolver } from '../../resolvers/explore-users-list.resolver';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MaterialModule } from '../shared/material/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { NavComponent } from './nav/nav.component';
 import { PhotoCardComponent } from './photo-card/photo-card.component';
 import { PhotoDetailDialogComponent } from './photoDetail-dialog/photoDetail-dialog.component';
+
 
 const routes: Routes = [
   { path: '',
@@ -41,6 +44,7 @@ const routes: Routes = [
     CommonModule,
     NgxSpinnerModule,
     MaterialModule,
+    FlexLayoutModule,
     RouterModule.forChild(routes)
   ],
   providers: [

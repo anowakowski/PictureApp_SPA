@@ -6,5 +6,5 @@ export interface User {
     isFollowerForCurrentUser: boolean;
     email: string;
     photos: Photo[];
-    PhotoUrl: string;
+    photoUrl: string;
 }

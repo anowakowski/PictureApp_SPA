@@ -1,9 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { User } from 'src/app/models/user';
+import { Photo } from 'src/app/models/photo';
 
 export interface DialogData {
   user: User;
+  currentPhoto: Photo;
 }
 
 @Component({
