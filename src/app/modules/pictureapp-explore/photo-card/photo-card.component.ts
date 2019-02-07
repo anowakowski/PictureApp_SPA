@@ -39,10 +39,7 @@ export class PhotoCardComponent implements OnInit {
   }
 
   OpenPhotoDetailDialog(): void {
-    const dialogRef = this.dialog.open(PhotoDetailDialogComponent, {
-      width: '90%',
-      height: '90%'
-    });
+    const dialogRef = this.dialog.open(PhotoDetailDialogComponent, {});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
