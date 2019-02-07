@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { User } from '../../models/user';
-import { UserService } from '../../services/user.service';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
+import { MatDialog } from '@angular/material';
+import { PhotoDetailDialogComponent } from '../photoDetail-dialog/photoDetail-dialog.component';
 
 @Component({
   selector: 'app-photo-card',
@@ -11,7 +13,7 @@ export class PhotoCardComponent implements OnInit {
   @Input() user: User;
   isFollower = false;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.isFollower = this.user.isFollowerForCurrentUser;
@@ -36,7 +38,14 @@ export class PhotoCardComponent implements OnInit {
     });
   }
 
-  showImg() {
-    console.log('show img');
+  OpenPhotoDetailDialog(): void {
+    const dialogRef = this.dialog.open(PhotoDetailDialogComponent, {
+      width: '90%',
+      height: '90%'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+    });
   }
 }
