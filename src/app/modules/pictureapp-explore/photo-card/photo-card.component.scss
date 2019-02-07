@@ -1,32 +1,22 @@
-.card {
-    max-width: 350px;
-    margin-right: 1.5em;
-    margin-bottom: 1.5em;
-}
-  
- .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
- }
-
- .desc-text {
-    font-size: 12px;
+ .card {
+    max-width: 320px;
+    margin-top: 1.5em;
+    margin-left: 1em;
  }
 
  .card-img {
    background-color: black; /* fallback color */
    background-position: center;
    background-size: cover;
-   transition:all 0.4s ease-in-out;
+   transition:all 0.3s ease-in-out;
    opacity:1;
  }
 
  .card:hover .card-img,
  .card:focus .card-img {
    transform: scale(1.02);
-   opacity:0.5;
+   opacity:0.6;
  }
-
 
  
    
