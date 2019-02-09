@@ -1,7 +1,7 @@
 <app-nav (toggleSidenav)="drawer.toggle()"></app-nav> 
 <mat-drawer-container class="app-container" autosize>
   <mat-drawer 
-    #drawer class="sidenav-content-elements mat-elevation-z10"
+    #drawer class="sidenav-content-elements mat-elevation-z10 sidenav-container-background-image"
     [opened]="!isScreenSmall()"
     [mode]="isScreenSmall() ? 'over' : 'side'">
     <div class="sidenav-element-flex-container">
