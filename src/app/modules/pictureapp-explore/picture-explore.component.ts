@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   color = "#c77158"
   type = "ball-atom"
   ></ngx-spinner>
-  <app-photo-explore></app-photo-explore>
+<app-sidenav></app-sidenav>
   `})
 export class PictureExploreComponent implements OnInit {
 

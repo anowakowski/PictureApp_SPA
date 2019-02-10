@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Photo Detail by <b>{{data.user.username}}</b></h2>
+
+<mat-dialog-content>
+  <div class="example-container">
+    <img class="img-dialog" src="{{data.currentPhoto.url}}">
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button color="primary" (click)="dismiss()">
+      <mat-icon>cancel</mat-icon> Close
+  </button>  
+</mat-dialog-actions>

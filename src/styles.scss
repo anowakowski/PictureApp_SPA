@@ -18,3 +18,8 @@ $candy-app-theme: mat-light-theme(
 .orange-register-login-snackbar {
     background: #37474f;
 }
+
+button:focus {
+    outline: none;
+    border: 0;
+}

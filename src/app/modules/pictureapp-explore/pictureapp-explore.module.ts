@@ -6,8 +6,15 @@ import { PictureExploreComponent } from './picture-explore.component';
 import { AuthGuard } from '../../guards/auth.guard';
 
 import { ExploreUsersListResolver } from '../../resolvers/explore-users-list.resolver';
-import { PhotoCardComponent } from '../../components/photo-card/photo-card.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { MaterialModule } from '../shared/material/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { NavComponent } from './nav/nav.component';
+import { PhotoCardComponent } from './photo-card/photo-card.component';
+import { PhotoDetailDialogComponent } from './photoDetail-dialog/photoDetail-dialog.component';
+
 
 const routes: Routes = [
   { path: '',
@@ -25,10 +32,19 @@ const routes: Routes = [
   declarations: [
     PhotoExploreComponent,
     PictureExploreComponent,
-    PhotoCardComponent],
+    PhotoCardComponent,
+    SidenavComponent,
+    NavComponent,
+    PhotoDetailDialogComponent
+  ],
+  entryComponents: [
+    PhotoDetailDialogComponent
+  ],
   imports: [
     CommonModule,
     NgxSpinnerModule,
+    MaterialModule,
+    FlexLayoutModule,
     RouterModule.forChild(routes)
   ],
   providers: [

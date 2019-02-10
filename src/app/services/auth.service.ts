@@ -4,6 +4,7 @@ import {map} from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthService {
   jwtHelper = new JwtHelperService();
   decodedToken: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(model: any) {
     return this.http.post(this.baseUrl + 'login', model)
@@ -30,11 +31,17 @@ export class AuthService {
 
   register(user: User) {
     return this.http.post(this.baseUrl + 'register', user);
-
   }
 
   loggedIn() {
     const token = localStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token);
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.decodedToken = null;
+    this.router.navigate(['/auth/login']);
   }
 }
