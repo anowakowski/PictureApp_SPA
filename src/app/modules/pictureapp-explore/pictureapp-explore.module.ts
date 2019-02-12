@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { PhotoExploreComponent } from './photo-explore/photo-explore.component';
+import { PhotoExploreComponent } from './components/photo-explore/photo-explore.component';
 import { PictureExploreComponent } from './picture-explore.component';
 import { AuthGuard } from '../../guards/auth.guard';
 
@@ -10,10 +10,10 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { MaterialModule } from '../shared/material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { SidenavComponent } from './sidenav/sidenav.component';
-import { NavComponent } from './nav/nav.component';
-import { PhotoCardComponent } from './photo-card/photo-card.component';
-import { PhotoDetailDialogComponent } from './photoDetail-dialog/photoDetail-dialog.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { NavComponent } from './components/nav/nav.component';
+import { PhotoCardComponent } from './components/photo-card/photo-card.component';
+import { PhotoDetailDialogComponent } from './components/photoDetail-dialog/photoDetail-dialog.component';
 
 
 const routes: Routes = [
