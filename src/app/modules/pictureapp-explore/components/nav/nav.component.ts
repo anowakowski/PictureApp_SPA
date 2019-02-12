@@ -10,6 +10,7 @@ export class NavComponent implements OnInit {
 
   @Output() toggleSidenav = new EventEmitter<void>();
   @Output() editSectionUser = new EventEmitter<void>();
+  @Output() dashbordSection = new EventEmitter<void>();
 
   constructor(private authService: AuthService) { }
 
@@ -26,6 +27,10 @@ export class NavComponent implements OnInit {
 
   emitEditUserProfileAsCurrentSection() {
     this.editSectionUser.emit();
+  }
+
+  emitdashboardAsCurrentSection() {
+    this.dashbordSection.emit();
   }
 
 }

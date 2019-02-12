@@ -4,7 +4,7 @@
             <mat-icon>menu</mat-icon>
   </button>
   <span>
-      <button mat-button >
+      <button mat-button [routerLink]="['/']" (click)="emitdashboardAsCurrentSection()"> 
           VeilEye.com         
           <mat-icon>camera</mat-icon>
       </button>

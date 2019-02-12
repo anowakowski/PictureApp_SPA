@@ -52,6 +52,10 @@ export class SidenavComponent implements OnInit {
     this.setBtnColor(EDIT_USERPROFILE_SECCTION);
   }
 
+  reciveDashboardAsCurrent() {
+    this.setBtnColor(DASHBOARD_SECTION);
+  }
+
   setBtnColor(sectionNameToCurrent: string) {
     if (sectionNameToCurrent === this.currentChosenSection) {
       return;
