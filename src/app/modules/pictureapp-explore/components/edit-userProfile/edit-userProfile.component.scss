@@ -1,19 +1,23 @@
 .flex-container {
-    display: flex;
-    
-    flex-direction: row;
-    flex-wrap: wrap;
- 
-    justify-content: flex-start;
- }
+  display: flex;
 
- .content-align{
-    margin-top: 1.5em;
-    margin-left: 1em;
- }
- 
- @media all and (max-width: 1200px){
-    .flex-container {
-        justify-content: center;
-    }
- }
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  justify-content: flex-start;
+}
+
+@media all and (max-width: 1200px) {
+  .flex-container {
+    justify-content: center;
+  }
+}
+
+.content-align {
+  margin-top: 1.5em;
+  margin-left: 1em;
+}
+
+.tab-container {
+  width: 100%;
+}

@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewChild, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatDrawer } from '@angular/material';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
 
 const SMALL_WIDTH_BREAKPOINT = 720;
 const CURRENT_BTN_COLOR = 'warn';
@@ -16,12 +18,10 @@ const EDIT_USERPROFILE_SECCTION = 'editUserProfile';
 
 export class SidenavComponent implements OnInit {
 
-  @Input() currentSection = new EventEmitter<boolean>();
-
   private mediaMatcher: MediaQueryList =
     matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`);
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, private userService: UserService) { }
 
   public currentRouteSecction: string;
   public currentChosenSection: string;
@@ -35,6 +35,7 @@ export class SidenavComponent implements OnInit {
   public userProfileColor = BASIC_BTN_COLOR;
 
   public testMessage: string;
+  public currentUser: User;
 
   @ViewChild(MatDrawer) drawer: MatDrawer;
 
@@ -42,6 +43,7 @@ export class SidenavComponent implements OnInit {
     this.currentChosenSection = DASHBOARD_SECTION;
     this.currentRouteSecction = this.router.url;
     this.setCurrentSectionByRoute();
+    this.getCurrentUser();
   }
 
   isScreenSmall(): boolean {
@@ -88,5 +90,11 @@ export class SidenavComponent implements OnInit {
       return;
     }
     this.setBtnColor(DASHBOARD_SECTION);
+  }
+
+  private getCurrentUser() {
+    this.userService.getBasicInfoForCurrentUser().subscribe(response => {
+      this.currentUser = response;
+    });
   }
 }
