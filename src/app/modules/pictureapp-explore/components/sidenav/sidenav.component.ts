@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, EventEmitter } from '@angular/core';
 import { MatDrawer } from '@angular/material';
 import { Router } from '@angular/router';
 
@@ -6,7 +6,7 @@ const SMALL_WIDTH_BREAKPOINT = 720;
 const CURRENT_BTN_COLOR = 'warn';
 const BASIC_BTN_COLOR = 'primary';
 const DASHBOARD_SECTION = 'dashboard';
-const USERPROFILE_SECCTION = 'editUserProfile';
+const EDIT_USERPROFILE_SECCTION = 'editUserProfile';
 
 @Component({
   selector: 'app-sidenav',
@@ -15,6 +15,8 @@ const USERPROFILE_SECCTION = 'editUserProfile';
 })
 
 export class SidenavComponent implements OnInit {
+
+  @Input() currentSection = new EventEmitter<boolean>();
 
   private mediaMatcher: MediaQueryList =
     matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`);
@@ -27,10 +29,12 @@ export class SidenavComponent implements OnInit {
   public currentColor = CURRENT_BTN_COLOR;
   public basicColor = BASIC_BTN_COLOR;
   public dashboardSection = DASHBOARD_SECTION;
-  public userprofileSection = USERPROFILE_SECCTION;
+  public userprofileSection = EDIT_USERPROFILE_SECCTION;
 
   public dashboardColor = CURRENT_BTN_COLOR;
   public userProfileColor = BASIC_BTN_COLOR;
+
+  public testMessage: string;
 
   @ViewChild(MatDrawer) drawer: MatDrawer;
 
@@ -42,6 +46,10 @@ export class SidenavComponent implements OnInit {
 
   isScreenSmall(): boolean {
     return this.mediaMatcher.matches;
+  }
+
+  reciveEditUserProfileAsCurrent() {
+    this.setBtnColor(EDIT_USERPROFILE_SECCTION);
   }
 
   setBtnColor(sectionNameToCurrent: string) {
@@ -57,7 +65,7 @@ export class SidenavComponent implements OnInit {
   private setBasicColor() {
     if (this.currentChosenSection === DASHBOARD_SECTION) {
       this.dashboardColor = BASIC_BTN_COLOR;
-    } else if (this.currentChosenSection === USERPROFILE_SECCTION) {
+    } else if (this.currentChosenSection === EDIT_USERPROFILE_SECCTION) {
       this.userProfileColor = BASIC_BTN_COLOR;
     }
   }
@@ -65,14 +73,14 @@ export class SidenavComponent implements OnInit {
   private setCurrentColor(sectionNameToCurrent: string) {
     if (sectionNameToCurrent === DASHBOARD_SECTION) {
       this.dashboardColor = CURRENT_BTN_COLOR;
-    } else if (sectionNameToCurrent === USERPROFILE_SECCTION) {
+    } else if (sectionNameToCurrent === EDIT_USERPROFILE_SECCTION) {
       this.userProfileColor = CURRENT_BTN_COLOR;
     }
   }
 
   private setCurrentSectionByRoute() {
-    if (this.currentRouteSecction.search(USERPROFILE_SECCTION) === 1) {
-      this.setBtnColor(USERPROFILE_SECCTION);
+    if (this.currentRouteSecction.search(EDIT_USERPROFILE_SECCTION) === 1) {
+      this.setBtnColor(EDIT_USERPROFILE_SECCTION);
       return;
     }
     this.setBtnColor(DASHBOARD_SECTION);

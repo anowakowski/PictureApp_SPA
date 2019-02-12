@@ -1,0 +1,19 @@
+.flex-container {
+    display: flex;
+    
+    flex-direction: row;
+    flex-wrap: wrap;
+ 
+    justify-content: flex-start;
+ }
+
+ .content-align{
+    margin-top: 1.5em;
+    margin-left: 1em;
+ }
+ 
+ @media all and (max-width: 1200px){
+    .flex-container {
+        justify-content: center;
+    }
+ }

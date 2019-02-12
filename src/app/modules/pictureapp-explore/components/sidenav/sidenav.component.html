@@ -1,4 +1,4 @@
-<app-nav (toggleSidenav)="drawer.toggle()"></app-nav> 
+<app-nav (toggleSidenav)="drawer.toggle()" (editSectionUser)="reciveEditUserProfileAsCurrent()"></app-nav> 
 <mat-drawer-container class="app-container" autosize>
   <mat-drawer 
     #drawer class="sidenav-content-elements mat-elevation-z10 sidenav-container-background-image"
@@ -9,7 +9,7 @@
         <mat-icon>dashboard</mat-icon> dashboard
       </button>
       <button class="sidenav-elemnt" color="{{userProfileColor}}" mat-raised-button [routerLink]="['/editUserProfile']" (click)="setBtnColor(userprofileSection)">
-        <mat-icon>person</mat-icon> user profile
+        <mat-icon>person</mat-icon> your profile
       </button>
     </div>
   </mat-drawer>

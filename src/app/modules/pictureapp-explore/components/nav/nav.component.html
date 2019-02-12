@@ -14,8 +14,9 @@
       <mat-icon>more_vert</mat-icon>  
   </button>
   <mat-menu #menu="matMenu">
-      <button mat-menu-item [routerLink]="['/editUserProfile']" >
-        user profile <mat-icon>person</mat-icon>
+      <button mat-menu-item [routerLink]="['/editUserProfile']" 
+      (click)="emitEditUserProfileAsCurrentSection()">
+        your profile <mat-icon>person</mat-icon>
       </button>
       <button mat-menu-item (click)="logout()">
         Logout <mat-icon>exit_to_app</mat-icon>
