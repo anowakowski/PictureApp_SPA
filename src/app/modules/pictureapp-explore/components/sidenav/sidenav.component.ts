@@ -25,4 +25,8 @@ export class SidenavComponent implements OnInit {
     return this.mediaMatcher.matches;
   }
 
+  goToUserProfile() {
+
+  }
+
 }

@@ -14,6 +14,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { NavComponent } from './components/nav/nav.component';
 import { PhotoCardComponent } from './components/photo-card/photo-card.component';
 import { PhotoDetailDialogComponent } from './components/photoDetail-dialog/photoDetail-dialog.component';
+import { EditUserProfileComponent } from './components/edit-userProfile/edit-userProfile.component';
 
 
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     runGuardsAndResolvers: 'always',
     children: [
-      {path: '', component: PhotoExploreComponent}
+      {path: '', component: PhotoExploreComponent},
+      {path: 'editUserProfile', component: EditUserProfileComponent}
   ]},
   {path: '**', redirectTo: ''}
 ];
@@ -35,7 +37,8 @@ const routes: Routes = [
     PhotoCardComponent,
     SidenavComponent,
     NavComponent,
-    PhotoDetailDialogComponent
+    PhotoDetailDialogComponent,
+    EditUserProfileComponent
   ],
   entryComponents: [
     PhotoDetailDialogComponent

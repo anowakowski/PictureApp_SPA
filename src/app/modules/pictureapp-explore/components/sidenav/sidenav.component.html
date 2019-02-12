@@ -5,10 +5,10 @@
     [opened]="!isScreenSmall()"
     [mode]="isScreenSmall() ? 'over' : 'side'">
     <div class="sidenav-element-flex-container">
-      <button class="sidenav-elemnt" color="warn" mat-raised-button>
+      <button class="sidenav-elemnt" color="warn" mat-raised-button [routerLink]="['/']">
         <mat-icon>dashboard</mat-icon> dashboard
       </button>
-      <button class="sidenav-elemnt" color="primary" mat-raised-button>
+      <button class="sidenav-elemnt" color="primary" mat-raised-button [routerLink]="['/editUserProfile']">
         <mat-icon>person</mat-icon> user profile
       </button>
     </div>
