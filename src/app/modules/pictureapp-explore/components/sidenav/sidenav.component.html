@@ -12,6 +12,14 @@
         <mat-icon>person</mat-icon> your profile
       </button>
     </div>
+
+    <div class="sidnav-userprofile">
+      <img  src="{{currentUser?.photoUrl}}" alt="">
+
+      <div>
+        <p>{{currentUser?.username}}</p>
+      </div>
+    </div>
   </mat-drawer>
   <div class="app-sidenav-content">
     <div class="wrapper">

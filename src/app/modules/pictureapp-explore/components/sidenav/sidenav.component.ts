@@ -93,7 +93,8 @@ export class SidenavComponent implements OnInit {
   }
 
   private getCurrentUser() {
-    this.userService.getBasicInfoForCurrentUser().subscribe(response => {
+
+    this.userService.getUserInfo().then(response => {
       this.currentUser = response;
     });
   }

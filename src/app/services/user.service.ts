@@ -26,6 +26,11 @@ export class UserService {
     return user;
   }
 
+  getUserInfo(): Promise<User> {
+    const userId = this.authService.decodedToken.nameid;
+    return this.httpClient.get<User>(this.baseUrl + 'users/' + userId).toPromise().then(response => response as User);
+  }
+
   getAllUsersWithFollowers(): Observable<User[]> {
     const url: string = this.baseUrl + 'users/allUserWithFollowerInfo';
     const userObs = this.httpClient.get<User[]>(url);
