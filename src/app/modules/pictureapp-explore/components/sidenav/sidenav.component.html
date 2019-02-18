@@ -18,22 +18,19 @@
 
       <div class="sidnav-userprofile sidenav-elemnt">
           <mat-card class="example-card">
-              <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>Shiba Inu</mat-card-title>
-                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+              <mat-card-header >
+                <div [ngStyle]="{ 'background-image': 'url(' + currentUser.photoUrl + ')' }" mat-card-avatar class="example-header-image"></div>
+                <mat-card-title class="sidenav-card-header">{{currentUser.username}}</mat-card-title>
+                <mat-card-subtitle>{{currentUser.email}}</mat-card-subtitle>
               </mat-card-header>
               <mat-card-content>
-                <p>
-                    follwers: 1000
-                </p>
-                <p>
-                  following:200
+                <p class="sidenav-card-content-followers-following">
+                    <span> <mat-icon>loyalty</mat-icon> </span>
+                    <span>followers: <span>40</span></span>
+                    <span style="padding-left: 2px;"><mat-icon>scatter_plot</mat-icon></span> 
+                    <span> following: 40</span> 
                 </p>
               </mat-card-content>
-              <mat-card-actions>
-                <p>Pro user</p>
-              </mat-card-actions>
           </mat-card>       
       </div>  
 
