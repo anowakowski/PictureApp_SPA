@@ -15,7 +15,7 @@
       <button class="sidenav-elemnt" color="{{userProfileColor}}" mat-raised-button [routerLink]="['/editUserProfile']" (click)="setBtnColor(userprofileSection)">
         <mat-icon>person</mat-icon> your profile
       </button>
-      <app-sidenav-userprofile-card></app-sidenav-userprofile-card>
+      <app-sidenav-userprofile-card (editSectionUser)="reciveEditUserProfileAsCurrent()"></app-sidenav-userprofile-card>
     </div>
    </mat-drawer>
   <div class="app-sidenav-content">

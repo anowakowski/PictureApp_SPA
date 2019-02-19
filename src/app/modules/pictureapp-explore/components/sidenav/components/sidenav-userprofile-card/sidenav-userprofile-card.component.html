@@ -1,7 +1,13 @@
 <div class="sidnav-userprofile sidenav-elemnt">
     <mat-card class="sidenav-userprofile-card">
         <mat-card-header >
-          <div [ngStyle]="{ 'background-image': 'url(' + currentUser?.photoUrl + ')' }" mat-card-avatar class="sidnav-userprofile-header-image" [routerLink]="['/editUserProfile']"></div>
+          <div 
+            [ngStyle]="{ 'background-image': 'url(' + currentUser?.photoUrl + ')' }" 
+            mat-card-avatar 
+            class="sidnav-userprofile-header-image" 
+            [routerLink]="['/editUserProfile']" 
+            (click)="emitEditUserProfileAsCurrentSection()">
+          </div>
           <mat-card-title class="sidenav-card-header">{{currentUser?.username}}</mat-card-title>
           <mat-card-subtitle>
               {{currentUser?.email}} <br/>

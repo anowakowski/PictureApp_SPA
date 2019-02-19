@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 
@@ -8,6 +8,8 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./sidenav-userprofile-card.component.scss']
 })
 export class SidenavUserprofileCardComponent implements OnInit {
+
+  @Output() editSectionUser = new EventEmitter<void>();
 
   constructor(private userService: UserService) { }
 
@@ -24,4 +26,7 @@ export class SidenavUserprofileCardComponent implements OnInit {
     });
   }
 
+  emitEditUserProfileAsCurrentSection() {
+    this.editSectionUser.emit();
+  }
 }
