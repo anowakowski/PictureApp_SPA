@@ -9,13 +9,17 @@
         <mat-icon>dashboard</mat-icon> dashboard
       </button>
       <button class="sidenav-elemnt" color="primary" mat-raised-button>
-        <mat-icon>person</mat-icon> group
+        <mat-icon>photo</mat-icon> photos explore
       </button>
 
       <button class="sidenav-elemnt" color="{{userProfileColor}}" mat-raised-button [routerLink]="['/editUserProfile']" (click)="setBtnColor(userprofileSection)">
         <mat-icon>person</mat-icon> your profile
       </button>
       <app-sidenav-userprofile-card (editSectionUser)="reciveEditUserProfileAsCurrent()"></app-sidenav-userprofile-card>
+
+      <button style="margin-top: 200px;" class="sidenav-elemnt" color="primary" mat-raised-button>
+        <mat-icon>photo</mat-icon> go to panel for find model 
+      </button>
     </div>
    </mat-drawer>
   <div class="app-sidenav-content">
