@@ -18,10 +18,10 @@ const EDIT_USERPROFILE_SECCTION = 'editUserProfile';
 
 export class SidenavComponent implements OnInit {
 
+  constructor(public router: Router) { }
+
   private mediaMatcher: MediaQueryList =
     matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`);
-
-  constructor(public router: Router) { }
 
   public currentRouteSecction: string;
   public currentChosenSection: string;
@@ -37,6 +37,8 @@ export class SidenavComponent implements OnInit {
   public testMessage: string;
 
   @ViewChild(MatDrawer) drawer: MatDrawer;
+
+
 
   ngOnInit() {
     this.currentChosenSection = DASHBOARD_SECTION;

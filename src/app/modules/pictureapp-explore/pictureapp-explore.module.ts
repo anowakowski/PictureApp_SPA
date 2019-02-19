@@ -9,13 +9,16 @@ import { ExploreUsersListResolver } from '../../resolvers/explore-users-list.res
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MaterialModule } from '../shared/material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ChartsModule } from 'ng2-charts';
 
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { NavComponent } from './components/nav/nav.component';
 import { PhotoCardComponent } from './components/photo-card/photo-card.component';
 import { PhotoDetailDialogComponent } from './components/photoDetail-dialog/photoDetail-dialog.component';
 import { EditUserProfileComponent } from './components/edit-userProfile/edit-userProfile.component';
+// tslint:disable-next-line:max-line-length
 import { SidenavUserprofileCardComponent } from './components/sidenav/components/sidenav-userprofile-card/sidenav-userprofile-card.component';
+import { SidenavUserprofileChartComponent } from './components/sidenav/components/sidenav-userprofile-chart/sidenav-userprofile-chart.component';
 
 
 const routes: Routes = [
@@ -40,7 +43,8 @@ const routes: Routes = [
     NavComponent,
     PhotoDetailDialogComponent,
     EditUserProfileComponent,
-    SidenavUserprofileCardComponent
+    SidenavUserprofileCardComponent,
+    SidenavUserprofileChartComponent
   ],
   entryComponents: [
     PhotoDetailDialogComponent
@@ -50,6 +54,7 @@ const routes: Routes = [
     NgxSpinnerModule,
     MaterialModule,
     FlexLayoutModule,
+    ChartsModule,
     RouterModule.forChild(routes)
   ],
   providers: [
