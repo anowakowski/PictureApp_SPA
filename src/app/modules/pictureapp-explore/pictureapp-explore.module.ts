@@ -21,6 +21,7 @@ import { EditUserProfileComponent } from './components/edit-userProfile/edit-use
 import { SidenavUserprofileCardComponent } from './components/sidenav/components/sidenav-userprofile-card/sidenav-userprofile-card.component';
 // tslint:disable-next-line:max-line-length
 import { SidenavUserprofileChartComponent } from './components/sidenav/components/sidenav-userprofile-chart/sidenav-userprofile-chart.component';
+import { EditUserPhotosComponent } from './components/edit-userProfile/components/edit-user-photos/edit-user-photos.component';
 
 const routes: Routes = [
   { path: '',
@@ -45,7 +46,8 @@ const routes: Routes = [
     PhotoDetailDialogComponent,
     EditUserProfileComponent,
     SidenavUserprofileCardComponent,
-    SidenavUserprofileChartComponent
+    SidenavUserprofileChartComponent,
+    EditUserPhotosComponent
   ],
   entryComponents: [
     PhotoDetailDialogComponent
