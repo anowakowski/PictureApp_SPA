@@ -19,9 +19,9 @@ export class UserService {
     return this.httpClient.get<User>(this.baseUrl + 'users/' + userId).toPromise().then(response => response as User);
   }
 
-  getUser(): Observable<User> {
+  getUserForEdit(): Observable<User> {
     const userId = this.authService.decodedToken.nameid;
-    return this.httpClient.get<User>(this.baseUrl + 'users/' + userId);
+    return this.httpClient.get<User>(this.baseUrl + 'users/userEditProfile/' + userId);
   }
 
   getAllUsersWithFollowers(): Observable<User[]> {

@@ -14,7 +14,7 @@ export class ExploreUserResolver implements Resolve<User> {
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<User> {
-    return this.userService.getUser().pipe(
+    return this.userService.getUserForEdit().pipe(
         catchError(error => {
             this.router.navigate(['']);
             return of(null);
