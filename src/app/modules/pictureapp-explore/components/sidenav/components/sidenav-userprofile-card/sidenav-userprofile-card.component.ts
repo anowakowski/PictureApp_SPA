@@ -21,7 +21,7 @@ export class SidenavUserprofileCardComponent implements OnInit {
 
   private getCurrentUser() {
 
-    this.userService.getUserInfo().then(response => {
+    this.userService.getBaseUserInfo().then(response => {
       this.currentUser = response;
     });
   }

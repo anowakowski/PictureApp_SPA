@@ -38,8 +38,6 @@ export class SidenavComponent implements OnInit {
 
   @ViewChild(MatDrawer) drawer: MatDrawer;
 
-
-
   ngOnInit() {
     this.currentChosenSection = DASHBOARD_SECTION;
     this.currentRouteSecction = this.router.url;

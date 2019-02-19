@@ -14,21 +14,14 @@ export class UserService {
   user: User;
   baseUrl = environment.apiUrl;
 
-
-  getUser(id: number): Observable<User> {
-    return this.httpClient.get<User>(this.baseUrl + 'users/' + id);
-  }
-
-  getBasicInfoForCurrentUser(): Observable<User> {
-    const userId = this.authService.decodedToken.nameid;
-    const user = this.httpClient.get<User>(this.baseUrl + 'users/' + userId);
-
-    return user;
-  }
-
-  getUserInfo(): Promise<User> {
+  getBaseUserInfo(): Promise<User> {
     const userId = this.authService.decodedToken.nameid;
     return this.httpClient.get<User>(this.baseUrl + 'users/' + userId).toPromise().then(response => response as User);
+  }
+
+  getUser(): Observable<User> {
+    const userId = this.authService.decodedToken.nameid;
+    return this.httpClient.get<User>(this.baseUrl + 'users/' + userId);
   }
 
   getAllUsersWithFollowers(): Observable<User[]> {

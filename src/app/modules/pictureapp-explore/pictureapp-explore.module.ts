@@ -6,6 +6,7 @@ import { PictureExploreComponent } from './picture-explore.component';
 import { AuthGuard } from '../../guards/auth.guard';
 
 import { ExploreUsersListResolver } from '../../resolvers/explore-users-list.resolver';
+import { ExploreUserResolver } from 'src/app/resolvers/explore-user.resolver';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MaterialModule } from '../shared/material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -18,8 +19,8 @@ import { PhotoDetailDialogComponent } from './components/photoDetail-dialog/phot
 import { EditUserProfileComponent } from './components/edit-userProfile/edit-userProfile.component';
 // tslint:disable-next-line:max-line-length
 import { SidenavUserprofileCardComponent } from './components/sidenav/components/sidenav-userprofile-card/sidenav-userprofile-card.component';
+// tslint:disable-next-line:max-line-length
 import { SidenavUserprofileChartComponent } from './components/sidenav/components/sidenav-userprofile-chart/sidenav-userprofile-chart.component';
-
 
 const routes: Routes = [
   { path: '',
@@ -29,7 +30,7 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always',
     children: [
       {path: '', component: PhotoExploreComponent},
-      {path: 'editUserProfile', component: EditUserProfileComponent}
+      {path: 'editUserProfile', component: EditUserProfileComponent, resolve: {user: ExploreUserResolver}}
   ]},
   {path: '**', redirectTo: ''}
 ];
@@ -59,7 +60,8 @@ const routes: Routes = [
   ],
   providers: [
     AuthGuard,
-    ExploreUsersListResolver
+    ExploreUsersListResolver,
+    ExploreUserResolver
   ]
 })
 export class PictureAppExploreModule { }
