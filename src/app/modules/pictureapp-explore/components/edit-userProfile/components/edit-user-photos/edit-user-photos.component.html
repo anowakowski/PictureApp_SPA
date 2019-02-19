@@ -6,7 +6,7 @@
               <div class="example-container">
                 <mat-card-title>
                   <label *ngIf="!isEdit">title1</label>
-                  <mat-form-field *ngIf="isEdit">
+                  <mat-form-field *ngIf="isEdit" class="edit-user-photos-card-inputs">
                     <input
                       matInput
                       placeholder="edit title"
@@ -16,7 +16,7 @@
                 </mat-card-title>
                 <mat-card-subtitle>
                   <label *ngIf="!isEdit">subtitle2</label>
-                  <mat-form-field *ngIf="isEdit">
+                  <mat-form-field *ngIf="isEdit" class="edit-user-photos-card-inputs">
                       <input
                         matInput
                         placeholder="edit subtitle"
@@ -28,16 +28,17 @@
             </mat-card-header>   
             <img mat-card-image src="{{ photo.url }}" alt="Photo of a Shiba Inu" />
             <mat-card-content>
-              <p>
+              
                 <label *ngIf="!isEdit">{{ photo.description }}</label> 
-                <mat-form-field *ngIf="isEdit">
+                <mat-form-field *ngIf="isEdit" class="edit-user-photos-card-textarea">
                     <textarea
                       matInput
                       placeholder="edit description"
                       formControlName="photoDescription"
+                      rows="3"
                     ></textarea>
-                </mat-form-field>                   
-              </p>
+                </mat-form-field>  
+              
             </mat-card-content>   
             <mat-card-actions>
                 <button mat-icon-button color="primary" (click)="editPhoto()">
