@@ -1,7 +1,7 @@
 <div class="sidnav-userprofile sidenav-elemnt">
-    <mat-card class="example-card">
+    <mat-card class="sidenav-userprofile-card">
         <mat-card-header >
-          <div [ngStyle]="{ 'background-image': 'url(' + currentUser?.photoUrl + ')' }" mat-card-avatar class="example-header-image"></div>
+          <div [ngStyle]="{ 'background-image': 'url(' + currentUser?.photoUrl + ')' }" mat-card-avatar class="sidnav-userprofile-header-image"></div>
           <mat-card-title class="sidenav-card-header">{{currentUser?.username}}</mat-card-title>
           <mat-card-subtitle>
               {{currentUser?.email}} <br/>
@@ -11,7 +11,7 @@
         </mat-card-header>
         <mat-card-content>
           <p class="sidenav-card-userprofile-content">
-              joned 2019, 116 photos
+             joned 2019 & 116 photos 
           </p>
         </mat-card-content>
     </mat-card>       

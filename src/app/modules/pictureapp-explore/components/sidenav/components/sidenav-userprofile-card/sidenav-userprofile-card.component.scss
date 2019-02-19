@@ -1,19 +1,27 @@
 
-  .example-card {
-    max-width: 400px;
-  }
-
   .sidnav-userprofile{
     opacity: 0.6;
   }
   
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  .sidenav-userprofile-card {
+    max-width: 400px;
+  }
+
+  .sidnav-userprofile-header-image {
     background-size: cover;
     width: 125px;
     height: 125px;
+
+    transition:all 0.3s ease-in-out;
+    opacity:1;
   }
-  
+
+  .sidenav-userprofile-card:hover .sidnav-userprofile-header-image,
+  .sidenav-userprofile-card:focus .sidnav-userprofile-header-image {
+    transform: scale(1.10);
+    opacity:0.7;
+  }
+ 
   .sidenav-card-userprofile-content {
     margin-left: 90px;
     margin-bottom: -10px;
