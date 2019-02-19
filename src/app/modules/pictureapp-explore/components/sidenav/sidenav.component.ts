@@ -21,7 +21,7 @@ export class SidenavComponent implements OnInit {
   private mediaMatcher: MediaQueryList =
     matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`);
 
-  constructor(public router: Router, private userService: UserService) { }
+  constructor(public router: Router) { }
 
   public currentRouteSecction: string;
   public currentChosenSection: string;
@@ -35,7 +35,6 @@ export class SidenavComponent implements OnInit {
   public userProfileColor = BASIC_BTN_COLOR;
 
   public testMessage: string;
-  public currentUser: User;
 
   @ViewChild(MatDrawer) drawer: MatDrawer;
 
@@ -43,7 +42,6 @@ export class SidenavComponent implements OnInit {
     this.currentChosenSection = DASHBOARD_SECTION;
     this.currentRouteSecction = this.router.url;
     this.setCurrentSectionByRoute();
-    this.getCurrentUser();
   }
 
   isScreenSmall(): boolean {
@@ -90,12 +88,5 @@ export class SidenavComponent implements OnInit {
       return;
     }
     this.setBtnColor(DASHBOARD_SECTION);
-  }
-
-  private getCurrentUser() {
-
-    this.userService.getUserInfo().then(response => {
-      this.currentUser = response;
-    });
   }
 }

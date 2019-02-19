@@ -15,6 +15,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { PhotoCardComponent } from './components/photo-card/photo-card.component';
 import { PhotoDetailDialogComponent } from './components/photoDetail-dialog/photoDetail-dialog.component';
 import { EditUserProfileComponent } from './components/edit-userProfile/edit-userProfile.component';
+import { SidenavUserprofileCardComponent } from './components/sidenav/components/sidenav-userprofile-card/sidenav-userprofile-card.component';
 
 
 const routes: Routes = [
@@ -38,7 +39,8 @@ const routes: Routes = [
     SidenavComponent,
     NavComponent,
     PhotoDetailDialogComponent,
-    EditUserProfileComponent
+    EditUserProfileComponent,
+    SidenavUserprofileCardComponent
   ],
   entryComponents: [
     PhotoDetailDialogComponent
