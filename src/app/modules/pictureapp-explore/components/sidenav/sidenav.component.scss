@@ -57,14 +57,24 @@
 .example-header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
 }
 
-.sidenav-card-content-followers-following {
-  margin-left: 70px;
+.sidenav-card-userprofile-content {
+  margin-left: 80px;
+  margin-bottom: -10px;
 }
 
 .sidenav-card-header {
   margin-left: -6px
+}
+
+.sidenav-userprofile-subtitle-followers {
+  margin-top: 7px;
+  margin-left: 2px;
+}
+
+.sidenav-userprofile-subtitle-following {
+  margin-left: 2px;
 }

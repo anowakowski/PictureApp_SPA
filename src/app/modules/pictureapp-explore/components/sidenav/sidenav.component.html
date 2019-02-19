@@ -19,30 +19,23 @@
       <div class="sidnav-userprofile sidenav-elemnt">
           <mat-card class="example-card">
               <mat-card-header >
-                <div [ngStyle]="{ 'background-image': 'url(' + currentUser.photoUrl + ')' }" mat-card-avatar class="example-header-image"></div>
-                <mat-card-title class="sidenav-card-header">{{currentUser.username}}</mat-card-title>
-                <mat-card-subtitle>{{currentUser.email}}</mat-card-subtitle>
+                <div [ngStyle]="{ 'background-image': 'url(' + currentUser?.photoUrl + ')' }" mat-card-avatar class="example-header-image"></div>
+                <mat-card-title class="sidenav-card-header">{{currentUser?.username}}</mat-card-title>
+                <mat-card-subtitle>
+                    {{currentUser?.email}} <br/>
+                    <div class="sidenav-userprofile-subtitle-followers"><span><mat-icon>loyalty</mat-icon></span><span>followers: <span>40</span></span></div>
+                    <div class="sidenav-userprofile-subtitle-following"><span><mat-icon>scatter_plot</mat-icon></span><span>following: <span>40</span></span></div>
+                </mat-card-subtitle>
               </mat-card-header>
               <mat-card-content>
-                <p class="sidenav-card-content-followers-following">
-                    <span> <mat-icon>loyalty</mat-icon> </span>
-                    <span>followers: <span>40</span></span>
-                    <span style="padding-left: 2px;"><mat-icon>scatter_plot</mat-icon></span> 
-                    <span> following: 40</span> 
+                <p class="sidenav-card-userprofile-content">
+                    joned 2019, 116 photos
                 </p>
               </mat-card-content>
           </mat-card>       
       </div>  
-
-      
     </div>
-
-
-
-
-    
-  
-  </mat-drawer>
+   </mat-drawer>
   <div class="app-sidenav-content">
     <div class="wrapper">
         <router-outlet></router-outlet>
