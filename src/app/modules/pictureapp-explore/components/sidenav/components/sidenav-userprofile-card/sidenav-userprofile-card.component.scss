@@ -14,6 +14,9 @@
 
     transition:all 0.3s ease-in-out;
     opacity:1;
+
+    outline: none;
+    border: 0;
   }
 
   .sidenav-userprofile-card:hover .sidnav-userprofile-header-image,
