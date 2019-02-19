@@ -27,8 +27,8 @@ export class EditUserPhotosComponent implements OnInit {
     });
   }
 
-  editPhoto() {
-    this.isEdit = true;
+  editPhoto(isEditMode: boolean) {
+    this.isEdit = isEditMode;
   }
 
 
