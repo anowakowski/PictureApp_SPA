@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Photo } from 'src/app/models/photo';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-user-photos',
@@ -9,10 +10,26 @@ import { Photo } from 'src/app/models/photo';
 export class EditUserPhotosComponent implements OnInit {
 
   @Input() photo: Photo;
+  editPhotoForm: FormGroup;
+  isEdit = false;
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.createEditPhotoForm();
   }
+
+  createEditPhotoForm() {
+    this.editPhotoForm = this.formBuilder.group({
+      photoTitle: ['title1', [Validators.required]],
+      photoSubtitle: ['subtitle2', Validators.required],
+      photoDescription: [this.photo.description, Validators.nullValidator]
+    });
+  }
+
+  editPhoto() {
+    this.isEdit = true;
+  }
+
 
 }

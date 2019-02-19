@@ -3,3 +3,12 @@
     margin-top: 1.5em;
     margin-left: 1em;
  }
+
+ .example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }

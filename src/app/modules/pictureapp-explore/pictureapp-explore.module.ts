@@ -22,6 +22,7 @@ import { SidenavUserprofileCardComponent } from './components/sidenav/components
 // tslint:disable-next-line:max-line-length
 import { SidenavUserprofileChartComponent } from './components/sidenav/components/sidenav-userprofile-chart/sidenav-userprofile-chart.component';
 import { EditUserPhotosComponent } from './components/edit-userProfile/components/edit-user-photos/edit-user-photos.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: '',
@@ -58,6 +59,8 @@ const routes: Routes = [
     MaterialModule,
     FlexLayoutModule,
     ChartsModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
   providers: [
