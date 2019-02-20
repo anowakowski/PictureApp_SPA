@@ -17,6 +17,7 @@ export class PhotoCardComponent implements OnInit {
   mainPhoto: Photo;
   currentPhoto: Photo;
   isFollower = false;
+  isCommentMode = false;
 
   constructor(private userService: UserService, private dialog: MatDialog, private bottomSheet: MatBottomSheet) { }
 
@@ -55,7 +56,12 @@ export class PhotoCardComponent implements OnInit {
   }
 
   openCommnetBottomSheet(photo: Photo) {
-    this.bottomSheet.open(PhotoCommentButtomSheetComponent, {data: photo});
+    this.isCommentMode = true;
+    const bottomSheetRef = this.bottomSheet.open(PhotoCommentButtomSheetComponent, {data: photo});
+
+    bottomSheetRef.afterDismissed().subscribe(() => {
+      this.isCommentMode = false;
+    });
   }
 
   private setUserProfileMainPhoto() {
