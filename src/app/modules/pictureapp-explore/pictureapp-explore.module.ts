@@ -26,7 +26,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditUserprofileConfirmationDialogComponent } from './components/edit-userProfile/components/edit-userprofile-confirmation-dialog/edit-userprofile-confirmation-dialog.component';
 import { PhotoDetailDialogComponent } from './components/photo-explore/components/photoDetail-dialog/photoDetail-dialog.component';
 import { PhotoCardComponent } from './components/photo-explore/components/photo-card/photo-card.component';
-
+// tslint:disable-next-line:max-line-length
+import { PhotoCommentButtomSheetComponent } from './components/photo-explore/components/photo-comment-buttom-sheet/photo-comment-buttom-sheet.component';
 
 const routes: Routes = [
   { path: '',
@@ -53,11 +54,13 @@ const routes: Routes = [
     EditUserProfileComponent,
     SidenavUserprofileCardComponent,
     SidenavUserprofileChartComponent,
-    EditUserPhotosComponent
+    EditUserPhotosComponent,
+    PhotoCommentButtomSheetComponent
   ],
   entryComponents: [
     PhotoDetailDialogComponent,
-    EditUserprofileConfirmationDialogComponent
+    EditUserprofileConfirmationDialogComponent,
+    PhotoCommentButtomSheetComponent
   ],
   imports: [
     CommonModule,

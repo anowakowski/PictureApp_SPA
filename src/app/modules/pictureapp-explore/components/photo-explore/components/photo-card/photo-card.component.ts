@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatBottomSheet } from '@angular/material';
 
 import { Photo } from 'src/app/models/photo';
 import { PhotoDetailDialogComponent } from '../photoDetail-dialog/photoDetail-dialog.component';
+import { PhotoCommentButtomSheetComponent } from '../photo-comment-buttom-sheet/photo-comment-buttom-sheet.component';
 
 @Component({
   selector: 'app-photo-card',
@@ -17,7 +18,7 @@ export class PhotoCardComponent implements OnInit {
   currentPhoto: Photo;
   isFollower = false;
 
-  constructor(private userService: UserService, private dialog: MatDialog) { }
+  constructor(private userService: UserService, private dialog: MatDialog, private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
     this.isFollower = this.user.isFollowerForCurrentUser;
@@ -30,7 +31,6 @@ export class PhotoCardComponent implements OnInit {
       this.user.isFollowerForCurrentUser = true;
       this.isFollower = true;
     }, error => {
-
     });
   }
 
@@ -52,6 +52,10 @@ export class PhotoCardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
     });
+  }
+
+  openCommnetBottomSheet(photo: Photo) {
+    this.bottomSheet.open(PhotoCommentButtomSheetComponent, {data: photo});
   }
 
   private setUserProfileMainPhoto() {
