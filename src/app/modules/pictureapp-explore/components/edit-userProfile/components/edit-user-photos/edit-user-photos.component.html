@@ -1,6 +1,6 @@
 <div class="example-container">
   <form [formGroup]="editPhotoForm" (submit)="submitChanges()">
-    <mat-card class="edit-user-photos-card" [ngClass]="{'edit-user-photos-card-current': isEdit}"> 
+    <mat-card class="edit-user-photos-card" [ngClass]="{'edit-user-photos-card-current': isEdit, 'edit-user-photos-card-removing': isInRemoving}"> 
           <mat-card-header>
               <div class="example-container">
                 <mat-card-title>
@@ -41,7 +41,7 @@
                 <button *ngIf="!isEdit" mat-icon-button color="primary" (click)="editPhoto(true)">
                   <mat-icon>border_color</mat-icon>
                 </button>
-                <button *ngIf="!isEdit" mat-icon-button color="primary">
+                <button *ngIf="!isEdit" mat-icon-button color="primary" (click)="openConfirmationDialog(photo)">
                   <mat-icon>delete</mat-icon>
                 </button>
 
