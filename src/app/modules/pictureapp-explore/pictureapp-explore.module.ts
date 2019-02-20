@@ -23,7 +23,9 @@ import { SidenavUserprofileCardComponent } from './components/sidenav/components
 import { SidenavUserprofileChartComponent } from './components/sidenav/components/sidenav-userprofile-chart/sidenav-userprofile-chart.component';
 import { EditUserPhotosComponent } from './components/edit-userProfile/components/edit-user-photos/edit-user-photos.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// tslint:disable-next-line:max-line-length
 import { EditUserprofileConfirmationDialogComponent } from './components/edit-userProfile/components/edit-userprofile-confirmation-dialog/edit-userprofile-confirmation-dialog.component';
+
 
 const routes: Routes = [
   { path: '',
