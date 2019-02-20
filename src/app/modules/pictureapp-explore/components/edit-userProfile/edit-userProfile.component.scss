@@ -14,10 +14,22 @@
 }
 
 .content-align {
-  margin-top: 1.5em;
+  margin-top: 0.3em;
   margin-left: 1em;
 }
 
 .tab-container {
   width: 100%;
+}
+
+.edit-userPfrofile-background-image {
+  margin-top: 0.9em;
+  margin-left: -3.1em;
+  margin-right: -3.1em;
+  background: url('../../../../../assets/sunburst_light.jpg') ;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 10px;
 }
