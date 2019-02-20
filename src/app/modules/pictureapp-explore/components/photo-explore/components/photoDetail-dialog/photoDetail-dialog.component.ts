@@ -24,5 +24,4 @@ export class PhotoDetailDialogComponent implements OnInit {
   dismiss() {
     this.dialogRef.close(null);
   }
-
 }

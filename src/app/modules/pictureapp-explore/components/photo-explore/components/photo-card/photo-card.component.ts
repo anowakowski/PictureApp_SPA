@@ -2,8 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { MatDialog } from '@angular/material';
-import { PhotoDetailDialogComponent } from '../photoDetail-dialog/photoDetail-dialog.component';
+
 import { Photo } from 'src/app/models/photo';
+import { PhotoDetailDialogComponent } from '../photoDetail-dialog/photoDetail-dialog.component';
 
 @Component({
   selector: 'app-photo-card',

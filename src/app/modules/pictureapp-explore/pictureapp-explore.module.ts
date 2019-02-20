@@ -14,8 +14,7 @@ import { ChartsModule } from 'ng2-charts';
 
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { NavComponent } from './components/nav/nav.component';
-import { PhotoCardComponent } from './components/photo-card/photo-card.component';
-import { PhotoDetailDialogComponent } from './components/photoDetail-dialog/photoDetail-dialog.component';
+
 import { EditUserProfileComponent } from './components/edit-userProfile/edit-userProfile.component';
 // tslint:disable-next-line:max-line-length
 import { SidenavUserprofileCardComponent } from './components/sidenav/components/sidenav-userprofile-card/sidenav-userprofile-card.component';
@@ -25,6 +24,8 @@ import { EditUserPhotosComponent } from './components/edit-userProfile/component
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // tslint:disable-next-line:max-line-length
 import { EditUserprofileConfirmationDialogComponent } from './components/edit-userProfile/components/edit-userprofile-confirmation-dialog/edit-userprofile-confirmation-dialog.component';
+import { PhotoDetailDialogComponent } from './components/photo-explore/components/photoDetail-dialog/photoDetail-dialog.component';
+import { PhotoCardComponent } from './components/photo-explore/components/photo-card/photo-card.component';
 
 
 const routes: Routes = [
