@@ -1,3 +1,21 @@
-<p>
-  photo-comment-buttom-sheet works!
-</p>
+<h5>
+  add comment to picture {{photo.url}}
+</h5>
+
+<div class="photo-comment-userscommentsection">
+    <div>same coment1</div>  
+    <mat-divider></mat-divider>
+    <div>same coment2</div>  
+    <mat-divider></mat-divider>
+</div>
+
+<div class="photo-comment-addnewcommentsection">
+    <form class="example-form">
+
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Leave a comment"></textarea>
+        </mat-form-field>
+        <button mat-button color="primary" (click)="addcomment()"> add a comment</button>
+      </form>
+</div>
+

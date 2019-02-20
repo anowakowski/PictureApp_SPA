@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { MatBottomSheetRef } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material';
+import { Photo } from 'src/app/models/photo';
+
+export interface BottomSheetData {
+  photo: Photo;
+}
 
 @Component({
   selector: 'app-photo-comment-buttom-sheet',
@@ -8,10 +13,15 @@ import { MatBottomSheetRef } from '@angular/material';
 })
 export class PhotoCommentButtomSheetComponent implements OnInit {
 
-  constructor(private bottomSheetRef: MatBottomSheetRef<PhotoCommentButtomSheetComponent>) { }
+  constructor(
+    private bottomSheetRef: MatBottomSheetRef<PhotoCommentButtomSheetComponent>,
+    @Inject(MAT_BOTTOM_SHEET_DATA) public photo: Photo) { }
 
   ngOnInit() {
-
+    console.log(this.photo);
   }
 
+  addcomment() {
+    this.bottomSheetRef.dismiss();
+  }
 }
