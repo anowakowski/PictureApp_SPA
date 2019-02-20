@@ -31,5 +31,7 @@ export class EditUserPhotosComponent implements OnInit {
     this.isEdit = isEditMode;
   }
 
-
+  submitChanges() {
+    console.log('photo changes added');
+  }
 }
