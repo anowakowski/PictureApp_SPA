@@ -1,7 +1,7 @@
 <div class="example-container">
   <form [formGroup]="editPhotoForm">
 
-    <mat-card class="edit-user-photos-card"> 
+    <mat-card class="edit-user-photos-card" [ngClass]="{'edit-user-photos-card-current': isEdit}"> 
           <mat-card-header>
               <div class="example-container">
                 <mat-card-title>
