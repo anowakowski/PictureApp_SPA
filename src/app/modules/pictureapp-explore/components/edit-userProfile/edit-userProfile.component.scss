@@ -22,6 +22,10 @@
   width: 100%;
 }
 
+.edit-userProfile-backgound-image-basePosition {
+  height:550px;
+}
+
 .edit-userPfrofile-background-image {
   margin-top: 0.9em;
   margin-left: -3.1em;
@@ -39,12 +43,11 @@
   height: 100px; 
   width: 100px; 
   margin-bottom: -25px;
-  //margin: 5px 0px 5px 0px;
   border-radius: 50%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.flex-element-image {
+.edit-userProfile-mainPhoto-flex-container-element-image {
   display: flex;
 
   flex-direction: row;
