@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { PhotoDetailDialogComponent } from '../../../photoDetail-dialog/photoDetail-dialog.component';
+
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Photo } from 'src/app/models/photo';
+import { PhotoDetailDialogComponent } from '../../../photo-explore/components/photoDetail-dialog/photoDetail-dialog.component';
 
 export interface DialogData {
   photo: Photo;
@@ -14,7 +15,9 @@ export interface DialogData {
 })
 export class EditUserprofileConfirmationDialogComponent implements OnInit {
 
-  constructor(private dialogRef: MatDialogRef<PhotoDetailDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+  constructor(
+    private dialogRef: MatDialogRef<EditUserprofileConfirmationDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   ngOnInit() {
   }
