@@ -4,7 +4,7 @@
           <mat-card-header>
               <div class="example-container">
                 <mat-card-title>
-                  <label *ngIf="!isEdit">title1</label>
+                  <label *ngIf="!isEdit">{{photo.title}}</label>
                   <mat-form-field *ngIf="isEdit" class="edit-user-photos-card-inputs">
                     <input
                       matInput
@@ -14,7 +14,7 @@
                   </mat-form-field>
                 </mat-card-title>
                 <mat-card-subtitle>
-                  <label *ngIf="!isEdit">subtitle2</label>
+                  <label *ngIf="!isEdit">{{photo.subtitle}}</label>
                   <mat-form-field *ngIf="isEdit" class="edit-user-photos-card-inputs">
                       <input
                         matInput

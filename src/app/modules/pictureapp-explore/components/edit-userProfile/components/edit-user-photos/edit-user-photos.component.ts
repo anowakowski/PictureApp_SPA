@@ -25,8 +25,8 @@ export class EditUserPhotosComponent implements OnInit {
 
   createEditPhotoForm() {
     this.editPhotoForm = this.formBuilder.group({
-      photoTitle: ['title1', [Validators.required]],
-      photoSubtitle: ['subtitle2', Validators.required],
+      photoTitle: [this.photo.title, [Validators.required]],
+      photoSubtitle: [this.photo.subtitle, Validators.required],
       photoDescription: [this.photo.description, Validators.nullValidator]
     });
   }

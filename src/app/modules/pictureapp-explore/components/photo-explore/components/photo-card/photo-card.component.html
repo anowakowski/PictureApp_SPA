@@ -13,8 +13,9 @@
         <button mat-button *ngIf="isFollower" (click)="unfollowUser(user)">
           Unfollow
         </button>
+        <div>{{currentPhoto.title}}</div>
     </mat-card-title>
-    <mat-card-subtitle>same photo title example</mat-card-subtitle>
+    <mat-card-subtitle>{{currentPhoto.subtitle}}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <img

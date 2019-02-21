@@ -4,4 +4,6 @@ export class Photo {
     description: string;
     dateAdded: Date;
     isMain: boolean;
+    title: string;
+    subtitle: string;
 }
