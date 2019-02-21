@@ -1,3 +1,5 @@
+import { PhotoComment } from './photoComment';
+
 export class Photo {
     id: number;
     url: string;
@@ -6,4 +8,5 @@ export class Photo {
     isMain: boolean;
     title: string;
     subtitle: string;
+    photoComments: PhotoComment[];
 }

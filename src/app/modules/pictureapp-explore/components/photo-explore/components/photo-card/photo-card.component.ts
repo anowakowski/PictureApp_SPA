@@ -57,7 +57,7 @@ export class PhotoCardComponent implements OnInit {
 
   openCommnetBottomSheet(photo: Photo) {
     this.isCommentMode = true;
-    const bottomSheetRef = this.bottomSheet.open(PhotoCommentButtomSheetComponent, {data: photo});
+    const bottomSheetRef = this.bottomSheet.open(PhotoCommentButtomSheetComponent, {data: photo.photoComments});
 
     bottomSheetRef.afterDismissed().subscribe(() => {
       this.isCommentMode = false;

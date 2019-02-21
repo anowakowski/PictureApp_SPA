@@ -1,17 +1,17 @@
 <h5>
-  add comment to picture {{photo.url}}
+test
 </h5>
 
-<div class="photo-comment-userscommentsection">
-    <div>same coment1</div>  
-    <mat-divider></mat-divider>
-    <div>same coment2</div>  
+<div *ngFor="let photoComment of photoComments" class="photo-user-commented-section">
+    <div class="photo-user-commented-section-element"> 
+      <img src="{{photoComment.user.photoUrl}}" style="border-radius: 50px; height: 50px; width: 50px;" />
+      <span style="margin-left: 5px;">{{photoComment?.content}}</span>
+    </div>  
     <mat-divider></mat-divider>
 </div>
 
-<div class="photo-comment-addnewcommentsection">
+<div class="photo-comment-addComment-section">
     <form class="example-form">
-
         <mat-form-field class="example-full-width">
           <textarea matInput placeholder="Leave a comment"></textarea>
         </mat-form-field>
