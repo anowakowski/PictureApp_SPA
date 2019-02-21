@@ -17,7 +17,6 @@ export class PhotoCommentButtomSheetComponent implements OnInit {
   currentPhotoComments: PhotoComment[];
 
   ngOnInit() {
-    console.log(this.photoComments);
   }
 
   addcomment() {
