@@ -44,7 +44,12 @@
                 <button *ngIf="!isEdit" mat-icon-button color="primary" (click)="openConfirmationDialog(photo)">
                   <mat-icon>delete</mat-icon>
                 </button>
-
+                <button *ngIf="!isEdit" mat-icon-button color="primary">
+                  <mat-icon matBadge="15" matBadgeColor="accent" class="btn-like">favorite</mat-icon>
+                </button>
+                <button *ngIf="!isEdit" mat-icon-button color="primary">
+                      <mat-icon matBadge="2" matBadgeColor="warn">insert_comment</mat-icon>
+                </button>                
                 <button *ngIf="isEdit" mat-icon-button color="primary" type="submit">
                     <mat-icon>done</mat-icon>
                 </button> 
