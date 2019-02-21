@@ -1,8 +1,8 @@
 
 <div layout="row" class="edit-userPfrofile-background-image">
     <div flex style="height:550px;"></div>
-    <div layout="column" style="width: 100px; ">
-      <div style="height: 100px; margin: 5px 0px 5px 0px; background-color: white">1</div>
+    <div class="flex-element-image">
+      <img src="{{mainPhoto?.url}}" class="edit-userProfile-mainPhoto-image"/>
     </div>
 </div>
 
@@ -12,7 +12,7 @@
   <mat-tab-group class="tab-container">
     <mat-tab label="Photos">
       <div class="flex-container" fxLayout.xs="column">
-        <div *ngFor="let photo of user.photos">
+        <div *ngFor="let photo of userPhotos">
           <app-edit-user-photos [photo]="photo"></app-edit-user-photos>
         </div>
       </div>
