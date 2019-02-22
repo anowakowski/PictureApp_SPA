@@ -2,7 +2,8 @@
     <mat-card class="sidenav-userprofile-card">
         <mat-card-header >
           <div 
-            [ngStyle]="{ 'background-image': 'url(' + currentUser?.photoUrl + ')' }" 
+            *ngIf="mainPhotoUrl"
+            [ngStyle]="{ 'background-image': 'url(' + mainPhotoUrl + ')' }" 
             mat-card-avatar 
             class="sidnav-userprofile-header-image" 
             [routerLink]="['/editUserProfile']" 

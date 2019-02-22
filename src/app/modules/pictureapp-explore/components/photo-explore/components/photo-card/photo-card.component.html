@@ -2,7 +2,7 @@
   <mat-card-header>
     <div
       mat-card-avatar
-      [ngStyle]="{ 'background-image': 'url(' + mainPhoto.url + ')' }"
+      [ngStyle]="{ 'background-image': 'url(' + mainPhoto?.url + ')' }"
       class="main-header-image">
     </div>
     <mat-card-title>
@@ -21,7 +21,7 @@
     <img
       class="card-img"
       mat-card-image
-      src="{{ currentPhoto.url }}"
+      src="{{ currentPhoto?.url }}"
       alt="Photo of a Shiba Inu"
       (click)="OpenPhotoDetailDialog(user, currentPhoto)" />    
     <p>

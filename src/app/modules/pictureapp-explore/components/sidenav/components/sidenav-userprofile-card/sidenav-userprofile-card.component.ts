@@ -14,6 +14,7 @@ export class SidenavUserprofileCardComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   public currentUser: User;
+  public mainPhotoUrl: string;
 
   ngOnInit() {
     this.getCurrentUser();
@@ -23,6 +24,7 @@ export class SidenavUserprofileCardComponent implements OnInit {
 
     this.userService.getBaseUserInfo().then(response => {
       this.currentUser = response;
+      this.mainPhotoUrl = this.currentUser.photoUrl;
     });
   }
 
