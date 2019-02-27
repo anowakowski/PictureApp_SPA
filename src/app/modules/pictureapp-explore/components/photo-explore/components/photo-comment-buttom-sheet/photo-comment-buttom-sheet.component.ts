@@ -14,8 +14,6 @@ export class PhotoCommentButtomSheetComponent implements OnInit {
     private bottomSheetRef: MatBottomSheetRef<PhotoCommentButtomSheetComponent>,
     @Inject(MAT_BOTTOM_SHEET_DATA) public photoComments: PhotoComment[]) { }
 
-  currentPhotoComments: PhotoComment[];
-
   ngOnInit() {
   }
 
