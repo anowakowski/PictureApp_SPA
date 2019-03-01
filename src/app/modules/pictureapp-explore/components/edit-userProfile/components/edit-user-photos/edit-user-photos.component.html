@@ -25,7 +25,7 @@
                 </mat-card-subtitle>
               </div>
             </mat-card-header>   
-            <img mat-card-image src="{{ photo.url }}" alt="Photo of a Shiba Inu" />
+            <img mat-card-image src="{{ photo.url }}" />
             <mat-card-content>
                 <label *ngIf="!isEdit">{{ photo.description }}</label> 
                 <mat-form-field *ngIf="isEdit" class="edit-user-photos-card-textarea">
