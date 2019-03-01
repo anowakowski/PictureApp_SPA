@@ -29,7 +29,7 @@ export class NavComponent implements OnInit {
     this.editSectionUser.emit();
   }
 
-  emitdashboardAsCurrentSection() {
+  emitDashboardAsCurrentSection() {
     this.dashbordSection.emit();
   }
 
