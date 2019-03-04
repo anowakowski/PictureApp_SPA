@@ -1,0 +1,32 @@
+.edit-user-photos-card {
+    max-width: 320px;
+    margin-top: 1.5em;
+    margin-left: 1em;
+    margin: 1rem;
+ }
+
+ .edit-user-photos-card-current {
+  box-shadow: 0 8px 22px rgba(255,102,51,25), 0 6px 6px rgba(255,102,51,22);
+ }
+
+ .edit-user-photos-card-removing {
+  box-shadow: 0 8px 22px rgba(204,0,0,25), 0 6px 6px rgba(204,0,0,22);
+ }
+
+ .example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+
+  .edit-user-photos-card-textarea {
+    width: 290px;
+  }
+
+  .edit-user-photos-card-inputs {
+    width: 290px;
+    margin-left: -29px;
+  }

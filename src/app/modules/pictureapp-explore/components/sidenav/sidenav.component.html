@@ -1,0 +1,30 @@
+<app-nav (toggleSidenav)="drawer.toggle()" (editSectionUser)="reciveEditUserProfileAsCurrent()" (dashbordSection)="reciveDashboardAsCurrent()"></app-nav> 
+<mat-drawer-container class="app-container" autosize>
+  <mat-drawer 
+    #drawer class="sidenav-content-elements mat-elevation-z10 sidenav-container-background-image"
+    [opened]="!isScreenSmall()"
+    [mode]="isScreenSmall() ? 'over' : 'side'">
+    <div class="sidenav-element-flex-container">
+      <button class="sidenav-elemnt" color="{{dashboardColor}}" mat-raised-button [routerLink]="['/']" (click)="setBtnColor(dashboardSection)">
+        <mat-icon>dashboard</mat-icon> dashboard
+      </button>
+      <button class="sidenav-elemnt" color="primary" mat-raised-button>
+        <mat-icon>photo</mat-icon> photos explore
+      </button>
+
+      <button class="sidenav-elemnt" color="{{userProfileColor}}" mat-raised-button [routerLink]="['/editUserProfile']" (click)="setBtnColor(userprofileSection)">
+        <mat-icon>person</mat-icon> your profile
+      </button>
+      <div style="margin-top: 10px;"><app-sidenav-userprofile-card (editSectionUser)="reciveEditUserProfileAsCurrent()"></app-sidenav-userprofile-card></div>
+      <div style="margin-top: 20px;"><app-sidenav-userprofile-chart></app-sidenav-userprofile-chart></div>
+      <button class="sidenav-btn-modelPanel sidenav-elemnt" color="primary" mat-raised-button>
+        <mat-icon>photo_camera</mat-icon> model find panel <mat-icon>nature_people</mat-icon> 
+      </button>
+    </div>
+   </mat-drawer>
+  <div class="app-sidenav-content">
+    <div class="wrapper">
+        <router-outlet></router-outlet>
+    </div>
+  </div>
+</mat-drawer-container>

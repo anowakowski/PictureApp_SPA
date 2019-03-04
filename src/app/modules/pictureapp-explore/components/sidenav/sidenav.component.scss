@@ -6,7 +6,7 @@
   }
 
   .sidenav-container-background-image {
-    background: url('../../../../assets/karpacz_mountain.jpg') ;
+    background: url('../../../../../assets/karpacz_mountain.jpg') ;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -33,8 +33,6 @@
   .sidenav-content-elements {
     margin-top: 60px;
     padding: 20px;
-    margin-bottom: 10px;
-    
   }
 
   .sidenav-elemnt {
@@ -45,4 +43,45 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+
+ .sidnav-userprofile{
+  opacity: 0.6;
  }
+
+
+ .example-card {
+  max-width: 400px;
+ }
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+  width: 120px;
+  height: 120px;
+}
+
+.sidenav-card-userprofile-content {
+  margin-left: 80px;
+  margin-bottom: -10px;
+}
+
+.sidenav-card-header {
+  margin-left: -6px
+}
+
+.sidenav-userprofile-subtitle-followers {
+  margin-top: 7px;
+  margin-left: 2px;
+}
+
+.sidenav-userprofile-subtitle-following {
+  margin-left: 2px;
+}
+
+.sidenav-btn-modelPanel {
+  position: absolute;
+  bottom: 10px;
+  width: 360px;
+  height: 50px;
+}

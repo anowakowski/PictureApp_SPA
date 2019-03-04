@@ -14,24 +14,31 @@ export class UserService {
   user: User;
   baseUrl = environment.apiUrl;
 
+  getBaseUserInfo(): Promise<User> {
+    return this.httpClient.get<User>(this.baseUrl + 'users/' + this.getCurrentUserId()).toPromise().then(response => response as User);
+  }
 
-  getUser(id: number): Observable<User> {
-    return this.httpClient.get<User>(this.baseUrl + 'users/' + id);
+  getUserForEdit(): Observable<User> {
+    return this.httpClient.get<User>(this.baseUrl + 'users/userEditProfile/' + this.getCurrentUserId());
   }
 
   getAllUsersWithFollowers(): Observable<User[]> {
-    const url: string = this.baseUrl + 'users/allUserWithFollowerInfo';
+    const url: string = this.baseUrl + 'users/getCurrentUserFollowersForDashboard/' + this.getCurrentUserId();
     const userObs = this.httpClient.get<User[]>(url);
     return userObs;
   }
 
   setFollower(id: number) {
-    const url: string = this.baseUrl + 'users/' + this.authService.decodedToken.nameid + '/followers/' + id + '/setfollow';
+    const url: string = this.baseUrl + 'users/' + this.getCurrentUserId() + '/followers/' + id + '/setfollow';
     return this.httpClient.post(url, {});
   }
 
   setUnFollowUser(id: number) {
-    const url: string = this.baseUrl + 'users/' + this.authService.decodedToken.nameid + '/followers/' + id + '/setunfollow';
+    const url: string = this.baseUrl + 'users/' + this.getCurrentUserId() + '/followers/' + id + '/setunfollow';
     return this.httpClient.post(url, {});
+  }
+
+  private getCurrentUserId() {
+    return this.authService.decodedToken.nameid;
   }
 }

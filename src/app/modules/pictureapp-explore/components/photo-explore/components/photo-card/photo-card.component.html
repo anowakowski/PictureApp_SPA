@@ -1,8 +1,8 @@
-<mat-card class="card">
+<mat-card class="card" [ngClass]="{'photo-card-comment-mode': isCommentMode}">
   <mat-card-header>
     <div
       mat-card-avatar
-      [ngStyle]="{ 'background-image': 'url(' + mainPhoto.url + ')' }"
+      [ngStyle]="{ 'background-image': 'url(' + mainPhoto?.url + ')' }"
       class="main-header-image">
     </div>
     <mat-card-title>
@@ -13,14 +13,15 @@
         <button mat-button *ngIf="isFollower" (click)="unfollowUser(user)">
           Unfollow
         </button>
+        <div>{{currentPhoto.title}}</div>
     </mat-card-title>
-    <mat-card-subtitle>same photo title example</mat-card-subtitle>
+    <mat-card-subtitle>{{currentPhoto.subtitle}}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <img
       class="card-img"
       mat-card-image
-      src="{{ currentPhoto.url }}"
+      src="{{ currentPhoto?.url }}"
       alt="Photo of a Shiba Inu"
       (click)="OpenPhotoDetailDialog(user, currentPhoto)" />    
     <p>
@@ -29,10 +30,10 @@
   </mat-card-content>
   <mat-card-actions>
     <button mat-icon-button color="primary">
-      <mat-icon class="btn-like" aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+      <mat-icon matBadge="15" matBadgeColor="accent" class="btn-like">favorite</mat-icon>
     </button>
-    <button mat-icon-button color="primary">
-        <mat-icon aria-label="Example icon-button with a heart icon">insert_comment</mat-icon>
+    <button mat-icon-button color="primary" (click)="openCommnetBottomSheet(currentPhoto)">
+        <mat-icon matBadge="2" matBadgeColor="warn">insert_comment</mat-icon>
     </button>
   </mat-card-actions>
 </mat-card>

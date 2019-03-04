@@ -1,0 +1,18 @@
+<div *ngFor="let photoComment of photoComments" class="photo-user-commented-section">
+    <div class="photo-user-commented-section-element"> 
+      <img src="{{photoComment?.user?.photoUrl}}" class="photo-user-commented-image" />
+      <span class="photo-user-commented-username">{{photoComment?.user?.username}}</span> <br/>
+      <span class="photo-user-commented-usercomment">{{photoComment?.content}}</span>
+    </div>  
+    <mat-divider></mat-divider>
+</div>
+
+<div class="photo-comment-addComment-section">
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Leave a comment"></textarea>
+        </mat-form-field>
+        <button mat-button color="primary" (click)="addcomment()"> add a comment</button>
+      </form>
+</div>
+

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { User } from '../../../models/user';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-photo-explore',

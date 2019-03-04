@@ -1,0 +1,57 @@
+.flex-container {
+  display: flex;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  justify-content: flex-start;
+}
+
+@media all and (max-width: 1200px) {
+  .flex-container {
+    justify-content: center;
+  }
+}
+
+.content-align {
+  margin-top: 0.3em;
+  margin-left: 1em;
+}
+
+.tab-container {
+  width: 100%;
+}
+
+.edit-userProfile-backgound-image-basePosition {
+  height:550px;
+}
+
+.edit-userPfrofile-background-image {
+  margin-top: 0.9em;
+  margin-left: -3.1em;
+  margin-right: -3.1em;
+  background: url('../../../../../assets/longExpo_UW.jpg') ;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.edit-userProfile-mainPhoto-image {
+  height: 100px; 
+  width: 100px; 
+  margin-bottom: -25px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.edit-userProfile-mainPhoto-flex-container-element-image {
+  display: flex;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  justify-content: center;
+}

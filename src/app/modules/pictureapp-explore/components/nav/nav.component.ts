@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -9,6 +9,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavComponent implements OnInit {
 
   @Output() toggleSidenav = new EventEmitter<void>();
+  @Output() editSectionUser = new EventEmitter<void>();
+  @Output() dashbordSection = new EventEmitter<void>();
 
   constructor(private authService: AuthService) { }
 
@@ -21,6 +23,14 @@ export class NavComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  emitEditUserProfileAsCurrentSection() {
+    this.editSectionUser.emit();
+  }
+
+  emitDashboardAsCurrentSection() {
+    this.dashbordSection.emit();
   }
 
 }

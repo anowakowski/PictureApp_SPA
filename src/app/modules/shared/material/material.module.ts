@@ -31,7 +31,9 @@ import {
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatBottomSheetModule,
+    MatBadgeModule
 } from '@angular/material';
 
 import { CdkTableModule } from '@angular/cdk/table';
@@ -41,6 +43,7 @@ import { CdkTableModule } from '@angular/cdk/table';
         CdkTableModule,
         MatAutocompleteModule,
         MatButtonModule,
+        MatBottomSheetModule,
         MatButtonToggleModule,
         MatCardModule,
         MatCheckboxModule,
@@ -70,12 +73,14 @@ import { CdkTableModule } from '@angular/cdk/table';
         MatTableModule,
         MatTabsModule,
         MatToolbarModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatBadgeModule
     ],
     exports: [
         CdkTableModule,
         MatAutocompleteModule,
         MatButtonModule,
+        MatBottomSheetModule,
         MatButtonToggleModule,
         MatCardModule,
         MatCheckboxModule,
@@ -105,7 +110,8 @@ import { CdkTableModule } from '@angular/cdk/table';
         MatTableModule,
         MatTabsModule,
         MatToolbarModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatBadgeModule
     ]
 })
 export class MaterialModule {
