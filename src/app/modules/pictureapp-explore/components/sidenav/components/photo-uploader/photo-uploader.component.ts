@@ -14,7 +14,7 @@ export class PhotoUploaderComponent implements OnInit {
 
   public uploader: FileUploader;
   public hasBaseDropZoneOver = false;
-  baseUrl = environment.apiUrl;
+
 
   constructor(private dialog: MatDialog) { }
 
@@ -24,8 +24,6 @@ export class PhotoUploaderComponent implements OnInit {
 
   initUploader() {
     this.uploader = new FileUploader({
-      url: this.baseUrl,
-      authToken: 'Bearer ' + localStorage.getItem('token'),
       disableMultipart: true,
       allowedFileType: ['image'],
       });
@@ -46,7 +44,7 @@ export class PhotoUploaderComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.fileOverBase(false);
+
     });
 
   }
