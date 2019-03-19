@@ -30,6 +30,8 @@ import { PhotoCardComponent } from './components/photo-explore/components/photo-
 import { PhotoCommentButtomSheetComponent } from './components/photo-explore/components/photo-comment-buttom-sheet/photo-comment-buttom-sheet.component';
 import { PhotoUploaderComponent } from './components/sidenav/components/photo-uploader/photo-uploader.component';
 
+import { FileUploadModule } from 'ng2-file-upload';
+
 const routes: Routes = [
   { path: '',
     component: PictureExploreComponent,
@@ -72,6 +74,7 @@ const routes: Routes = [
     ChartsModule,
     FormsModule,
     ReactiveFormsModule,
+    FileUploadModule,
     RouterModule.forChild(routes)
   ],
   providers: [
