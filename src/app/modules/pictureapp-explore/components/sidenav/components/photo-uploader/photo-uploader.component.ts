@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
+import { Photo } from 'src/app/models/photo';
+
+const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 
 @Component({
   selector: 'app-photo-uploader',
@@ -9,33 +12,28 @@ import { environment } from 'src/environments/environment';
 })
 export class PhotoUploaderComponent implements OnInit {
 
-  uploader: FileUploader;
+  public uploader: FileUploader;
+  public hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
-  hasBaseDropZoneOver = false;
 
-  constructor() { }
+  fileObject: any;
 
   ngOnInit() {
-    this.initUploader();
+    this.uploader = new FileUploader({
+      url: this.baseUrl,
+      authToken: 'Bearer ' + localStorage.getItem('token'),
+      disableMultipart: true,
+      allowedFileType: ['image'],
+      });
   }
 
-  fileOverBase(e: any): void {
+  public fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
   }
 
-  initUploader() {
-    this.uploader = new FileUploader({
-      url: '',
-      authToken: 'Bearer ' + localStorage.getItem('token'),
-      isHTML5: true,
-      allowedFileType: ['image'],
-      removeAfterUpload: true,
-      autoUpload: false,
-      maxFileSize: 10 * 1024 * 1024
-    });
-
-    this.uploader.onAfterAddingFile = (file) => {file.withCredentials = false; };
-
+  public onFileSelected(event: EventEmitter<File[]>) {
+    const file: File = event[0];
+    console.log(file);
+    this.fileOverBase(false);
   }
-
 }
