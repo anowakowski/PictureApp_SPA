@@ -2,8 +2,8 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
 import { Photo } from 'src/app/models/photo';
-
-const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
+import { MatDialog } from '@angular/material';
+import { PhotoUploaderDialogComponent } from '../../../photo-uploader-dialog/photo-uploader-dialog.component';
 
 @Component({
   selector: 'app-photo-uploader',
@@ -16,9 +16,13 @@ export class PhotoUploaderComponent implements OnInit {
   public hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
 
-  fileObject: any;
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit() {
+    this.initUploader();
+  }
+
+  initUploader() {
     this.uploader = new FileUploader({
       url: this.baseUrl,
       authToken: 'Bearer ' + localStorage.getItem('token'),
@@ -33,7 +37,17 @@ export class PhotoUploaderComponent implements OnInit {
 
   public onFileSelected(event: EventEmitter<File[]>) {
     const file: File = event[0];
-    console.log(file);
-    this.fileOverBase(false);
+    this.openPhotoUploaderDialog(file);
+  }
+
+  openPhotoUploaderDialog(file: File) {
+    const dialogRef = this.dialog.open(PhotoUploaderDialogComponent, {
+      data: {file: file}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.fileOverBase(false);
+    });
+
   }
 }

@@ -31,6 +31,7 @@ import { PhotoCommentButtomSheetComponent } from './components/photo-explore/com
 import { PhotoUploaderComponent } from './components/sidenav/components/photo-uploader/photo-uploader.component';
 
 import { FileUploadModule } from 'ng2-file-upload';
+import { PhotoUploaderDialogComponent } from './components/photo-uploader-dialog/photo-uploader-dialog.component';
 
 const routes: Routes = [
   { path: '',
@@ -59,12 +60,14 @@ const routes: Routes = [
     SidenavUserprofileChartComponent,
     EditUserPhotosComponent,
     PhotoCommentButtomSheetComponent,
-    PhotoUploaderComponent
+    PhotoUploaderComponent,
+    PhotoUploaderDialogComponent
   ],
   entryComponents: [
     PhotoDetailDialogComponent,
     EditUserprofileConfirmationDialogComponent,
-    PhotoCommentButtomSheetComponent
+    PhotoCommentButtomSheetComponent,
+    PhotoUploaderDialogComponent
   ],
   imports: [
     CommonModule,
