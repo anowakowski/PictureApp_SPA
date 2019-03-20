@@ -1,7 +1,7 @@
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Fill out your name</ng-template>
+      <ng-template matStepLabel>Upload file</ng-template>
         <app-photo-uploader-addphoto-firststep [fileInput]='fileInput'></app-photo-uploader-addphoto-firststep>
       <div>
         <button mat-button matStepperNext>Next</button>
@@ -10,7 +10,7 @@
   </mat-step>
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Fill out your address</ng-template>
+      <ng-template matStepLabel>Fill description and add tags</ng-template>
       <mat-form-field>
         <input matInput placeholder="Address" formControlName="secondCtrl" required>
       </mat-form-field>
@@ -21,7 +21,7 @@
     </form>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
+    <ng-template matStepLabel>Summary</ng-template>
     You are now done.
     <div>
       <button mat-button matStepperPrevious>Back</button>
