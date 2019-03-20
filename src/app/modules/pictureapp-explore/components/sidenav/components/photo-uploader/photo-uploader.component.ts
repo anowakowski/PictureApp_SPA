@@ -40,7 +40,7 @@ export class PhotoUploaderComponent implements OnInit {
 
   openPhotoUploaderDialog(file: File) {
     const dialogRef = this.dialog.open(PhotoUploaderDialogComponent, {
-      minWidth: '1000px', minHeight: '600px', data: {file: file}
+      minWidth: '1000px', minHeight: '400px', data: {file: file}
     });
 
     dialogRef.afterClosed().subscribe(result => {
