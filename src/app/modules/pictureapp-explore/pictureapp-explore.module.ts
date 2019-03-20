@@ -32,6 +32,9 @@ import { PhotoUploaderComponent } from './components/sidenav/components/photo-up
 
 import { FileUploadModule } from 'ng2-file-upload';
 import { PhotoUploaderDialogComponent } from './components/photo-uploader-dialog/photo-uploader-dialog.component';
+// tslint:disable-next-line:max-line-length
+import { PhotoUploaderStepperComponent } from './components/photo-uploader-dialog/components/photo-uploader-stepper/photo-uploader-stepper.component';
+import { PhotoUploaderAddphotoFirststepComponent } from './components/photo-uploader-dialog/components/photo-uploader-addphoto-firststep/photo-uploader-addphoto-firststep.component';
 
 const routes: Routes = [
   { path: '',
@@ -61,7 +64,9 @@ const routes: Routes = [
     EditUserPhotosComponent,
     PhotoCommentButtomSheetComponent,
     PhotoUploaderComponent,
-    PhotoUploaderDialogComponent
+    PhotoUploaderDialogComponent,
+    PhotoUploaderStepperComponent,
+    PhotoUploaderAddphotoFirststepComponent
   ],
   entryComponents: [
     PhotoDetailDialogComponent,
