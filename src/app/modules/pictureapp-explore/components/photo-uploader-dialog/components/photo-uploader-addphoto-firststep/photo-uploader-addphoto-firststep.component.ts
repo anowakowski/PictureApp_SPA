@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
 
@@ -8,22 +8,20 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./photo-uploader-addphoto-firststep.component.scss']
 })
 export class PhotoUploaderAddphotoFirststepComponent implements OnInit {
+
+  @Input() FileUploaderInput: FileUploader;
+
   public uploader: FileUploader;
   baseUrl = environment.apiUrl;
   constructor() { }
 
   ngOnInit() {
     this.initUploader();
+
+    console.log(this.FileUploaderInput);
   }
 
   initUploader() {
-    this.uploader = new FileUploader({
-      url: this.baseUrl,
-      authToken: 'Bearer ' + localStorage.getItem('token'),
-      isHTML5: true,
-      allowedFileType: ['image'],
-      disableMultipart: true,
-      });
+    this.uploader = this.FileUploaderInput;
   }
-
 }

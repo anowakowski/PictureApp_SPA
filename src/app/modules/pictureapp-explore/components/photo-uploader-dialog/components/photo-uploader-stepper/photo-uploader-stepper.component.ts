@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FileUploader } from 'ng2-file-upload';
 
 @Component({
   selector: 'app-photo-uploader-stepper',
@@ -7,9 +8,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./photo-uploader-stepper.component.scss']
 })
 export class PhotoUploaderStepperComponent implements OnInit {
+  @Input() fileUploaderInput: FileUploader;
+
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  currentFileUploader: FileUploader;
+  test: string;
 
   constructor(private _formBuilder: FormBuilder) { }
 
@@ -21,5 +26,4 @@ export class PhotoUploaderStepperComponent implements OnInit {
       secondCtrl: ['', Validators.required]
     });
   }
-
 }

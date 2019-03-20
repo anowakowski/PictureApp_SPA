@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
@@ -13,10 +13,14 @@ export interface DialogData {
   styleUrls: ['./photo-uploader-dialog.component.scss']
 })
 export class PhotoUploaderDialogComponent implements OnInit {
+
   public uploader: FileUploader;
   baseUrl = environment.apiUrl;
   currentFile: File;
+
   constructor(private dialogRef: MatDialogRef<PhotoUploaderDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+
+  @Output() testOutp = new EventEmitter<string>();
 
   ngOnInit() {
     this.initUploader();
@@ -34,8 +38,13 @@ export class PhotoUploaderDialogComponent implements OnInit {
       });
   }
 
+  getFileUploader() {
+    return this.uploader;
+  }
+
   setCurrentPhotoForUploader() {
     this.uploader.addToQueue(this.getCurrentFiles());
+    this.testOutp.emit('test');
   }
 
   private getCurrentFiles() {
