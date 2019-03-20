@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class PhotoUploaderAddphotoFirststepComponent implements OnInit {
 
-  @Input() FileUploaderInput: FileUploader;
+  @Input() fileInput: File;
 
   public uploader: FileUploader;
   baseUrl = environment.apiUrl;
@@ -17,11 +17,27 @@ export class PhotoUploaderAddphotoFirststepComponent implements OnInit {
 
   ngOnInit() {
     this.initUploader();
-
-    console.log(this.FileUploaderInput);
+    this.setCurrentPhotoForUploader();
   }
 
   initUploader() {
-    this.uploader = this.FileUploaderInput;
+    this.uploader = new FileUploader({
+      url: this.baseUrl,
+      authToken: 'Bearer ' + localStorage.getItem('token'),
+      isHTML5: true,
+      allowedFileType: ['image'],
+      disableMultipart: true,
+      });
+  }
+
+  setCurrentPhotoForUploader() {
+    this.uploader.addToQueue(this.getCurrentFiles());
+  }
+
+  private getCurrentFiles() {
+    const files = new Array();
+    files.push(this.fileInput);
+
+    return files;
   }
 }

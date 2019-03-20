@@ -8,7 +8,7 @@ import { FileUploader } from 'ng2-file-upload';
   styleUrls: ['./photo-uploader-stepper.component.scss']
 })
 export class PhotoUploaderStepperComponent implements OnInit {
-  @Input() fileUploaderInput: FileUploader;
+  @Input() fileInput: File;
 
   isLinear = false;
   firstFormGroup: FormGroup;

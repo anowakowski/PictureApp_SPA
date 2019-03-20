@@ -2,7 +2,7 @@
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Fill out your name</ng-template>
-        <app-photo-uploader-addphoto-firststep [FileUploaderInput]='fileUploaderInput'></app-photo-uploader-addphoto-firststep>
+        <app-photo-uploader-addphoto-firststep [fileInput]='fileInput'></app-photo-uploader-addphoto-firststep>
       <div>
         <button mat-button matStepperNext>Next</button>
       </div>
