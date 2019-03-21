@@ -42,7 +42,6 @@ export class PhotoUploaderAddphotoFirststepComponent implements OnInit {
   }
 
   prepareImagePreview () {
-
     const item = this.uploader.queue[0];
     const filePreviewPath  = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(item._file)));
 
@@ -53,11 +52,21 @@ export class PhotoUploaderAddphotoFirststepComponent implements OnInit {
 
   }
 
-  public onFileSelected(event: EventEmitter<File[]>) {
+  getImagePreview () {
+
+  }
+
+  onFileSelected(event: EventEmitter<File[]>) {
     const file: File = event[0];
   }
 
-  public fileOverBase(e: any): void {
+  onMultipleFilesSelected(event) {
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+    }
+  }
+
+  fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
   }
 
