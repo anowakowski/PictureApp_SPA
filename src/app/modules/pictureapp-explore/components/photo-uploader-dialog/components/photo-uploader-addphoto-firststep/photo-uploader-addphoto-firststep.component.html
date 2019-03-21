@@ -18,7 +18,7 @@
             Drop Photos Here
           </div>
           Or upload multiple from your disc
-          <input type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
+          <input type="file" ng2FileSelect [uploader]="uploader" (change)="onMultipleFilesSelected($event)" multiple  /><br/>
       </div>
 
       <div class="col-md-7" style="margin-bottom: 40px; padding-left: 70px;">
