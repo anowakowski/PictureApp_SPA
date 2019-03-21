@@ -34,7 +34,9 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { PhotoUploaderDialogComponent } from './components/photo-uploader-dialog/photo-uploader-dialog.component';
 // tslint:disable-next-line:max-line-length
 import { PhotoUploaderStepperComponent } from './components/photo-uploader-dialog/components/photo-uploader-stepper/photo-uploader-stepper.component';
+// tslint:disable-next-line:max-line-length
 import { PhotoUploaderAddphotoFirststepComponent } from './components/photo-uploader-dialog/components/photo-uploader-addphoto-firststep/photo-uploader-addphoto-firststep.component';
+import { PhotoUploaderTagsDescPreviewSecondstepComponent } from './components/photo-uploader-dialog/components/photo-uploader-tags-desc-preview-secondstep/photo-uploader-tags-desc-preview-secondstep.component';
 
 const routes: Routes = [
   { path: '',
@@ -66,7 +68,8 @@ const routes: Routes = [
     PhotoUploaderComponent,
     PhotoUploaderDialogComponent,
     PhotoUploaderStepperComponent,
-    PhotoUploaderAddphotoFirststepComponent
+    PhotoUploaderAddphotoFirststepComponent,
+    PhotoUploaderTagsDescPreviewSecondstepComponent
   ],
   entryComponents: [
     PhotoDetailDialogComponent,
