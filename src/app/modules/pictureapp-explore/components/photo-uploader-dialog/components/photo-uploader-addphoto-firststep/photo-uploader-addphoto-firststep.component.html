@@ -7,10 +7,11 @@
          [uploader]="uploader"
          (onFileDrop)="onFileSelected($event)"
          class="well my-drop-zone nv-file-over card bg-faded p-3 text-center mb-3 ">
-         <div class="flex-container">
+        <div class="flex-container">
           <mat-icon>cloud_upload</mat-icon>
-         </div>
-         Drop Photos Here
+        </div>
+        Drop Photos Here
+
     </div>
   </div>
   <input mat-raised-button color="primary" type="file" ng2FileSelect [uploader]="uploader" multiple  />
