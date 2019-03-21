@@ -21,10 +21,10 @@ export class PhotoUploaderAddphotoFirststepComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
+    this.filePreviewPaths = new Array<SafeUrl>();
     this.initUploader();
     this.setCurrentPhotoForUploader();
     this.prepareImagePreview();
-    this.filePreviewPaths = new Array<SafeUrl>();
   }
 
   initUploader() {
@@ -44,26 +44,22 @@ export class PhotoUploaderAddphotoFirststepComponent implements OnInit {
   prepareImagePreview () {
     const item = this.uploader.queue[0];
     const filePreviewPath  = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(item._file)));
-
+    this.filePreviewPath = filePreviewPath;
     this.filePreviewPaths.push(filePreviewPath);
  }
 
   onChangePreviewImages() {
+    this.filePreviewPaths = new Array<SafeUrl>();
 
+    const fileItems = this.uploader.queue;
+
+    fileItems.forEach(fileItem => {
+      this.filePreviewPaths.push(this.getSafeUrl(fileItem._file));
+    });
   }
 
-  getImagePreview () {
-
-  }
-
-  onFileSelected(event: EventEmitter<File[]>) {
-    const file: File = event[0];
-  }
-
-  onMultipleFilesSelected(event) {
-    if (event.target.files && event.target.files.length > 0) {
-      const file = event.target.files[0];
-    }
+  getSafeUrl(file: File): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(file)));
   }
 
   fileOverBase(e: any): void {
