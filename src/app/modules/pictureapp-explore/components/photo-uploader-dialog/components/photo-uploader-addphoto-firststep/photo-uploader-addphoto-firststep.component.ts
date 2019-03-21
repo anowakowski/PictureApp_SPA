@@ -14,6 +14,8 @@ export class PhotoUploaderAddphotoFirststepComponent implements OnInit {
 
   public uploader: FileUploader;
   public filePreviewPath: SafeUrl;
+  public filePreviewPaths: SafeUrl[];
+
   public hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
   constructor(private sanitizer: DomSanitizer) { }
@@ -22,6 +24,7 @@ export class PhotoUploaderAddphotoFirststepComponent implements OnInit {
     this.initUploader();
     this.setCurrentPhotoForUploader();
     this.prepareImagePreview();
+    this.filePreviewPaths = new Array<SafeUrl>();
   }
 
   initUploader() {
@@ -41,7 +44,13 @@ export class PhotoUploaderAddphotoFirststepComponent implements OnInit {
   prepareImagePreview () {
 
     const item = this.uploader.queue[0];
-    this.filePreviewPath  = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(item._file)));
+    const filePreviewPath  = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(item._file)));
+
+    this.filePreviewPaths.push(filePreviewPath);
+ }
+
+  onChangePreviewImages() {
+
   }
 
   public onFileSelected(event: EventEmitter<File[]>) {
