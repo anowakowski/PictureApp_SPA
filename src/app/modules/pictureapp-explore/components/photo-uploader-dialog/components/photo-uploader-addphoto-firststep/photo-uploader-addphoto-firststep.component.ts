@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
@@ -14,7 +14,7 @@ export class PhotoUploaderAddphotoFirststepComponent implements OnInit {
 
   public uploader: FileUploader;
   public filePreviewPath: SafeUrl;
-
+  public hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
   constructor(private sanitizer: DomSanitizer) { }
 
@@ -42,6 +42,14 @@ export class PhotoUploaderAddphotoFirststepComponent implements OnInit {
 
     const item = this.uploader.queue[0];
     this.filePreviewPath  = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(item._file)));
+  }
+
+  public onFileSelected(event: EventEmitter<File[]>) {
+    const file: File = event[0];
+  }
+
+  public fileOverBase(e: any): void {
+    this.hasBaseDropZoneOver = e;
   }
 
   private getCurrentFiles() {

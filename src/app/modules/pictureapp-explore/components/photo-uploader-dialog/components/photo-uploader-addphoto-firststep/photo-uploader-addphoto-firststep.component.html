@@ -1,4 +1,20 @@
-<div style="margin-top: 40px">
+<div style="margin-top: 40px; margin-bottom: 40px;">
+
+  <div>
+    <div ng2FileDrop
+         [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+         (fileOver)="fileOverBase($event)"
+         [uploader]="uploader"
+         (onFileDrop)="onFileSelected($event)"
+         class="well my-drop-zone nv-file-over card bg-faded p-3 text-center mb-3 ">
+         <div class="flex-container">
+          <mat-icon>cloud_upload</mat-icon>
+         </div>
+         Drop Photos Here
+    </div>
+  </div>
+  <input mat-raised-button color="primary" type="file" ng2FileSelect [uploader]="uploader" multiple  />
+
   <p>Queue length: {{ uploader?.queue?.length }}</p>
 
   <table class="table">
@@ -6,7 +22,7 @@
       <tr>
         <th width="50%">Name</th>
         <th>Size</th>
-        <th>Actions</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -19,13 +35,12 @@
         </td>
 
         <td nowrap>
-          <button mat-raised-button color="primary">
-            Upload
-          </button>
+
+
         </td>
       </tr>
     </tbody>
   </table>
-  <img [src]="filePreviewPath" width="200" *ngIf="filePreviewPath" />
+  <img [src]="filePreviewPath" style="max-width: 100px; max-height: 300px;" *ngIf="filePreviewPath" />
 
 </div>
