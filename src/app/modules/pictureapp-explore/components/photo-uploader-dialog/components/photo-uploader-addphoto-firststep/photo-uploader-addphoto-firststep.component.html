@@ -1,47 +1,57 @@
-<div style="margin-top: 40px; margin-bottom: 40px;">
+<div style="margin-top: 40px; margin-bottom: 40px;" class="container">
 
-  <div>
-    <div ng2FileDrop
-         [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
-         (fileOver)="fileOverBase($event)"
-         [uploader]="uploader"
-         (onFileDrop)="onFileSelected($event)"
-         class="well my-drop-zone nv-file-over card bg-faded p-3 text-center mb-3 ">
-        <div class="flex-container">
-          <mat-icon>cloud_upload</mat-icon>
-        </div>
-        Drop Photos Here
+  <div class="row">
 
-    </div>
+      <div class="col-md-5">
+
+          <h3>Select files</h3>
+
+          <div ng2FileDrop
+              [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+              (fileOver)="fileOverBase($event)"
+              [uploader]="uploader"
+              (onFileDrop)="onFileSelected($event)"
+              class="well my-drop-zone nv-file-over card bg-faded p-3 text-center mb-3 ">
+          <div class="flex-container">
+            <mat-icon>cloud_upload</mat-icon>
+          </div>
+            Drop Photos Here
+          </div>
+          Multiple
+          <input type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
+      </div>
+
+      <div class="col-md-6" style="margin-bottom: 40px; padding-left: 70px;">
+
+          <h3>Upload photos queue</h3>
+          <p>Queue length: {{ uploader?.queue?.length }}</p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th width="50%">Name</th>
+                <th>Size</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of uploader.queue">
+                <td>
+                  <strong>{{ item?.file?.name }}</strong>
+                </td>
+                <td  nowrap>
+                  {{ item?.file?.size / 1024 / 1024 | number: ".2" }} MB
+                </td>
+        
+                <td nowrap>
+                    <img [src]="filePreviewPath" style="max-width: 50px; max-height: 150px;" *ngIf="filePreviewPath" />
+        
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+
   </div>
-  <input mat-raised-button color="primary" type="file" ng2FileSelect [uploader]="uploader" multiple  />
-
-  <p>Queue length: {{ uploader?.queue?.length }}</p>
-
-  <table class="table">
-    <thead>
-      <tr>
-        <th width="50%">Name</th>
-        <th>Size</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of uploader.queue">
-        <td>
-          <strong>{{ item?.file?.name }}</strong>
-        </td>
-        <td  nowrap>
-          {{ item?.file?.size / 1024 / 1024 | number: ".2" }} MB
-        </td>
-
-        <td nowrap>
-
-
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <img [src]="filePreviewPath" style="max-width: 100px; max-height: 300px;" *ngIf="filePreviewPath" />
-
+ 
 </div>
