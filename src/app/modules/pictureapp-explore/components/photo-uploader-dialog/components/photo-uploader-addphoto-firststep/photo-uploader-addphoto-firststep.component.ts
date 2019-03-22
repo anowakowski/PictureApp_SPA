@@ -24,7 +24,7 @@ export class PhotoUploaderAddphotoFirststepComponent implements OnInit {
     this.filePreviewPaths = new Array<SafeUrl>();
     this.initUploader();
     this.setCurrentPhotoForUploader();
-    this.prepareImagePreview();
+    this.prepareImagePreviewForDropedImages();
   }
 
   initUploader() {
@@ -41,11 +41,8 @@ export class PhotoUploaderAddphotoFirststepComponent implements OnInit {
     this.uploader.addToQueue(this.getCurrentFiles());
   }
 
-  prepareImagePreview () {
-    const item = this.uploader.queue[0];
-    const filePreviewPath  = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(item._file)));
-    this.filePreviewPath = filePreviewPath;
-    this.filePreviewPaths.push(filePreviewPath);
+  prepareImagePreviewForDropedImages () {
+    this.onChangePreviewImages();
  }
 
   onChangePreviewImages() {
