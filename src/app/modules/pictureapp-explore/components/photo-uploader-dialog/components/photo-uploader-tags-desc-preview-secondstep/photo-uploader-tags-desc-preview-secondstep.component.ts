@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Photo } from 'src/app/models/photo';
 
 @Component({
   selector: 'app-photo-uploader-tags-desc-preview-secondstep',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PhotoUploaderTagsDescPreviewSecondstepComponent implements OnInit {
 
+  photo: Photo;
+  files: File[];
+
   constructor() { }
 
   ngOnInit() {
+
   }
+
+
 
 }
