@@ -28,6 +28,10 @@ const routes: Routes = [
       path: '',
       loadChildren: '../app/modules/pictureapp-explore/pictureapp-explore.module#PictureAppExploreModule'
    },
+   {
+      path: 'photo-uploader',
+      loadChildren: '../app/modules/photo-uploader/photo-uploader.module#PhotoUploaderModule'
+   },
    {path: '**', redirectTo: ''}
 ];
 

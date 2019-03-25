@@ -36,6 +36,7 @@ import { PhotoUploaderDialogComponent } from './components/photo-uploader-dialog
 import { PhotoUploaderStepperComponent } from './components/photo-uploader-dialog/components/photo-uploader-stepper/photo-uploader-stepper.component';
 // tslint:disable-next-line:max-line-length
 import { PhotoUploaderAddphotoFirststepComponent } from './components/photo-uploader-dialog/components/photo-uploader-addphoto-firststep/photo-uploader-addphoto-firststep.component';
+// tslint:disable-next-line:max-line-length
 import { PhotoUploaderTagsDescPreviewSecondstepComponent } from './components/photo-uploader-dialog/components/photo-uploader-tags-desc-preview-secondstep/photo-uploader-tags-desc-preview-secondstep.component';
 
 const routes: Routes = [

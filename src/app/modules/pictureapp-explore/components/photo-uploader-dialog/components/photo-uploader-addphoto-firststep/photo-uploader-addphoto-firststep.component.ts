@@ -1,7 +1,9 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { PhotoUploaderDialogComponent } from '../../photo-uploader-dialog.component';
+import { PhotoUploaderModel } from 'src/app/models/photo-uploader-model';
 
 @Component({
   selector: 'app-photo-uploader-addphoto-firststep',
@@ -13,15 +15,14 @@ export class PhotoUploaderAddphotoFirststepComponent implements OnInit {
   @Input() fileInput: File;
 
   public uploader: FileUploader;
-  public filePreviewPath: SafeUrl;
   public filePreviewPaths: SafeUrl[];
+  public photoUploaderModel: PhotoUploaderModel;
 
   public hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
   constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    this.filePreviewPaths = new Array<SafeUrl>();
     this.initUploader();
     this.setCurrentPhotoForUploader();
     this.prepareImagePreviewForDropedImages();
@@ -53,6 +54,8 @@ export class PhotoUploaderAddphotoFirststepComponent implements OnInit {
     fileItems.forEach(fileItem => {
       this.filePreviewPaths.push(this.getSafeUrl(fileItem._file));
     });
+
+    this.setPhotoUploaderModel();
   }
 
   getSafeUrl(file: File): SafeUrl {
@@ -68,5 +71,11 @@ export class PhotoUploaderAddphotoFirststepComponent implements OnInit {
     files.push(this.fileInput);
 
     return files;
+  }
+
+  private setPhotoUploaderModel() {
+    this.photoUploaderModel = new PhotoUploaderModel();
+    this.photoUploaderModel.fileUploader = this.uploader;
+    this.photoUploaderModel.filePreviewPaths = this.filePreviewPaths;
   }
 }
