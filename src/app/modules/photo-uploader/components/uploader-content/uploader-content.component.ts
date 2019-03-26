@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -10,13 +11,17 @@ import { environment } from 'src/environments/environment';
 export class UploaderContentComponent implements OnInit {
 
   public uploader: FileUploader;
+  public filePreviewPaths: SafeUrl[];
+  public filePreviewPath: SafeUrl;
   baseUrl = environment.apiUrl;
 
   public hasBaseDropZoneOver = false;
+  public photoHasDroped = false;
 
-  constructor() { }
+  constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
+    this.filePreviewPaths = new Array<SafeUrl>();
     this.initUploader();
   }
 
@@ -31,12 +36,31 @@ export class UploaderContentComponent implements OnInit {
   }
 
   onChangePreviewImages() {
+    this.filePreviewPaths = new Array<SafeUrl>();
 
+    const fileItems = this.uploader.queue;
+
+    fileItems.forEach(fileItem => {
+      this.filePreviewPaths.push(this.getSafeUrl(fileItem._file));
+    });
+  }
+
+  getpicture() {
+    if (this.filePreviewPaths.length > 0) {
+      return this.filePreviewPaths[0];
+    }
+    return '';
   }
 
   fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
   }
+
+
+  private getSafeUrl(file: File): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(file)));
+  }
+
 
 
 }
