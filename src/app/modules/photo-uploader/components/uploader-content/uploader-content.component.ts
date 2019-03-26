@@ -59,14 +59,6 @@ export class UploaderContentComponent implements OnInit {
     this.hasBaseDropZoneOver = e;
   }
 
-  // createUploadPhotoForm() {
-  //   this.uploadPhotoForm = this.formBuilder.group({
-  //     photoTitle: [this.photo.title, [Validators.required]],
-  //     photoSubtitle: [this.photo.subtitle, Validators.required],
-  //     photoDescription: [this.photo.description, Validators.nullValidator]
-  //   });
-  // }
-
 
 
   private getSafeUrl(file: File): SafeUrl {
