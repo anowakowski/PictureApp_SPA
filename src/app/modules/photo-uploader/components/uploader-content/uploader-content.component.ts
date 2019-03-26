@@ -36,6 +36,7 @@ export class UploaderContentComponent implements OnInit {
   }
 
   onChangePreviewImages() {
+    this.photoHasDroped = true;
     this.filePreviewPaths = new Array<SafeUrl>();
 
     const fileItems = this.uploader.queue;

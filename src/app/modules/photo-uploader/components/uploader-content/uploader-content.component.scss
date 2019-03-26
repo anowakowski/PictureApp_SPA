@@ -1,12 +1,35 @@
 .flex-container {
-    display: flex;
+  display: flex;
 
-    flex-direction: row;
-    flex-wrap: wrap;
-  
-    justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  justify-content: center;
 }
 
- .my-drop-zone { border: dotted 3px lightgray; }
-.nv-file-over { border: dotted 3px #f44336;; } /* Default class applied to drop zones on over */
-.another-file-over-class { border: dotted 3px green; }
+.my-drop-zone {
+  border: dotted 3px lightgray;
+}
+.nv-file-over {
+  border: dotted 3px #f44336;
+} /* Default class applied to drop zones on over */
+.another-file-over-class {
+  border: dotted 3px green;
+}
+
+.example-header-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}
+
+.uploader-photos-card {
+  max-width: 300px;
+
+  margin-left: 1em;
+  margin: 1rem;
+}
+
+.uploader-photos-card-current {
+  box-shadow: 0 8px 22px rgba(255, 102, 51, 25),
+    0 6px 6px rgba(255, 102, 51, 22);
+}
