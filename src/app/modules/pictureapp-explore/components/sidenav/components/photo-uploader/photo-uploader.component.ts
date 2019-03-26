@@ -16,7 +16,7 @@ export class PhotoUploaderComponent implements OnInit {
   public hasBaseDropZoneOver = false;
 
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, ) { }
 
   ngOnInit() {
     this.initUploader();
