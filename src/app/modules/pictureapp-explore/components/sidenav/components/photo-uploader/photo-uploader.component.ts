@@ -1,9 +1,8 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
-import { environment } from 'src/environments/environment';
-import { Photo } from 'src/app/models/photo';
 import { MatDialog } from '@angular/material';
 import { PhotoUploaderDialogComponent } from '../../../photo-uploader-dialog/photo-uploader-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-photo-uploader',
@@ -16,7 +15,7 @@ export class PhotoUploaderComponent implements OnInit {
   public hasBaseDropZoneOver = false;
 
 
-  constructor(private dialog: MatDialog, ) { }
+  constructor(private dialog: MatDialog, private router: Router) { }
 
   ngOnInit() {
     this.initUploader();
@@ -35,7 +34,10 @@ export class PhotoUploaderComponent implements OnInit {
 
   public onFileSelected(event: EventEmitter<File[]>) {
     const file: File = event[0];
-    this.openPhotoUploaderDialog(file);
+    this.router.navigate(['/photo-uploader']);
+
+
+//    this.openPhotoUploaderDialog(file);
   }
 
   openPhotoUploaderDialog(file: File) {
