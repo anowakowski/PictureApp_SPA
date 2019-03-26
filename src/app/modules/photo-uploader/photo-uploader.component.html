@@ -2,6 +2,14 @@
   bdColor="rgb(255,254,254)"
   size="large"
   color="#c77158"
-  type="ball-atom"
-></ngx-spinner>
-<app-sidenav></app-sidenav>
+  type="ball-atom">
+</ngx-spinner>
+<app-nav></app-nav> 
+<mat-drawer-container class="app-container" autosize>
+  <app-sidenav></app-sidenav>
+  <div class="app-sidenav-content">
+    <div class="wrapper">
+        <router-outlet></router-outlet>
+    </div>
+  </div>
+</mat-drawer-container>
