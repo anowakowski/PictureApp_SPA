@@ -6,13 +6,18 @@ import { NavComponent } from './components/nav/nav.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { MatDrawerContainerComponent } from './components/mat-drawer-container/mat-drawer-container.component';
+import { UploaderContentComponent } from './components/uploader-content/uploader-content.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FileUploadModule } from 'ng2-file-upload';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: PhotoUploaderComponent
+    component: PhotoUploaderComponent,
+    children: [
+      { path: '', component: UploaderContentComponent }
+    ]
   },
   {path: '**', redirectTo: ''}
 ];
@@ -22,12 +27,14 @@ const routes: Routes = [
     PhotoUploaderComponent,
     NavComponent,
     SidenavComponent,
-    MatDrawerContainerComponent
+    UploaderContentComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
     NgxSpinnerModule,
+    FlexLayoutModule,
+    FileUploadModule,
     RouterModule.forChild(routes)
   ]
 })

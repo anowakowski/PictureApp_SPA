@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { MatDrawerContainerComponent } from './mat-drawer-container.component';
+import { UploaderContentComponent } from './uploader-content.component';
 
-describe('MatDrawerContainerComponent', () => {
-  let component: MatDrawerContainerComponent;
-  let fixture: ComponentFixture<MatDrawerContainerComponent>;
+describe('UploaderContentComponent', () => {
+  let component: UploaderContentComponent;
+  let fixture: ComponentFixture<UploaderContentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MatDrawerContainerComponent ]
+      declarations: [ UploaderContentComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MatDrawerContainerComponent);
+    fixture = TestBed.createComponent(UploaderContentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
