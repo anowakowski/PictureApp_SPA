@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-uploader-content',
@@ -14,11 +15,12 @@ export class UploaderContentComponent implements OnInit {
   public filePreviewPaths: SafeUrl[];
   public filePreviewPath: SafeUrl;
   baseUrl = environment.apiUrl;
+  uploadPhotoForm: FormGroup;
 
   public hasBaseDropZoneOver = false;
   public photoHasDroped = false;
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.filePreviewPaths = new Array<SafeUrl>();
@@ -56,6 +58,15 @@ export class UploaderContentComponent implements OnInit {
   fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
   }
+
+  // createUploadPhotoForm() {
+  //   this.uploadPhotoForm = this.formBuilder.group({
+  //     photoTitle: [this.photo.title, [Validators.required]],
+  //     photoSubtitle: [this.photo.subtitle, Validators.required],
+  //     photoDescription: [this.photo.description, Validators.nullValidator]
+  //   });
+  // }
+
 
 
   private getSafeUrl(file: File): SafeUrl {

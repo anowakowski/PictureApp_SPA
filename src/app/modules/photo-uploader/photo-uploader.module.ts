@@ -9,6 +9,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { UploaderContentComponent } from './components/uploader-content/uploader-content.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FileUploadModule } from 'ng2-file-upload';
+import { UploaderContentCardComponent } from './components/uploader-content-card/uploader-content-card.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 const routes: Routes = [
@@ -27,7 +29,8 @@ const routes: Routes = [
     PhotoUploaderComponent,
     NavComponent,
     SidenavComponent,
-    UploaderContentComponent
+    UploaderContentComponent,
+    UploaderContentCardComponent
   ],
   imports: [
     CommonModule,
@@ -35,6 +38,8 @@ const routes: Routes = [
     NgxSpinnerModule,
     FlexLayoutModule,
     FileUploadModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ]
 })
