@@ -39,13 +39,6 @@ export class UploaderContentComponent implements OnInit {
 
   onChangePreviewImages() {
     this.photoHasDroped = true;
-    this.filePreviewPaths = new Array<SafeUrl>();
-
-    const fileItems = this.uploader.queue;
-
-    fileItems.forEach(fileItem => {
-      this.filePreviewPaths.push(this.getSafeUrl(fileItem._file));
-    });
   }
 
   getpicture() {
@@ -58,13 +51,4 @@ export class UploaderContentComponent implements OnInit {
   fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
   }
-
-
-
-  private getSafeUrl(file: File): SafeUrl {
-    return this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(file)));
-  }
-
-
-
 }
