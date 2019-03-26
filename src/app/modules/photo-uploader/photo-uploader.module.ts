@@ -6,6 +6,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { MatDrawerContainerComponent } from './components/mat-drawer-container/mat-drawer-container.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
   declarations: [
     PhotoUploaderComponent,
     NavComponent,
-    SidenavComponent
+    SidenavComponent,
+    MatDrawerContainerComponent
   ],
   imports: [
     CommonModule,
