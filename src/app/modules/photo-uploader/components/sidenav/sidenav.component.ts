@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SidenavService } from '../../services/sidenav.service';
 
-
 const SMALL_WIDTH_BREAKPOINT = 720;
 
 @Component({
@@ -35,7 +34,4 @@ export class SidenavComponent implements OnInit, OnDestroy {
   photoUploaded(isPhotoUploaded: boolean) {
     this.isUploadedPhoto = isPhotoUploaded;
   }
-
-
-
 }
