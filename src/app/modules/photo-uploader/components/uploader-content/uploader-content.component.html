@@ -17,6 +17,8 @@
   </div>
 </div>
 
+<input *ngIf="!photoHasDroped" type="file" ng2FileSelect [uploader]="uploader" (change)="onChangePreviewImages()" multiple  />
+
 <div *ngFor="let fileItem of uploader.queue">
   <app-uploader-content-card [fileInput]='fileItem._file' [photoUploaderModel]='GetPhotoUploaderModel(fileItem)'></app-uploader-content-card>
 </div>

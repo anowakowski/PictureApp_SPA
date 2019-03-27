@@ -38,7 +38,7 @@ export class UploaderContentCardComponent implements OnInit {
   }
 
   choosePhoto() {
-    this.isEditMode = true;
+    this.photoUploaderModel.isEditMode = true;
   }
 
   private getSafeUrl(file: File): SafeUrl {
