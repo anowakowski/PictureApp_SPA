@@ -2,10 +2,16 @@
 <mat-drawer-container class="app-container" autosize>
   <mat-drawer 
     #drawer class="sidenav-content-elements mat-elevation-z10 sidenav-container-background-image"
-    [opened]="!isScreenSmall()"
+    [opened]="isUploadedPhoto"
     mode='side'>
     <div class="sidenav-element-flex-container">
-      
+      <p>Uploader 1 photo</p>
+      <mat-divider></mat-divider>
+      <p>add title</p>
+      <p>add description</p>
+      <mat-divider></mat-divider>
+      <p>add tags</p>
+      <mat-divider></mat-divider>
 
       
     </div>

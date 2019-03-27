@@ -4,6 +4,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { PhotoUploaderModel } from 'src/app/models/photo-uploader-model';
+import { SidenavService } from '../../services/sidenav.service';
 
 @Component({
   selector: 'app-uploader-content',
@@ -20,7 +21,7 @@ export class UploaderContentComponent implements OnInit {
   public hasBaseDropZoneOver = false;
   public photoHasDroped = false;
 
-  constructor(private sanitizer: DomSanitizer, private formBuilder: FormBuilder) { }
+  constructor(private sidenavService: SidenavService) { }
 
   ngOnInit() {
     this.photoUploaderModels = new Array<PhotoUploaderModel>();
@@ -41,6 +42,8 @@ export class UploaderContentComponent implements OnInit {
     this.photoHasDroped = true;
     this.prepareIndexForPhotoUploader();
     this.preparePhotoUploaderModel();
+
+    this.sidenavService.emitPhotoUploaded(true);
   }
 
   GetPhotoUploaderModel(fileItem: FileItem): PhotoUploaderModel {
