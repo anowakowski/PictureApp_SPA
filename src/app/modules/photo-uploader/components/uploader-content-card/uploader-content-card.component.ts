@@ -25,7 +25,6 @@ export class UploaderContentCardComponent implements OnInit {
     this.filePreviewPath = this.getSafeUrl(this.fileInput);
   }
 
-
   createUploadPhotoForm() {
     this.uploadPhotoForm = this.formBuilder.group({
       photoTitle: [this.fileInput.name, [Validators.required]],
@@ -33,7 +32,6 @@ export class UploaderContentCardComponent implements OnInit {
       photoDescription: ['', Validators.nullValidator]
     });
   }
-
 
   private getSafeUrl(file: File): SafeUrl {
     return this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(file)));

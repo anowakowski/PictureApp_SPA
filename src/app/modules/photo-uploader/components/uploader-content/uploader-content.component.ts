@@ -41,13 +41,6 @@ export class UploaderContentComponent implements OnInit {
     this.photoHasDroped = true;
   }
 
-  getpicture() {
-    if (this.filePreviewPaths.length > 0) {
-      return this.filePreviewPaths[0];
-    }
-    return '';
-  }
-
   fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
   }

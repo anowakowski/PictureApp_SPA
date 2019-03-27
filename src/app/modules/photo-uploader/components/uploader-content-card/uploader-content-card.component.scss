@@ -1,5 +1,5 @@
 .uploader-photos-card {
-    max-width: 300px;
+    max-width: 350px;
   
     margin-left: 1em;
     margin: 1rem;
@@ -9,4 +9,12 @@
     box-shadow: 0 8px 22px rgba(255, 102, 51, 25),
       0 6px 6px rgba(255, 102, 51, 22);
   }
-  
+
+  .uploader-photos-card-inputs {
+    width: 290px;
+    margin-left: -40px;
+  }
+
+  .uploader-photos-card-textarea {
+    width: 290px;
+  }
