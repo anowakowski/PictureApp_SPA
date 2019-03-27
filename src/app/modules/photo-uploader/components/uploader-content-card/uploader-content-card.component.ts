@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { PhotoUploaderModel } from 'src/app/models/photo-uploader-model';
 
 @Component({
   selector: 'app-uploader-content-card',
@@ -10,15 +11,18 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class UploaderContentCardComponent implements OnInit {
 
   @Input() fileInput: File;
+  @Input() photoUploaderModel: PhotoUploaderModel;
 
   public filePreviewPath: SafeUrl;
   uploadPhotoForm: FormGroup;
+  isEditMode = false;
 
   constructor(private sanitizer: DomSanitizer, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.prepareFilePreview();
     this.createUploadPhotoForm();
+    console.log(this.photoUploaderModel);
   }
 
   prepareFilePreview() {
@@ -33,8 +37,11 @@ export class UploaderContentCardComponent implements OnInit {
     });
   }
 
+  choosePhoto() {
+    this.isEditMode = true;
+  }
+
   private getSafeUrl(file: File): SafeUrl {
     return this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(file)));
   }
-
 }

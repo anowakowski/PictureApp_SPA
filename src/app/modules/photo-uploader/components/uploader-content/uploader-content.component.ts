@@ -1,8 +1,9 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { FileUploader } from 'ng2-file-upload';
+import { FileUploader, FileItem } from 'ng2-file-upload';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { PhotoUploaderModel } from 'src/app/models/photo-uploader-model';
 
 @Component({
   selector: 'app-uploader-content',
@@ -12,10 +13,9 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class UploaderContentComponent implements OnInit {
 
   public uploader: FileUploader;
-  public filePreviewPaths: SafeUrl[];
-  public filePreviewPath: SafeUrl;
   baseUrl = environment.apiUrl;
   uploadPhotoForm: FormGroup;
+  photoUploaderModels: PhotoUploaderModel[];
 
   public hasBaseDropZoneOver = false;
   public photoHasDroped = false;
@@ -23,7 +23,7 @@ export class UploaderContentComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.filePreviewPaths = new Array<SafeUrl>();
+    this.photoUploaderModels = new Array<PhotoUploaderModel>();
     this.initUploader();
   }
 
@@ -39,9 +39,38 @@ export class UploaderContentComponent implements OnInit {
 
   onChangePreviewImages() {
     this.photoHasDroped = true;
+    this.prepareIndexForPhotoUploader();
+    this.preparePhotoUploaderModel();
+  }
+
+  GetPhotoUploaderModel(fileItem: FileItem): PhotoUploaderModel {
+    const photoUploaderModel = this.photoUploaderModels.find(x => x.index === fileItem.index);
+
+    return photoUploaderModel;
   }
 
   fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
+  }
+
+  private preparePhotoUploaderModel() {
+    const fileItems = this.uploader.queue;
+    fileItems.forEach(fileItem => {
+      const photoUploaderModel = new PhotoUploaderModel();
+      photoUploaderModel.index = fileItem.index;
+      if (fileItems.length === 1) {
+        photoUploaderModel.isEditMode = true;
+      }
+      this.photoUploaderModels.push(photoUploaderModel);
+    });
+  }
+
+  private prepareIndexForPhotoUploader() {
+    const fileItems = this.uploader.queue;
+    let index = 0;
+    fileItems.forEach(fileItem => {
+      fileItem.index = index;
+      index++;
+    });
   }
 }

@@ -21,7 +21,6 @@ export class PhotoUploaderStepperComponent implements OnInit {
   test: string;
   public uploader: FileUploader;
   public filePreviewPaths: SafeUrl[];
-  public photoUploaderModel: PhotoUploaderModel;
 
   public hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
@@ -69,8 +68,6 @@ export class PhotoUploaderStepperComponent implements OnInit {
     fileItems.forEach(fileItem => {
       this.filePreviewPaths.push(this.getSafeUrl(fileItem._file));
     });
-
-    this.setPhotoUploaderModel();
   }
 
   getSafeUrl(file: File): SafeUrl {
@@ -86,11 +83,5 @@ export class PhotoUploaderStepperComponent implements OnInit {
     files.push(this.fileInput);
 
     return files;
-  }
-
-  private setPhotoUploaderModel() {
-    this.photoUploaderModel = new PhotoUploaderModel();
-    this.photoUploaderModel.fileUploader = this.uploader;
-    this.photoUploaderModel.filePreviewPaths = this.filePreviewPaths;
   }
 }

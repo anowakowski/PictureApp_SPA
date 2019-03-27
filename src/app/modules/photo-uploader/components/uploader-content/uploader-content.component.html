@@ -18,7 +18,7 @@
 </div>
 
 <div *ngFor="let fileItem of uploader.queue">
-  <app-uploader-content-card [fileInput]='fileItem._file'></app-uploader-content-card>
+  <app-uploader-content-card [fileInput]='fileItem._file' [photoUploaderModel]='GetPhotoUploaderModel(fileItem)'></app-uploader-content-card>
 </div>
 
 

@@ -1,6 +1,6 @@
 <div style="margin-top: 30px;">
   <form [formGroup]="uploadPhotoForm">
-  <mat-card class="uploader-photos-card uploader-photos-card-current">
+  <mat-card class="uploader-photos-card" [ngClass]="{'uploader-photos-card-current': photoUploaderModel.isEditMode}" (click)="choosePhoto()">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>
