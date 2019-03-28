@@ -40,10 +40,10 @@ export class UploaderContentComponent implements OnInit {
 
   onChangePreviewImages() {
     this.photoHasDroped = true;
+    this.sidenavService.emitPhotoUploaded(true);
+
     this.prepareIndexForPhotoUploader();
     this.preparePhotoUploaderModel();
-
-    this.sidenavService.emitPhotoUploaded(true);
   }
 
   GetPhotoUploaderModel(fileItem: FileItem): PhotoUploaderModel {

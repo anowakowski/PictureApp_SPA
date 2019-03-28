@@ -12,6 +12,7 @@ export class SidenavComponent implements OnInit, OnDestroy {
 
   public isUploadedPhoto = false;
   public subscription: any;
+  isEditMode: false;
 
   constructor(private sidenavService: SidenavService) { }
 
