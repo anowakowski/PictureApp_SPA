@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { PhotoUploaderModel } from 'src/app/models/photo-uploader-model';
 import { SidenavService } from '../../services/sidenav.service';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-uploader-content',
@@ -21,7 +22,7 @@ export class UploaderContentComponent implements OnInit {
   public hasBaseDropZoneOver = false;
   public photoHasDroped = false;
 
-  constructor(private sidenavService: SidenavService) { }
+  constructor(private sidenavService: SidenavService, private localStorageService: LocalStorageService) { }
 
   ngOnInit() {
     this.photoUploaderModels = new Array<PhotoUploaderModel>();
@@ -65,6 +66,7 @@ export class UploaderContentComponent implements OnInit {
         photoUploaderModel.isEditMode = true;
       }
       this.photoUploaderModels.push(photoUploaderModel);
+      this.setPhotoToLocalStorage(photoUploaderModel);
     });
   }
 
@@ -75,5 +77,9 @@ export class UploaderContentComponent implements OnInit {
       fileItem.index = index;
       index++;
     });
+  }
+
+  private setPhotoToLocalStorage(photoUploaderModel: PhotoUploaderModel) {
+    this.localStorageService.setItem(photoUploaderModel.index.toString(), photoUploaderModel);
   }
 }
