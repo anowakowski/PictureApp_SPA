@@ -9,7 +9,7 @@
           <mat-form-field class="sidenav-element-form-input">
 
             <input matInput  placeholder="photo title" formControlName="photoTitle" required>
-            <mat-error *ngIf="this.sidenavPhotoForm.get('photoTitle').invalid">Photo title cant be empty</mat-error>
+            <!-- <mat-error *ngIf="checkIfFieldIsValid('photoTitle')">Photo title cant be empty</mat-error> -->
           </mat-form-field>
           <mat-form-field class="sidenav-element-form-input">
             <input matInput placeholder="photo description" formControlName="photoDescription" class="base-style" required>

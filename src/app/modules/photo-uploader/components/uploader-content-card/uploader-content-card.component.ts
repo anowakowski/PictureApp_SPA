@@ -28,7 +28,7 @@ export class UploaderContentCardComponent implements OnInit {
   ngOnInit() {
     this.prepareFilePreview();
     this.createUploadPhotoForm();
-    console.log(this.photoUploaderModel);
+    this.propagateCurrentChosedPhoto();
   }
 
   prepareFilePreview() {
@@ -46,6 +46,10 @@ export class UploaderContentCardComponent implements OnInit {
   choosePhoto() {
     this.photoUploaderModel.isEditMode = true;
     this.localStorageService.updatePhoto(this.photoUploaderModel); // update phote after chosed
+    this.propagateCurrentChosedPhoto();
+  }
+
+  private propagateCurrentChosedPhoto() {
     this.sidenavService.emitPhotoModelUploader(this.photoUploaderModel);
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { SidenavService } from '../../services/sidenav.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material';
@@ -13,7 +13,7 @@ const SMALL_WIDTH_BREAKPOINT = 720;
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']
 })
-export class SidenavComponent implements OnInit, OnDestroy {
+export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
   visible = true;
   selectable = true;
   removable = true;
@@ -39,14 +39,16 @@ export class SidenavComponent implements OnInit, OnDestroy {
   matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`);
 
   ngOnInit() {
+    this.getCurrentChosedPhotoFromLocalStorage();
+    this.createSidenavPhotoForm();
+    this.tags = new Array<string>();
+  }
+
+  ngAfterViewChecked() {
     this.isUploaderPhotoSubscription = this.sidenavService.getPhotoUploaded()
       .subscribe(isPhotoUploader => this.photoUploaded(isPhotoUploader));
     this.photoUploaderModelSubscription = this.sidenavService.getPhotoModelUploader()
       .subscribe(photoUploaderModel => this.updateInfoAboutCurrentPhotoToUpload(photoUploaderModel));
-
-    this.getCurrentChosedPhotoFromLocalStorage();
-    this.createSidenavPhotoForm();
-    this.tags = new Array<string>();
   }
 
   ngOnDestroy() {
@@ -64,6 +66,11 @@ export class SidenavComponent implements OnInit, OnDestroy {
 
   updateInfoAboutCurrentPhotoToUpload(photo: PhotoUploaderModel) {
     this.sidenavPhotoForm.controls['photoTitle'].setValue(photo.photoTitle);
+    this.currentPhoto = photo;
+  }
+
+  checkIfFieldIsValid(fieldName: string): boolean {
+    return this.sidenavPhotoForm.get(fieldName).invalid;
   }
 
   createSidenavPhotoForm() {
