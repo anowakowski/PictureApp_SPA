@@ -24,6 +24,16 @@ export class UploadPhotoLocalStorageService {
     this.setItem(photos);
   }
 
+  updatePhoto(photoUploaderModel: PhotoUploaderModel) {
+    const photos: Array<PhotoUploaderModel> = this.getItem();
+
+    const findedPhotoToRermove = photos.find(x => x.index === photoUploaderModel.index);
+    this.removeFromArray(findedPhotoToRermove, photos);
+
+    photos.push(photoUploaderModel);
+    this.setItem(photos);
+  }
+
   private isExistingItem(): boolean {
     return this.getItem() != null ? true : false;
   }
@@ -39,5 +49,12 @@ export class UploadPhotoLocalStorageService {
 
   private setItem(photos: Array<PhotoUploaderModel>) {
     localStorage.setItem(PHOTOS_TO_UPLOAD_NAME, JSON.stringify(photos));
+  }
+
+  private removeFromArray(photo: PhotoUploaderModel, photos: Array<PhotoUploaderModel>) {
+    const indexPhoto = photos.indexOf(photo);
+    if (indexPhoto > -1) {
+      photos.splice(indexPhoto, 1);
+    }
   }
 }
