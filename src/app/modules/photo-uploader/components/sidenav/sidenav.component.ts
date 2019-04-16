@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SidenavService } from '../../services/sidenav.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatChipInputEvent } from '@angular/material';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
 
 const SMALL_WIDTH_BREAKPOINT = 720;
 
@@ -10,11 +12,18 @@ const SMALL_WIDTH_BREAKPOINT = 720;
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit, OnDestroy {
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   public isUploadedPhoto = false;
   public subscription: any;
   isEditMode: false;
   sidenavPhotoForm: FormGroup;
+  tags: Array<string>;
 
   constructor(private sidenavService: SidenavService, private formBuilder: FormBuilder) { }
 
@@ -25,6 +34,7 @@ export class SidenavComponent implements OnInit, OnDestroy {
     this.subscription = this.sidenavService.getPhotoUploaded()
       .subscribe(isPhotoUploader => this.photoUploaded(isPhotoUploader));
     this.createSidenavPhotoForm();
+    this.tags = new Array<string>();
   }
 
   ngOnDestroy() {
@@ -45,5 +55,30 @@ export class SidenavComponent implements OnInit, OnDestroy {
       photoDescription: ['', [Validators.required]],
       photoTags: ['']
     });
+  }
+
+
+  addTag(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our fruit
+    if ((value || '').trim()) {
+      // this.fruits.push({name: value.trim()});
+      this.tags.push(value.trim());
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  removeTag(tag: string): void {
+    const index = this.tags.indexOf(tag);
+
+    if (index >= 0) {
+      this.tags.splice(index, 1);
+    }
   }
 }
