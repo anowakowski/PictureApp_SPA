@@ -11,6 +11,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FileUploadModule } from 'ng2-file-upload';
 import { UploaderContentCardComponent } from './components/uploader-content-card/uploader-content-card.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LocalStorageService } from './services/local-storage.service';
 
 
 const routes: Routes = [
@@ -41,6 +42,9 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)
+  ],
+  providers: [
+    LocalStorageService
   ]
 })
 export class PhotoUploaderModule { }
