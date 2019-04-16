@@ -5,23 +5,21 @@
     [opened]="isUploadedPhoto"
     mode='side'>
     <div class="sidenav-element-flex-container">
-
-
-          <mat-divider></mat-divider>
-          <p>add title</p>
-          <p>add description</p>
-          <mat-divider></mat-divider>
-          <p>add tags</p>
-          <mat-divider></mat-divider>
-
-
       <form [formGroup]="sidenavPhotoForm" class="mb-3">
-          <mat-form-field class="mb-2">
-            <input matInput placeholder="photo name" formControlName="photoName" class="base-style" required>
-            <mat-error></mat-error>
+          <mat-form-field class="sidenav-element-form-input">
+
+            <input matInput  placeholder="photo title" formControlName="photoTitle" required>
+            <mat-error *ngIf="this.sidenavPhotoForm.get('photoTitle').invalid">Photo title cant be empty</mat-error>
           </mat-form-field>
-  
-        </form>      
+          <mat-form-field class="sidenav-element-form-input">
+            <input matInput placeholder="photo description" formControlName="photoDescription" class="base-style" required>
+            <mat-error *ngIf="this.sidenavPhotoForm.get('photoDescription').invalid">Photo description cant be empty</mat-error>
+          </mat-form-field>
+          <div style="margin-top: 10px;">
+              <mat-divider></mat-divider>
+          </div>      
+                        
+      </form>      
     </div>
    </mat-drawer>
   <div class="app-sidenav-content">

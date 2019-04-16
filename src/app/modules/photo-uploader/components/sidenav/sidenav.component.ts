@@ -41,7 +41,7 @@ export class SidenavComponent implements OnInit, OnDestroy {
 
   createSidenavPhotoForm() {
     this.sidenavPhotoForm = this.formBuilder.group({
-      photoName: ['', [Validators.required]],
+      photoTitle: ['', [Validators.required]],
       photoDescription: ['', [Validators.required]],
       photoTags: ['']
     });
