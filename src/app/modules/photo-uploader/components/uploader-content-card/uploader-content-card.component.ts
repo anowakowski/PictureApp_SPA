@@ -3,6 +3,7 @@ import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PhotoUploaderModel } from 'src/app/models/photo-uploader-model';
 import { UploadPhotoLocalStorageService } from '../../services/upload-photo-local-storage.service';
+import { SidenavService } from '../../services/sidenav.service';
 
 @Component({
   selector: 'app-uploader-content-card',
@@ -21,7 +22,8 @@ export class UploaderContentCardComponent implements OnInit {
   constructor(
     private sanitizer: DomSanitizer,
     private formBuilder: FormBuilder,
-    private localStorageService: UploadPhotoLocalStorageService) { }
+    private localStorageService: UploadPhotoLocalStorageService,
+    private sidenavService: SidenavService) { }
 
   ngOnInit() {
     this.prepareFilePreview();
@@ -43,7 +45,8 @@ export class UploaderContentCardComponent implements OnInit {
 
   choosePhoto() {
     this.photoUploaderModel.isEditMode = true;
-    this.localStorageService.updatePhoto(this.photoUploaderModel);
+    this.localStorageService.updatePhoto(this.photoUploaderModel); // update phote after chosed
+    this.sidenavService.emitPhotoModelUploader(this.photoUploaderModel);
   }
 
   private getSafeUrl(file: File): SafeUrl {

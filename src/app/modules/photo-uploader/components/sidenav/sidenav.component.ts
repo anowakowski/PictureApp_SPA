@@ -3,6 +3,8 @@ import { SidenavService } from '../../services/sidenav.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { UploadPhotoLocalStorageService } from '../../services/upload-photo-local-storage.service';
+import { PhotoUploaderModel } from 'src/app/models/photo-uploader-model';
 
 const SMALL_WIDTH_BREAKPOINT = 720;
 
@@ -19,27 +21,37 @@ export class SidenavComponent implements OnInit, OnDestroy {
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
+  public photoUploaderModelSubscription: any;
+  public isUploaderPhotoSubscription: any;
   public isUploadedPhoto = false;
-  public subscription: any;
+
   isEditMode: false;
   sidenavPhotoForm: FormGroup;
   tags: Array<string>;
-  color = 'Accent';
+  currentPhoto: PhotoUploaderModel;
 
-  constructor(private sidenavService: SidenavService, private formBuilder: FormBuilder) { }
+  constructor(
+    private sidenavService: SidenavService,
+    private formBuilder: FormBuilder,
+    private localStorageService: UploadPhotoLocalStorageService) { }
 
   private mediaMatcher: MediaQueryList =
   matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`);
 
   ngOnInit() {
-    this.subscription = this.sidenavService.getPhotoUploaded()
+    this.isUploaderPhotoSubscription = this.sidenavService.getPhotoUploaded()
       .subscribe(isPhotoUploader => this.photoUploaded(isPhotoUploader));
+    this.photoUploaderModelSubscription = this.sidenavService.getPhotoModelUploader()
+      .subscribe(photoUploaderModel => this.updateInfoAboutCurrentPhotoToUpload(photoUploaderModel));
+
+    this.getCurrentChosedPhotoFromLocalStorage();
     this.createSidenavPhotoForm();
     this.tags = new Array<string>();
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.isUploaderPhotoSubscription.unsubscribe();
+    this.photoUploaderModelSubscription.unsubscribe();
   }
 
   isScreenSmall(): boolean {
@@ -50,14 +62,17 @@ export class SidenavComponent implements OnInit, OnDestroy {
     this.isUploadedPhoto = isPhotoUploaded;
   }
 
+  updateInfoAboutCurrentPhotoToUpload(photo: PhotoUploaderModel) {
+    this.sidenavPhotoForm.controls['photoTitle'].setValue(photo.photoTitle);
+  }
+
   createSidenavPhotoForm() {
     this.sidenavPhotoForm = this.formBuilder.group({
-      photoTitle: ['', [Validators.required]],
+      photoTitle: [this.currentPhoto.photoTitle, [Validators.required]],
       photoDescription: ['', [Validators.required]],
       photoTags: ['']
     });
   }
-
 
   addTag(event: MatChipInputEvent): void {
     const input = event.input;
@@ -81,5 +96,9 @@ export class SidenavComponent implements OnInit, OnDestroy {
     if (index >= 0) {
       this.tags.splice(index, 1);
     }
+  }
+
+  private getCurrentChosedPhotoFromLocalStorage() {
+    this.currentPhoto = this.localStorageService.getCurrentChosedPhoto();
   }
 }

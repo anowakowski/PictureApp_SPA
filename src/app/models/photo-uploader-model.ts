@@ -4,4 +4,5 @@ import { SafeUrl } from '@angular/platform-browser';
 export class PhotoUploaderModel {
     isEditMode: boolean;
     index: number;
+    photoTitle: string;
 }

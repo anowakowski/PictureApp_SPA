@@ -62,6 +62,7 @@ export class UploaderContentComponent implements OnInit {
     fileItems.forEach(fileItem => {
       const photoUploaderModel = new PhotoUploaderModel();
       photoUploaderModel.index = fileItem.index;
+      photoUploaderModel.photoTitle = fileItem.file.name;
       if (fileItems.length === 1) {
         photoUploaderModel.isEditMode = true;
       }
