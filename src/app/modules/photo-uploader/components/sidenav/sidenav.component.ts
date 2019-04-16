@@ -24,6 +24,7 @@ export class SidenavComponent implements OnInit, OnDestroy {
   isEditMode: false;
   sidenavPhotoForm: FormGroup;
   tags: Array<string>;
+  color = 'Accent';
 
   constructor(private sidenavService: SidenavService, private formBuilder: FormBuilder) { }
 

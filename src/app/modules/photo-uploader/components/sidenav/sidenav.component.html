@@ -18,14 +18,14 @@
           <div style="margin-top: 10px;">
               <mat-divider></mat-divider>
           </div>  
-          <mat-form-field class="example-chip-list">
+          <mat-form-field class="sidenav-content-element-form-tags">
               <mat-chip-list #chipList>
-                <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
+                <mat-chip *ngFor="let tag of tags" [selectable]="selectable" class="mat-chip-selected"
                          [removable]="removable" (removed)="removeTag(tag)">
                   {{tag}}
                   <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                 </mat-chip>
-                <input placeholder="New tag..."
+                <input placeholder="Add new tag..."
                        [matChipInputFor]="chipList"
                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                        [matChipInputAddOnBlur]="addOnBlur"

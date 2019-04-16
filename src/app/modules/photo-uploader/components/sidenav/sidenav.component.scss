@@ -49,6 +49,12 @@ mat-drawer {
   width: 350px;
 }
 
-.example-chip-list {
-  width: 100%;
+.sidenav-content-element-form-tags {
+  margin-top: 20px;
+  width: 350px;
+}
+
+.mat-chip.mat-standard-chip::after {
+  background: #219e79;
+  color: black;
 }
