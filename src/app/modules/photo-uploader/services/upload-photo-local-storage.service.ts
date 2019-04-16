@@ -16,8 +16,6 @@ export class UploadPhotoLocalStorageService {
     if (this.isExistingItem()) {
       photos = this.getItem();
       photos.push(photoUploaderModel);
-
-      this.setItem(photos);
     } else {
       photos = new Array<PhotoUploaderModel>();
       photos.push(photoUploaderModel);
@@ -34,9 +32,7 @@ export class UploadPhotoLocalStorageService {
     localStorage.removeItem(key);
   }
 
-  private getItem(
-
-  ): Array<PhotoUploaderModel> {
+  private getItem(): Array<PhotoUploaderModel> {
     const photos: Array<PhotoUploaderModel> = JSON.parse(localStorage.getItem(PHOTOS_TO_UPLOAD_NAME));
     return photos;
   }
