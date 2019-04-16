@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SidenavService } from '../../services/sidenav.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 const SMALL_WIDTH_BREAKPOINT = 720;
 
@@ -13,8 +14,9 @@ export class SidenavComponent implements OnInit, OnDestroy {
   public isUploadedPhoto = false;
   public subscription: any;
   isEditMode: false;
+  sidenavPhotoForm: FormGroup;
 
-  constructor(private sidenavService: SidenavService) { }
+  constructor(private sidenavService: SidenavService, private formBuilder: FormBuilder) { }
 
   private mediaMatcher: MediaQueryList =
   matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`);
@@ -22,6 +24,7 @@ export class SidenavComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription = this.sidenavService.getPhotoUploaded()
       .subscribe(isPhotoUploader => this.photoUploaded(isPhotoUploader));
+    this.createSidenavPhotoForm();
   }
 
   ngOnDestroy() {
@@ -34,5 +37,13 @@ export class SidenavComponent implements OnInit, OnDestroy {
 
   photoUploaded(isPhotoUploaded: boolean) {
     this.isUploadedPhoto = isPhotoUploaded;
+  }
+
+  createSidenavPhotoForm() {
+    this.sidenavPhotoForm = this.formBuilder.group({
+      photoName: ['', [Validators.required]],
+      photoDescription: ['', [Validators.required]],
+      photoTags: ['']
+    });
   }
 }

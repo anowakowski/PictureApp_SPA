@@ -5,15 +5,23 @@
     [opened]="isUploadedPhoto"
     mode='side'>
     <div class="sidenav-element-flex-container">
-      <p>Uploader 1 photo</p>
-      <mat-divider></mat-divider>
-      <p>add title</p>
-      <p>add description</p>
-      <mat-divider></mat-divider>
-      <p>add tags</p>
-      <mat-divider></mat-divider>
 
-      
+
+          <mat-divider></mat-divider>
+          <p>add title</p>
+          <p>add description</p>
+          <mat-divider></mat-divider>
+          <p>add tags</p>
+          <mat-divider></mat-divider>
+
+
+      <form [formGroup]="sidenavPhotoForm" class="mb-3">
+          <mat-form-field class="mb-2">
+            <input matInput placeholder="photo name" formControlName="photoName" class="base-style" required>
+            <mat-error></mat-error>
+          </mat-form-field>
+  
+        </form>      
     </div>
    </mat-drawer>
   <div class="app-sidenav-content">
