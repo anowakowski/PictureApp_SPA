@@ -49,6 +49,13 @@ export class UploaderContentCardComponent implements OnInit {
     this.propagateCurrentChosedPhoto();
   }
 
+  changePhotoTitle(event) {
+    const changedPhotoTitle = event.currentTarget.value;
+    this.photoUploaderModel.photoTitle = changedPhotoTitle;
+    this.localStorageService.updatePhoto(this.photoUploaderModel);
+    this.propagateCurrentChosedPhoto();
+  }
+
   private propagateCurrentChosedPhoto() {
     this.sidenavService.emitPhotoModelUploader(this.photoUploaderModel);
   }
