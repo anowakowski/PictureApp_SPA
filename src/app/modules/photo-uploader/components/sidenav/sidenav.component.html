@@ -13,7 +13,11 @@
               (change)="changePhotoTitle($event)">
           </mat-form-field>
           <mat-form-field class="sidenav-element-form-input">
-            <input matInput placeholder="photo description" formControlName="photoDescription" class="base-style">
+            <input matInput 
+            placeholder="photo description" 
+            formControlName="photoDescription" 
+            class="base-style"
+            (change)="changePhotoDescription($event)">
           </mat-form-field>
           <div style="margin-top: 10px;">
               <mat-divider></mat-divider>

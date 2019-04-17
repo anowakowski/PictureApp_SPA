@@ -66,6 +66,7 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
 
   updateInfoAboutCurrentPhotoToUpload(photo: PhotoUploaderModel) {
     this.sidenavPhotoForm.controls['photoTitle'].setValue(photo.photoTitle);
+    this.sidenavPhotoForm.controls['photoDescription'].setValue(photo.photoDescription);
     this.currentPhoto = photo;
   }
 
@@ -105,6 +106,16 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
   changePhotoTitle(event) {
     const photoTitle = event.currentTarget.value;
     this.currentPhoto.photoTitle = photoTitle;
+    this.syncChanges();
+  }
+
+  changePhotoDescription(event) {
+    const photoDesc = event.currentTarget.value;
+    this.currentPhoto.photoDescription = photoDesc;
+    this.syncChanges();
+  }
+
+  private syncChanges() {
     this.localStorageService.updatePhoto(this.currentPhoto);
     this.sidenavService.emitPhotoModelUploaderToCardFromSidenav(this.currentPhoto);
   }

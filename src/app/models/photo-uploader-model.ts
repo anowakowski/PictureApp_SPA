@@ -5,4 +5,5 @@ export class PhotoUploaderModel {
     isEditMode: boolean;
     index: number;
     photoTitle: string;
+    photoDescription: string;
 }

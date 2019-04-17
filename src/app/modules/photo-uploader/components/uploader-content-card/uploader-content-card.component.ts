@@ -61,6 +61,15 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
   changePhotoTitle(event) {
     const changedPhotoTitle = event.currentTarget.value;
     this.photoUploaderModel.photoTitle = changedPhotoTitle;
+    this.syncPhotoChanges();
+  }
+
+  changePhotoDescription(event) {
+    this.photoUploaderModel.photoDescription = event.currentTarget.value;
+    this.syncPhotoChanges();
+  }
+
+  private syncPhotoChanges() {
     this.localStorageService.updatePhoto(this.photoUploaderModel);
     this.propagateCurrentChosedPhoto();
   }
@@ -68,6 +77,7 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
   private updateCurrentPhoto(photo: PhotoUploaderModel) {
     this.photoUploaderModel = photo;
     this.uploadPhotoForm.controls['photoTitle'].setValue(photo.photoTitle);
+    this.uploadPhotoForm.controls['photoDescription'].setValue(photo.photoDescription);
   }
 
   private propagateCurrentChosedPhoto() {
