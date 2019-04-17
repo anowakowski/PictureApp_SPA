@@ -10,10 +10,12 @@ import { SidenavService } from '../../services/sidenav.service';
   templateUrl: './uploader-content-card.component.html',
   styleUrls: ['./uploader-content-card.component.scss']
 })
-export class UploaderContentCardComponent implements OnInit {
+export class UploaderContentCardComponent implements OnInit, OnDestroy {
 
   @Input() fileInput: File;
   @Input() photoUploaderModel: PhotoUploaderModel;
+
+  public photoUploaderModelSubscription: any;
 
   public filePreviewPath: SafeUrl;
   uploadPhotoForm: FormGroup;
@@ -29,6 +31,13 @@ export class UploaderContentCardComponent implements OnInit {
     this.prepareFilePreview();
     this.createUploadPhotoForm();
     this.propagateCurrentChosedPhoto();
+
+    this.photoUploaderModelSubscription = this.sidenavService.getPhotoModelUploaderToCardFromSidenav()
+      .subscribe(photoUploaderModelFromSidenav => this.updateCurrentPhoto(photoUploaderModelFromSidenav));
+  }
+
+  ngOnDestroy() {
+    this.photoUploaderModelSubscription.unsubscribe();
   }
 
   prepareFilePreview() {
@@ -37,9 +46,9 @@ export class UploaderContentCardComponent implements OnInit {
 
   createUploadPhotoForm() {
     this.uploadPhotoForm = this.formBuilder.group({
-      photoTitle: [this.fileInput.name, [Validators.required]],
-      photoSubtitle: ['', Validators.required],
-      photoDescription: ['', Validators.nullValidator]
+      photoTitle: [this.fileInput.name],
+      photoSubtitle: [''],
+      photoDescription: ['']
     });
   }
 
@@ -54,6 +63,11 @@ export class UploaderContentCardComponent implements OnInit {
     this.photoUploaderModel.photoTitle = changedPhotoTitle;
     this.localStorageService.updatePhoto(this.photoUploaderModel);
     this.propagateCurrentChosedPhoto();
+  }
+
+  private updateCurrentPhoto(photo: PhotoUploaderModel) {
+    this.photoUploaderModel = photo;
+    this.uploadPhotoForm.controls['photoTitle'].setValue(photo.photoTitle);
   }
 
   private propagateCurrentChosedPhoto() {

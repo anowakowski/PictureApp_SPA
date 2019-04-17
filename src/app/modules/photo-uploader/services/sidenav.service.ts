@@ -9,6 +9,7 @@ export class SidenavService {
 
   photoUploaded: EventEmitter<boolean> = new EventEmitter();
   photoUploaderModelEmiter: EventEmitter<PhotoUploaderModel> = new EventEmitter();
+  photoUploaderModelToCardFromSidenavEmiter: EventEmitter<PhotoUploaderModel> = new EventEmitter();
 
   constructor() { }
 
@@ -26,5 +27,13 @@ export class SidenavService {
 
   getPhotoModelUploader() {
     return this.photoUploaderModelEmiter;
+  }
+
+  emitPhotoModelUploaderToCardFromSidenav(photo: PhotoUploaderModel) {
+    this.photoUploaderModelToCardFromSidenavEmiter.emit(photo);
+  }
+
+  getPhotoModelUploaderToCardFromSidenav() {
+    return this.photoUploaderModelToCardFromSidenavEmiter;
   }
 }

@@ -7,13 +7,13 @@
     <div class="sidenav-element-flex-container">
       <form [formGroup]="sidenavPhotoForm" class="mb-3">
           <mat-form-field class="sidenav-element-form-input">
-
-            <input matInput  placeholder="photo title" formControlName="photoTitle" required>
-            <!-- <mat-error *ngIf="checkIfFieldIsValid('photoTitle')">Photo title cant be empty</mat-error> -->
+            <input matInput  
+              placeholder="photo title"
+              formControlName="photoTitle"
+              (change)="changePhotoTitle($event)">
           </mat-form-field>
           <mat-form-field class="sidenav-element-form-input">
-            <input matInput placeholder="photo description" formControlName="photoDescription" class="base-style" required>
-            <mat-error *ngIf="this.sidenavPhotoForm.get('photoDescription').invalid">Photo description cant be empty</mat-error>
+            <input matInput placeholder="photo description" formControlName="photoDescription" class="base-style">
           </mat-form-field>
           <div style="margin-top: 10px;">
               <mat-divider></mat-divider>

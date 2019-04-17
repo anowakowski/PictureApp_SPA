@@ -75,8 +75,8 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
 
   createSidenavPhotoForm() {
     this.sidenavPhotoForm = this.formBuilder.group({
-      photoTitle: [this.currentPhoto.photoTitle, [Validators.required]],
-      photoDescription: ['', [Validators.required]],
+      photoTitle: [this.currentPhoto.photoTitle],
+      photoDescription: [''],
       photoTags: ['']
     });
   }
@@ -100,6 +100,13 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
     if (index >= 0) {
       this.tags.splice(index, 1);
     }
+  }
+
+  changePhotoTitle(event) {
+    const photoTitle = event.currentTarget.value;
+    this.currentPhoto.photoTitle = photoTitle;
+    this.localStorageService.updatePhoto(this.currentPhoto);
+    this.sidenavService.emitPhotoModelUploaderToCardFromSidenav(this.currentPhoto);
   }
 
   private getCurrentChosedPhotoFromLocalStorage() {
