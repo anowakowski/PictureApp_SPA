@@ -7,6 +7,16 @@
   justify-content: center;
 }
 
+.flex-container-photocard {
+  display: flex;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  justify-content: flex-start;
+}
+
+
 .my-drop-zone {
   border: dotted 3px lightgray;
 }
