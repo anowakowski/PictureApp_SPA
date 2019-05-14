@@ -44,9 +44,9 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
     const currentPhoto = this.localStorageService.getCurrentChosedPhoto();
 
     if (this.photoUploaderModel.index !== currentPhoto.index) {
-      this.isEditMode = false;
+      this.photoUploaderModel.isEditMode = false;
     } else {
-      this.isEditMode = true;
+      this.photoUploaderModel.isEditMode = true;
     }
   }
 
