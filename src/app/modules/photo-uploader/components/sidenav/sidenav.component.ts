@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy, AfterViewInit, AfterViewChecked } from '@angular/core';
-import { SidenavService } from '../../services/sidenav.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { UploadPhotoLocalStorageService } from '../../services/upload-photo-local-storage.service';
 import { PhotoUploaderModel } from 'src/app/models/photo-uploader-model';
+import { PhotoEventService } from '../../services/photoEvent.service';
 
 const SMALL_WIDTH_BREAKPOINT = 720;
 
@@ -31,7 +31,7 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
   currentPhoto: PhotoUploaderModel;
 
   constructor(
-    private sidenavService: SidenavService,
+    private photoEventService: PhotoEventService,
     private formBuilder: FormBuilder,
     private localStorageService: UploadPhotoLocalStorageService) { }
 
@@ -45,9 +45,9 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
   }
 
   ngAfterViewChecked() {
-    this.isUploaderPhotoSubscription = this.sidenavService.getPhotoUploaded()
+    this.isUploaderPhotoSubscription = this.photoEventService.getPhotoUploaded()
       .subscribe(isPhotoUploader => this.photoUploaded(isPhotoUploader));
-    this.photoUploaderModelSubscription = this.sidenavService.getPhotoModelUploader()
+    this.photoUploaderModelSubscription = this.photoEventService.getPhotoModelUploader()
       .subscribe(photoUploaderModel => this.updateInfoAboutCurrentPhotoToUpload(photoUploaderModel));
   }
 
@@ -117,7 +117,7 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
 
   private syncChanges() {
     this.localStorageService.updatePhoto(this.currentPhoto);
-    this.sidenavService.emitPhotoModelUploaderToCardFromSidenav(this.currentPhoto);
+    this.photoEventService.emitPhotoModelUploaderToCardFromSidenav(this.currentPhoto);
   }
 
   private getCurrentChosedPhotoFromLocalStorage() {

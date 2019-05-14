@@ -6,7 +6,7 @@ import { Photo } from 'src/app/models/photo';
 @Injectable({
   providedIn: 'root'
 })
-export class SidenavService {
+export class PhotoEventService {
 
   photoUploaded: EventEmitter<boolean> = new EventEmitter();
   photoUploaderModelEmiter: EventEmitter<PhotoUploaderModel> = new EventEmitter();

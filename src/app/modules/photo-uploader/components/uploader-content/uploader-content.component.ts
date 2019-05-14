@@ -4,8 +4,8 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { PhotoUploaderModel } from 'src/app/models/photo-uploader-model';
-import { SidenavService } from '../../services/sidenav.service';
 import { UploadPhotoLocalStorageService } from '../../services/upload-photo-local-storage.service';
+import { PhotoEventService } from '../../services/photoEvent.service';
 
 @Component({
   selector: 'app-uploader-content',
@@ -22,7 +22,7 @@ export class UploaderContentComponent implements OnInit {
   public hasBaseDropZoneOver = false;
   public photoHasDroped = false;
 
-  constructor(private sidenavService: SidenavService, private localStorageService: UploadPhotoLocalStorageService) { }
+  constructor(private photoEventService: PhotoEventService, private localStorageService: UploadPhotoLocalStorageService) { }
 
   ngOnInit() {
     this.photoUploaderModels = new Array<PhotoUploaderModel>();
@@ -41,7 +41,7 @@ export class UploaderContentComponent implements OnInit {
 
   onChangePreviewImages() {
     this.photoHasDroped = true;
-    this.sidenavService.emitPhotoUploaded(true);
+    this.photoEventService.emitPhotoUploaded(true);
 
     this.prepareIndexForPhotoUploader();
     this.preparePhotoUploaderModel();

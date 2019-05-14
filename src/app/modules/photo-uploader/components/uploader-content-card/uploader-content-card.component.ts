@@ -3,7 +3,7 @@ import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PhotoUploaderModel } from 'src/app/models/photo-uploader-model';
 import { UploadPhotoLocalStorageService } from '../../services/upload-photo-local-storage.service';
-import { SidenavService } from '../../services/sidenav.service';
+import { PhotoEventService } from '../../services/photoEvent.service';
 
 @Component({
   selector: 'app-uploader-content-card',
@@ -26,7 +26,7 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
     private sanitizer: DomSanitizer,
     private formBuilder: FormBuilder,
     private localStorageService: UploadPhotoLocalStorageService,
-    private sidenavService: SidenavService) { }
+    private photoEventService: PhotoEventService) { }
 
   ngOnInit() {
     this.prepareFilePreview();
@@ -34,6 +34,7 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
     this.propagateCurrentChosedPhoto();
     this.subscireEvents();
   }
+
 
   ngOnDestroy() {
     this.photoUploaderModelSubscription.unsubscribe();
@@ -96,14 +97,14 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
   }
 
   private propagateCurrentChosedPhoto() {
-    this.sidenavService.emitPhotoModelUploader(this.photoUploaderModel);
-    this.sidenavService.emitPhotoUploaderModelChangeEditMode();
+    this.photoEventService.emitPhotoModelUploader(this.photoUploaderModel);
+    this.photoEventService.emitPhotoUploaderModelChangeEditMode();
   }
 
   private subscireEvents() {
-    this.photoUploaderModelSubscription = this.sidenavService.getPhotoModelUploaderToCardFromSidenav()
+    this.photoUploaderModelSubscription = this.photoEventService.getPhotoModelUploaderToCardFromSidenav()
       .subscribe(photoUploaderModelFromSidenav => this.updateCurrentPhoto(photoUploaderModelFromSidenav));
-    this.photoUploaderModelChangeEditSubscription = this.sidenavService.getPhotoUploaderModelChangeEditMode()
+    this.photoUploaderModelChangeEditSubscription = this.photoEventService.getPhotoUploaderModelChangeEditMode()
       .subscribe(() => this.refreshEditMode());
   }
 
