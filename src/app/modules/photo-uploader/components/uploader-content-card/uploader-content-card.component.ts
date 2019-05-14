@@ -16,6 +16,7 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
   @Input() photoUploaderModel: PhotoUploaderModel;
 
   public photoUploaderModelSubscription: any;
+  public photoUploaderModelChangeEditSubscription: any;
 
   public filePreviewPath: SafeUrl;
   uploadPhotoForm: FormGroup;
@@ -34,6 +35,19 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
 
     this.photoUploaderModelSubscription = this.sidenavService.getPhotoModelUploaderToCardFromSidenav()
       .subscribe(photoUploaderModelFromSidenav => this.updateCurrentPhoto(photoUploaderModelFromSidenav));
+
+    this.photoUploaderModelChangeEditSubscription = this.sidenavService.getPhotoUploaderModelChangeEditMode()
+      .subscribe(() => this.refreshEditMode());
+  }
+
+  refreshEditMode() {
+    const currentPhoto = this.localStorageService.getCurrentChosedPhoto();
+
+    if (this.photoUploaderModel.index !== currentPhoto.index) {
+      this.isEditMode = false;
+    } else {
+      this.isEditMode = true;
+    }
   }
 
   ngOnDestroy() {
@@ -53,9 +67,15 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
   }
 
   choosePhoto() {
+    const currentChosedPhotoWithEditMode = this.localStorageService.getCurrentChosedPhoto();
+    currentChosedPhotoWithEditMode.isEditMode = false;
+    this.localStorageService.updatePhoto(currentChosedPhotoWithEditMode);
+
     this.photoUploaderModel.isEditMode = true;
     this.localStorageService.updatePhoto(this.photoUploaderModel); // update phote after chosed
+
     this.propagateCurrentChosedPhoto();
+    this.sidenavService.emitPhotoUploaderModelChangeEditMode();
   }
 
   changePhotoTitle(event) {

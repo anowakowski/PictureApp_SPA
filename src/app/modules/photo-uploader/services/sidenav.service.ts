@@ -1,5 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { PhotoUploaderModel } from 'src/app/models/photo-uploader-model';
+import { Photo } from 'src/app/models/photo';
 
 
 @Injectable({
@@ -10,6 +11,7 @@ export class SidenavService {
   photoUploaded: EventEmitter<boolean> = new EventEmitter();
   photoUploaderModelEmiter: EventEmitter<PhotoUploaderModel> = new EventEmitter();
   photoUploaderModelToCardFromSidenavEmiter: EventEmitter<PhotoUploaderModel> = new EventEmitter();
+  photoUploaderModelChangeEditModeEmiter: EventEmitter<void> = new EventEmitter();
 
   constructor() { }
 
@@ -35,5 +37,13 @@ export class SidenavService {
 
   getPhotoModelUploaderToCardFromSidenav() {
     return this.photoUploaderModelToCardFromSidenavEmiter;
+  }
+
+  emitPhotoUploaderModelChangeEditMode() {
+    this.photoUploaderModelChangeEditModeEmiter.emit();
+  }
+
+  getPhotoUploaderModelChangeEditMode() {
+    return this.photoUploaderModelChangeEditModeEmiter;
   }
 }

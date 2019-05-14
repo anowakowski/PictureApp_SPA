@@ -59,29 +59,30 @@ export class UploaderContentComponent implements OnInit {
 
   private preparePhotoUploaderModel() {
     const fileItems = this.uploader.queue;
+    this.photoUploaderModels = new Array<PhotoUploaderModel>();
+
     fileItems.forEach(fileItem => {
       const photoUploaderModel = new PhotoUploaderModel();
       photoUploaderModel.index = fileItem.index;
       photoUploaderModel.photoTitle = fileItem.file.name;
-      if (fileItems.length === 1) {
-        photoUploaderModel.isEditMode = true;
-      }
 
+      if (fileItems.length === photoUploaderModel.index) { // last photo is always current
+        photoUploaderModel.isEditMode = true;
+      } else {
+        photoUploaderModel.isEditMode = false;
+      }
       this.photoUploaderModels.push(photoUploaderModel);
-      this.setPhotoToLocalStorage(photoUploaderModel);
     });
+
+    this.localStorageService.setPhotosToLocalStorage(this.photoUploaderModels);
   }
 
   private prepareIndexForPhotoUploader() {
     const fileItems = this.uploader.queue;
-    let index = 0;
+    let index = 1;
     fileItems.forEach(fileItem => {
       fileItem.index = index;
       index++;
     });
-  }
-
-  private setPhotoToLocalStorage(photoUploaderModel: PhotoUploaderModel) {
-    this.localStorageService.setPhotoToLocalStorage(photoUploaderModel);
   }
 }

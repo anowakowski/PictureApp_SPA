@@ -10,17 +10,8 @@ export class UploadPhotoLocalStorageService {
 
   constructor() { }
 
-  setPhotoToLocalStorage(photoUploaderModel: PhotoUploaderModel) {
-    let photos: Array<PhotoUploaderModel>;
-
-    if (this.isExistingItem()) {
-      photos = this.getItem();
-      photos.push(photoUploaderModel);
-    } else {
-      photos = new Array<PhotoUploaderModel>();
-      photos.push(photoUploaderModel);
-    }
-
+  setPhotosToLocalStorage(photos: PhotoUploaderModel[]) {
+    this.removeItem();
     this.setItem(photos);
   }
 
@@ -39,16 +30,12 @@ export class UploadPhotoLocalStorageService {
     return photos.find(x => x.isEditMode);
   }
 
-  public isExistingPhotoPull(): boolean {
+  isExistingPhotoPull(): boolean {
     return this.isExistingItem();
   }
 
   private isExistingItem(): boolean {
     return this.getItem() != null ? true : false;
-  }
-
-  private removeItem(key: string) {
-    localStorage.removeItem(key);
   }
 
   private getItem(): Array<PhotoUploaderModel> {
@@ -60,10 +47,12 @@ export class UploadPhotoLocalStorageService {
     localStorage.setItem(PHOTOS_TO_UPLOAD_NAME, JSON.stringify(photos));
   }
 
+  private removeItem() {
+    localStorage.removeItem(PHOTOS_TO_UPLOAD_NAME);
+  }
+
   private removeFromArray(photo: PhotoUploaderModel, photos: Array<PhotoUploaderModel>) {
-    const indexPhoto = photos.indexOf(photo);
-    if (indexPhoto > -1) {
-      photos.splice(indexPhoto, 1);
-    }
+    const indexPhoto: number = photos.indexOf(photo);
+    photos.splice(indexPhoto, 1);
   }
 }

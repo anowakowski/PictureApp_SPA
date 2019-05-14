@@ -82,14 +82,6 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
     });
   }
 
-  private getPhotoTitle() {
-    if (this.currentPhoto != null) {
-      return this.currentPhoto.photoTitle;
-    }
-
-    return null;
-  }
-
   addTag(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
@@ -132,5 +124,13 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
     if (this.localStorageService.isExistingPhotoPull()) {
       this.currentPhoto = this.localStorageService.getCurrentChosedPhoto();
     }
+  }
+
+  private getPhotoTitle() {
+    if (this.currentPhoto != null) {
+      return this.currentPhoto.photoTitle;
+    }
+
+    return null;
   }
 }
