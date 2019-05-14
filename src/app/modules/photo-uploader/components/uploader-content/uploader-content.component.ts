@@ -66,6 +66,7 @@ export class UploaderContentComponent implements OnInit {
       if (fileItems.length === 1) {
         photoUploaderModel.isEditMode = true;
       }
+
       this.photoUploaderModels.push(photoUploaderModel);
       this.setPhotoToLocalStorage(photoUploaderModel);
     });
