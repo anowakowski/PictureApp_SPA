@@ -32,12 +32,12 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
     this.prepareFilePreview();
     this.createUploadPhotoForm();
     this.propagateCurrentChosedPhoto();
+    this.subscireEvents();
+  }
 
-    this.photoUploaderModelSubscription = this.sidenavService.getPhotoModelUploaderToCardFromSidenav()
-      .subscribe(photoUploaderModelFromSidenav => this.updateCurrentPhoto(photoUploaderModelFromSidenav));
-
-    this.photoUploaderModelChangeEditSubscription = this.sidenavService.getPhotoUploaderModelChangeEditMode()
-      .subscribe(() => this.refreshEditMode());
+  ngOnDestroy() {
+    this.photoUploaderModelSubscription.unsubscribe();
+    this.photoUploaderModelChangeEditSubscription.unsubscribe();
   }
 
   refreshEditMode() {
@@ -48,10 +48,6 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
     } else {
       this.photoUploaderModel.isEditMode = true;
     }
-  }
-
-  ngOnDestroy() {
-    this.photoUploaderModelSubscription.unsubscribe();
   }
 
   prepareFilePreview() {
@@ -75,7 +71,6 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
     this.localStorageService.updatePhoto(this.photoUploaderModel); // update phote after chosed
 
     this.propagateCurrentChosedPhoto();
-    this.sidenavService.emitPhotoUploaderModelChangeEditMode();
   }
 
   changePhotoTitle(event) {
@@ -102,6 +97,14 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
 
   private propagateCurrentChosedPhoto() {
     this.sidenavService.emitPhotoModelUploader(this.photoUploaderModel);
+    this.sidenavService.emitPhotoUploaderModelChangeEditMode();
+  }
+
+  private subscireEvents() {
+    this.photoUploaderModelSubscription = this.sidenavService.getPhotoModelUploaderToCardFromSidenav()
+      .subscribe(photoUploaderModelFromSidenav => this.updateCurrentPhoto(photoUploaderModelFromSidenav));
+    this.photoUploaderModelChangeEditSubscription = this.sidenavService.getPhotoUploaderModelChangeEditMode()
+      .subscribe(() => this.refreshEditMode());
   }
 
   private getSafeUrl(file: File): SafeUrl {
