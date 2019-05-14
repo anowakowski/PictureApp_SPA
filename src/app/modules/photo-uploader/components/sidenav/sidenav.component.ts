@@ -121,6 +121,8 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
   }
 
   private getCurrentChosedPhotoFromLocalStorage() {
-    this.currentPhoto = this.localStorageService.getCurrentChosedPhoto();
+    this.localStorageService.isExistingPhotoPull(); {
+      this.currentPhoto = this.localStorageService.getCurrentChosedPhoto();
+    }
   }
 }

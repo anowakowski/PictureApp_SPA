@@ -36,8 +36,11 @@ export class UploadPhotoLocalStorageService {
 
   getCurrentChosedPhoto(): PhotoUploaderModel {
     const photos = this.getItem();
-
     return photos.find(x => x.isEditMode);
+  }
+
+  public isExistingPhotoPull(): boolean {
+    return this.isExistingItem();
   }
 
   private isExistingItem(): boolean {
