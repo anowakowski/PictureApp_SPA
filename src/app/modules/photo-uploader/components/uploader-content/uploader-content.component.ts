@@ -60,16 +60,24 @@ export class UploaderContentComponent implements OnInit {
   private preparePhotoUploaderModel() {
     const fileItems = this.uploader.queue;
     this.photoUploaderModels = new Array<PhotoUploaderModel>();
+    let photoUploaderModel: PhotoUploaderModel;
 
     fileItems.forEach(fileItem => {
-      const photoUploaderModel = this.getPhotoModel(fileItem);
+
+      photoUploaderModel = this.localStorageService.getPhotoModel(fileItem.index);
+
+      if (photoUploaderModel === undefined || photoUploaderModel === null) {
+        photoUploaderModel = this.preparePhotoModel(fileItem);
+      }
+
       this.photoEditMode(fileItems, photoUploaderModel);
       this.photoUploaderModels.push(photoUploaderModel);
     });
+
     this.localStorageService.setPhotosToLocalStorage(this.photoUploaderModels);
   }
 
-  private getPhotoModel(fileItem: FileItem) {
+  private preparePhotoModel(fileItem: FileItem) {
     const photoUploaderModel = new PhotoUploaderModel();
     photoUploaderModel.index = fileItem.index;
     photoUploaderModel.photoTitle = fileItem.file.name;
