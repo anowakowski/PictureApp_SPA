@@ -25,7 +25,6 @@ export class UploadPhotoLocalStorageService {
     this.setItem(photos);
   }
 
-
   getPhotoModel(index: number): PhotoUploaderModel {
     const photos = this.getItem();
     if (photos != null) {
@@ -35,7 +34,6 @@ export class UploadPhotoLocalStorageService {
     return null;
   }
 
-
   getCurrentChosedPhoto(): PhotoUploaderModel {
     const photos = this.getItem();
     return photos.find(x => x.isEditMode);
@@ -43,6 +41,14 @@ export class UploadPhotoLocalStorageService {
 
   isExistingPhotoPull(): boolean {
     return this.isExistingItem();
+  }
+
+  initializePhoto() {
+    if (this.isExistingItem()) {
+      this.removeItem();
+    }
+
+    this.setItem(new Array<PhotoUploaderModel>());
   }
 
   private isExistingItem(): boolean {

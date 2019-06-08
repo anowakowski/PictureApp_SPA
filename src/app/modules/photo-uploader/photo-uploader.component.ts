@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UploadPhotoLocalStorageService } from './services/upload-photo-local-storage.service';
 
 @Component({
   selector: 'app-photo-uploader',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PhotoUploaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private localStorageService: UploadPhotoLocalStorageService ) { }
 
   ngOnInit() {
+    this.localStorageService.initializePhoto();
   }
 
 }
