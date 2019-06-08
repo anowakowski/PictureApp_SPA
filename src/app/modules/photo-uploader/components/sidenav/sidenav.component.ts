@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, AfterViewChecked, ChangeDetectorRef} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
@@ -33,7 +33,8 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
   constructor(
     private photoEventService: PhotoEventService,
     private formBuilder: FormBuilder,
-    private localStorageService: UploadPhotoLocalStorageService) { }
+    private localStorageService: UploadPhotoLocalStorageService,
+    private cdr: ChangeDetectorRef) { }
 
   private mediaMatcher: MediaQueryList =
   matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`);
@@ -42,6 +43,7 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
     this.getCurrentChosedPhotoFromLocalStorage();
     this.createSidenavPhotoForm();
     this.preparePhotoTags();
+    this.tags = new Array<string>();
   }
 
   ngAfterViewChecked() {
@@ -67,8 +69,8 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
   updateInfoAboutCurrentPhotoToUpload(photo: PhotoUploaderModel) {
     this.sidenavPhotoForm.controls['photoTitle'].setValue(photo.photoTitle);
     this.sidenavPhotoForm.controls['photoDescription'].setValue(photo.photoDescription);
-    this.preparePhotoTags();
     this.currentPhoto = photo;
+    this.preparePhotoTags();
   }
 
   checkIfFieldIsValid(fieldName: string): boolean {
@@ -119,8 +121,12 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
   }
 
   private syncChanges() {
-    this.localStorageService.updatePhoto(this.currentPhoto);
+    this.updateCurrentPhotoOnLocalStorage();
     this.photoEventService.emitPhotoModelUploaderToCardFromSidenav(this.currentPhoto);
+  }
+
+  private updateCurrentPhotoOnLocalStorage() {
+    this.localStorageService.updatePhoto(this.currentPhoto);
   }
 
   private getCurrentChosedPhotoFromLocalStorage() {
@@ -139,7 +145,7 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
 
   private updateCurrentPhotoTags() {
     this.currentPhoto.photoTags = this.tags;
-    this.syncChanges();
+    this.updateCurrentPhotoOnLocalStorage();
   }
 
   private preparePhotoTags() {
@@ -148,16 +154,17 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
     } else {
       this.tags = new Array<string>();
     }
+
+    this.cdr.detectChanges();
   }
 
   private checkIfTagsFromCurrentPhotoAreNotNull(): boolean {
     if (this.currentPhoto === undefined || this.currentPhoto === null) {
       return false;
     }
-
-    if (this.currentPhoto.photoTags !== undefined) {
-      return true;
+    if (this.currentPhoto.photoTags === undefined) {
+      return false;
     }
-    return false;
+    return true;
   }
 }
