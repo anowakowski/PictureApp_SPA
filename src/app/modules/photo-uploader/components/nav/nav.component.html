@@ -4,6 +4,9 @@
           VeilEye.com         
           <mat-icon>camera</mat-icon>
       </button>
+      <button *ngIf="shoudShowUploadedBtn" mat-raised-button color="warn">
+          upload {{photosCount}} photo
+      </button>
   </span>
   <span class="nav-spacer"></span>
   <button mat-button (click)="cancelUploader()"> 

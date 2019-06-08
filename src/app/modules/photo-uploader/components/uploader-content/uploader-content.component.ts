@@ -41,7 +41,9 @@ export class UploaderContentComponent implements OnInit {
 
   onChangePreviewImages() {
     this.photoHasDroped = true;
+
     this.photoEventService.emitPhotoUploaded(true);
+    this.photoEventService.emitPhotoUploaderCountOfAcctualPhotos(this.uploader.queue.length);
 
     this.prepareIndexForPhotoUploader();
     this.preparePhotoUploaderModel();

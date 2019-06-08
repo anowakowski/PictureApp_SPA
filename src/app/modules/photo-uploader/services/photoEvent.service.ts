@@ -8,12 +8,13 @@ import { Photo } from 'src/app/models/photo';
 })
 export class PhotoEventService {
 
+  constructor() { }
+
   photoUploaded: EventEmitter<boolean> = new EventEmitter();
   photoUploaderModelEmiter: EventEmitter<PhotoUploaderModel> = new EventEmitter();
   photoUploaderModelToCardFromSidenavEmiter: EventEmitter<PhotoUploaderModel> = new EventEmitter();
   photoUploaderModelChangeEditModeEmiter: EventEmitter<void> = new EventEmitter();
-
-  constructor() { }
+  photoUploaderCountOfAcctualPhotosEmiter: EventEmitter<number> = new EventEmitter();
 
   emitPhotoUploaded(isPhotoUploaded) {
     this.photoUploaded.emit(isPhotoUploaded);
@@ -45,5 +46,13 @@ export class PhotoEventService {
 
   getPhotoUploaderModelChangeEditMode() {
     return this.photoUploaderModelChangeEditModeEmiter;
+  }
+
+  emitPhotoUploaderCountOfAcctualPhotos(photosCount: number) {
+    this.photoUploaderCountOfAcctualPhotosEmiter.emit(photosCount);
+  }
+
+  getPhotoUploaderCountOfAcctualPhotos() {
+    return this.photoUploaderCountOfAcctualPhotosEmiter;
   }
 }
