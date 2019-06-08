@@ -41,7 +41,7 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
   ngOnInit() {
     this.getCurrentChosedPhotoFromLocalStorage();
     this.createSidenavPhotoForm();
-    this.tags = new Array<string>();
+    this.preparePhotoTags();
   }
 
   ngAfterViewChecked() {
@@ -67,6 +67,7 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
   updateInfoAboutCurrentPhotoToUpload(photo: PhotoUploaderModel) {
     this.sidenavPhotoForm.controls['photoTitle'].setValue(photo.photoTitle);
     this.sidenavPhotoForm.controls['photoDescription'].setValue(photo.photoDescription);
+    this.preparePhotoTags();
     this.currentPhoto = photo;
   }
 
@@ -88,6 +89,7 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
 
     if ((value || '').trim()) {
       this.tags.push(value.trim());
+      this.updateCurrentPhotoTags();
     }
 
     if (input) {
@@ -100,6 +102,7 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
 
     if (index >= 0) {
       this.tags.splice(index, 1);
+      this.updateCurrentPhotoTags();
     }
   }
 
@@ -132,5 +135,29 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
     }
 
     return null;
+  }
+
+  private updateCurrentPhotoTags() {
+    this.currentPhoto.photoTags = this.tags;
+    this.syncChanges();
+  }
+
+  private preparePhotoTags() {
+    if (this.checkIfTagsFromCurrentPhotoAreNotNull() && this.currentPhoto.photoTags.length > 0 ) {
+      this.tags = this.currentPhoto.photoTags;
+    } else {
+      this.tags = new Array<string>();
+    }
+  }
+
+  private checkIfTagsFromCurrentPhotoAreNotNull(): boolean {
+    if (this.currentPhoto === undefined || this.currentPhoto === null) {
+      return false;
+    }
+
+    if (this.currentPhoto.photoTags !== undefined) {
+      return true;
+    }
+    return false;
   }
 }
