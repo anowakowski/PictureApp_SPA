@@ -21,7 +21,7 @@ export class UploaderContentComponent implements OnInit {
   public photoUploaderRemoveAllPhotosSubscription: any;
 
   public hasBaseDropZoneOver = false;
-  public photoHasDroped = false;
+  public photoHasUploaded = false;
 
   constructor(private photoEventService: PhotoEventService, private localStorageService: UploadPhotoLocalStorageService) { }
 
@@ -43,7 +43,7 @@ export class UploaderContentComponent implements OnInit {
   }
 
   onChangePreviewImages() {
-    this.photoHasDroped = true;
+    this.photoHasUploaded = true;
 
     this.photoEventService.emitPhotoUploaded(true);
     this.photoEventService.emitPhotoUploaderCountOfAcctualPhotos(this.uploader.queue.length);
@@ -109,5 +109,7 @@ export class UploaderContentComponent implements OnInit {
   private removeAllPhotos() {
     this.uploader.clearQueue();
     this.localStorageService.clearStorage();
+    this.photoHasUploaded = false;
+    this.photoEventService.emitPhotoUploaded(false);
   }
 }
