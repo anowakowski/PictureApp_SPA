@@ -6,6 +6,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { PhotoUploaderModel } from 'src/app/models/photo-uploader-model';
 import { UploadPhotoLocalStorageService } from '../../services/upload-photo-local-storage.service';
 import { PhotoEventService } from '../../services/photoEvent.service';
+import { WarrningDialogComponent } from 'src/app/modules/photo-confirmation-panels/components/warrning-dialog/warrning-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-uploader-content',
@@ -23,7 +25,10 @@ export class UploaderContentComponent implements OnInit {
   public hasBaseDropZoneOver = false;
   public photoHasUploaded = false;
 
-  constructor(private photoEventService: PhotoEventService, private localStorageService: UploadPhotoLocalStorageService) { }
+  constructor(
+    private photoEventService: PhotoEventService,
+    private localStorageService: UploadPhotoLocalStorageService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.photoUploaderModels = new Array<PhotoUploaderModel>();
@@ -90,11 +95,35 @@ export class UploaderContentComponent implements OnInit {
   }
 
   private photoEditMode(fileItems: FileItem[], photoUploaderModel: PhotoUploaderModel) {
-    if (fileItems.length === photoUploaderModel.index) { // last photo is always current
+    if (this.isTheLastAddedFiles(fileItems, photoUploaderModel)) {
+      this.checkIfAddingPhotoIsNotCurrentlyExisting(fileItems, photoUploaderModel);
       photoUploaderModel.isEditMode = true;
     } else {
       photoUploaderModel.isEditMode = false;
     }
+  }
+
+  private checkIfAddingPhotoIsNotCurrentlyExisting(fileItems: FileItem[], photoUploaderModel: PhotoUploaderModel) {
+
+    const lastCurrentPhoto = fileItems.find(x => x.index === photoUploaderModel.index);
+    const foundFiles = fileItems.filter(x => x.file.name === lastCurrentPhoto.file.name && x.file.size === lastCurrentPhoto.file.size);
+    const isTheSameFilesWasUploaded = foundFiles.length >= 2;
+
+    if (isTheSameFilesWasUploaded) {
+      this.openWarrningDialog();
+      this.uploader.removeFromQueue(lastCurrentPhoto);
+    }
+  }
+
+  private isTheLastAddedFiles(fileItems: FileItem[], photoUploaderModel: PhotoUploaderModel) {
+    return fileItems.length === photoUploaderModel.index;
+  }
+
+  private openWarrningDialog() {
+    const dialogRef = this.dialog.open(WarrningDialogComponent, {
+      data: {text: 'this photo has already been added'}
+    });
+    dialogRef.afterClosed().subscribe(isConfirmPhotoRemoveResult => {});
   }
 
   private prepareIndexForPhotoUploader() {

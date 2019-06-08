@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DeleteConfirmationDialogComponent } from './components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { MaterialModule } from '../shared/material/material.module';
+import { WarrningDialogComponent } from './components/warrning-dialog/warrning-dialog.component';
 
 @NgModule({
   imports: [
@@ -9,12 +10,16 @@ import { MaterialModule } from '../shared/material/material.module';
     MaterialModule
   ],
   declarations: [
-    DeleteConfirmationDialogComponent],
+    DeleteConfirmationDialogComponent,
+    WarrningDialogComponent
+  ],
   exports: [
-    DeleteConfirmationDialogComponent
+    DeleteConfirmationDialogComponent,
+    WarrningDialogComponent
   ],
   entryComponents: [
-    DeleteConfirmationDialogComponent
+    DeleteConfirmationDialogComponent,
+    WarrningDialogComponent
   ]
 
 })
