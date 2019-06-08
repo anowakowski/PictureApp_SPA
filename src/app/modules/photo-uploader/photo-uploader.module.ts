@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UploadPhotoLocalStorageService } from './services/upload-photo-local-storage.service';
 // tslint:disable-next-line:max-line-length
 import { DeleteConfirmationDialogComponent } from '../photo-confirmation-panels/components/delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { PhotoConfirmationPanelsModule } from '../photo-confirmation-panels/photo-confirmation-panels.module';
 
 
 const routes: Routes = [
@@ -33,11 +34,7 @@ const routes: Routes = [
     NavComponent,
     SidenavComponent,
     UploaderContentComponent,
-    UploaderContentCardComponent,
-    DeleteConfirmationDialogComponent
-  ],
-  entryComponents: [
-    DeleteConfirmationDialogComponent
+    UploaderContentCardComponent
   ],
   imports: [
     CommonModule,
@@ -47,6 +44,7 @@ const routes: Routes = [
     FileUploadModule,
     FormsModule,
     ReactiveFormsModule,
+    PhotoConfirmationPanelsModule,
     RouterModule.forChild(routes)
   ],
   providers: [

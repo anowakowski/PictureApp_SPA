@@ -22,8 +22,7 @@ import { SidenavUserprofileCardComponent } from './components/sidenav/components
 import { SidenavUserprofileChartComponent } from './components/sidenav/components/sidenav-userprofile-chart/sidenav-userprofile-chart.component';
 import { EditUserPhotosComponent } from './components/edit-userProfile/components/edit-user-photos/edit-user-photos.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// tslint:disable-next-line:max-line-length
-import { EditUserprofileConfirmationDialogComponent } from './components/edit-userProfile/components/edit-userprofile-confirmation-dialog/edit-userprofile-confirmation-dialog.component';
+
 import { PhotoDetailDialogComponent } from './components/photo-explore/components/photoDetail-dialog/photoDetail-dialog.component';
 import { PhotoCardComponent } from './components/photo-explore/components/photo-card/photo-card.component';
 // tslint:disable-next-line:max-line-length
@@ -38,6 +37,9 @@ import { PhotoUploaderStepperComponent } from './components/photo-uploader-dialo
 import { PhotoUploaderAddphotoFirststepComponent } from './components/photo-uploader-dialog/components/photo-uploader-addphoto-firststep/photo-uploader-addphoto-firststep.component';
 // tslint:disable-next-line:max-line-length
 import { PhotoUploaderTagsDescPreviewSecondstepComponent } from './components/photo-uploader-dialog/components/photo-uploader-tags-desc-preview-secondstep/photo-uploader-tags-desc-preview-secondstep.component';
+// tslint:disable-next-line:max-line-length
+import { DeleteConfirmationDialogComponent } from '../photo-confirmation-panels/components/delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { PhotoConfirmationPanelsModule } from '../photo-confirmation-panels/photo-confirmation-panels.module';
 
 const routes: Routes = [
   { path: '',
@@ -60,7 +62,6 @@ const routes: Routes = [
     SidenavComponent,
     NavComponent,
     PhotoDetailDialogComponent,
-    EditUserprofileConfirmationDialogComponent,
     EditUserProfileComponent,
     SidenavUserprofileCardComponent,
     SidenavUserprofileChartComponent,
@@ -74,9 +75,8 @@ const routes: Routes = [
   ],
   entryComponents: [
     PhotoDetailDialogComponent,
-    EditUserprofileConfirmationDialogComponent,
     PhotoCommentButtomSheetComponent,
-    PhotoUploaderDialogComponent
+    PhotoUploaderDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -87,6 +87,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     FileUploadModule,
+    PhotoConfirmationPanelsModule,
     RouterModule.forChild(routes)
   ],
   providers: [

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PhotoConfirmationPanelsComponent } from './photo-confirmation-panels.component';
 import { DeleteConfirmationDialogComponent } from './components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { MaterialModule } from '../shared/material/material.module';
 
@@ -9,9 +8,14 @@ import { MaterialModule } from '../shared/material/material.module';
     CommonModule,
     MaterialModule
   ],
+  declarations: [
+    DeleteConfirmationDialogComponent],
   exports: [
     DeleteConfirmationDialogComponent
   ],
-  declarations: [PhotoConfirmationPanelsComponent]
+  entryComponents: [
+    DeleteConfirmationDialogComponent
+  ]
+
 })
 export class PhotoConfirmationPanelsModule { }
