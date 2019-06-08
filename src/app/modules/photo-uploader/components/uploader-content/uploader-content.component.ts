@@ -18,6 +18,7 @@ export class UploaderContentComponent implements OnInit {
   baseUrl = environment.apiUrl;
   uploadPhotoForm: FormGroup;
   photoUploaderModels: PhotoUploaderModel[];
+  public photoUploaderRemoveAllPhotosSubscription: any;
 
   public hasBaseDropZoneOver = false;
   public photoHasDroped = false;
@@ -27,6 +28,8 @@ export class UploaderContentComponent implements OnInit {
   ngOnInit() {
     this.photoUploaderModels = new Array<PhotoUploaderModel>();
     this.initUploader();
+    this.photoUploaderRemoveAllPhotosSubscription = this.photoEventService.getPhotoUploaderRemoveAllPhotos()
+      .subscribe(() => { this.removeAllPhotos(); });
   }
 
   initUploader() {
@@ -101,5 +104,10 @@ export class UploaderContentComponent implements OnInit {
       fileItem.index = index;
       index++;
     });
+  }
+
+  private removeAllPhotos() {
+    this.uploader.clearQueue();
+    this.localStorageService.clearStorage();
   }
 }
