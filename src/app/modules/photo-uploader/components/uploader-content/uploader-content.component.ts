@@ -85,6 +85,7 @@ export class UploaderContentComponent implements OnInit {
     });
 
     this.localStorageService.setPhotosToLocalStorage(this.photoUploaderModels);
+    this.photoEventService.emitPhotoUploaderCountOfAcctualPhotos(this.uploader.queue.length);
   }
 
   private preparePhotoModel(fileItem: FileItem) {
