@@ -80,8 +80,7 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
   createSidenavPhotoForm() {
     this.sidenavPhotoForm = this.formBuilder.group({
       photoTitle: [this.getPhotoTitle()],
-      photoDescription: [''],
-      photoTags: ['']
+      photoDescription: ['']
     });
   }
 
