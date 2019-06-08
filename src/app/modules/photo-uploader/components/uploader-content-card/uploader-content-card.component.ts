@@ -89,7 +89,9 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
   }
 
   openDeleteConfirmationDialog() {
-    const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {});
+    const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
+      data: {photoTitle: this.photoUploaderModel.photoTitle}
+    });
     dialogRef.afterClosed().subscribe(result => {});
   }
 
