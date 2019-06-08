@@ -4,6 +4,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PhotoUploaderModel } from 'src/app/models/photo-uploader-model';
 import { UploadPhotoLocalStorageService } from '../../services/upload-photo-local-storage.service';
 import { PhotoEventService } from '../../services/photoEvent.service';
+import { MatDialog } from '@angular/material';
+// tslint:disable-next-line:max-line-length
+import { DeleteConfirmationDialogComponent } from 'src/app/modules/photo-confirmation-panels/components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 
 @Component({
   selector: 'app-uploader-content-card',
@@ -26,7 +29,8 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
     private sanitizer: DomSanitizer,
     private formBuilder: FormBuilder,
     private localStorageService: UploadPhotoLocalStorageService,
-    private photoEventService: PhotoEventService) { }
+    private photoEventService: PhotoEventService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.prepareFilePreview();
@@ -34,7 +38,6 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
     this.propagateCurrentChosedPhoto();
     this.subscireEvents();
   }
-
 
   ngOnDestroy() {
     this.photoUploaderModelSubscription.unsubscribe();
@@ -83,6 +86,11 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
   changePhotoDescription(event) {
     this.photoUploaderModel.photoDescription = event.currentTarget.value;
     this.syncPhotoChanges();
+  }
+
+  openDeleteConfirmationDialog() {
+    const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {});
+    dialogRef.afterClosed().subscribe(result => {});
   }
 
   private syncPhotoChanges() {

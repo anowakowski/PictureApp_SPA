@@ -12,6 +12,8 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { UploaderContentCardComponent } from './components/uploader-content-card/uploader-content-card.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UploadPhotoLocalStorageService } from './services/upload-photo-local-storage.service';
+// tslint:disable-next-line:max-line-length
+import { DeleteConfirmationDialogComponent } from '../photo-confirmation-panels/components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 
 
 const routes: Routes = [
@@ -31,7 +33,11 @@ const routes: Routes = [
     NavComponent,
     SidenavComponent,
     UploaderContentComponent,
-    UploaderContentCardComponent
+    UploaderContentCardComponent,
+    DeleteConfirmationDialogComponent
+  ],
+  entryComponents: [
+    DeleteConfirmationDialogComponent
   ],
   imports: [
     CommonModule,
