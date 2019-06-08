@@ -51,6 +51,10 @@ export class UploadPhotoLocalStorageService {
     this.setItem(new Array<PhotoUploaderModel>());
   }
 
+  clearStorage() {
+    this.removeItem();
+  }
+
   private isExistingItem(): boolean {
     return this.getItem() != null ? true : false;
   }
