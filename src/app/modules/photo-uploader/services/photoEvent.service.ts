@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { PhotoUploaderModel } from 'src/app/models/photo-uploader-model';
 import { Photo } from 'src/app/models/photo';
+import { FileItem } from 'ng2-file-upload';
 
 
 @Injectable({
@@ -10,12 +11,13 @@ export class PhotoEventService {
 
   constructor() { }
 
-  photoUploaded: EventEmitter<boolean> = new EventEmitter();
-  photoUploaderModelEmiter: EventEmitter<PhotoUploaderModel> = new EventEmitter();
-  photoUploaderModelToCardFromSidenavEmiter: EventEmitter<PhotoUploaderModel> = new EventEmitter();
-  photoUploaderModelChangeEditModeEmiter: EventEmitter<void> = new EventEmitter();
-  photoUploaderCountOfAcctualPhotosEmiter: EventEmitter<number> = new EventEmitter();
-  photoUploaderRemoveAllPhotosEmiter: EventEmitter<void> = new EventEmitter();
+  private photoUploaded: EventEmitter<boolean> = new EventEmitter();
+  private photoUploaderModelEmiter: EventEmitter<PhotoUploaderModel> = new EventEmitter();
+  private photoUploaderModelToCardFromSidenavEmiter: EventEmitter<PhotoUploaderModel> = new EventEmitter();
+  private photoUploaderModelChangeEditModeEmiter: EventEmitter<void> = new EventEmitter();
+  private photoUploaderCountOfAcctualPhotosEmiter: EventEmitter<number> = new EventEmitter();
+  private photoUploaderRemoveAllPhotosEmiter: EventEmitter<void> = new EventEmitter();
+  private photoUploaderRemoveChosenPhotoEmiter: EventEmitter<FileItem> = new EventEmitter();
 
   emitPhotoUploaded(isPhotoUploaded) {
     this.photoUploaded.emit(isPhotoUploaded);
@@ -63,5 +65,13 @@ export class PhotoEventService {
 
   getPhotoUploaderRemoveAllPhotos() {
     return this.photoUploaderRemoveAllPhotosEmiter;
+  }
+
+  emitphotoUploaderRemoveChosenPhoto(fileItem: FileItem) {
+    this.photoUploaderRemoveChosenPhotoEmiter.emit(fileItem);
+  }
+
+  getPhotoUploaderRemoveChosenPhoto() {
+    return this.photoUploaderRemoveChosenPhotoEmiter;
   }
 }

@@ -21,6 +21,7 @@ export class UploaderContentComponent implements OnInit {
   uploadPhotoForm: FormGroup;
   photoUploaderModels: PhotoUploaderModel[];
   public photoUploaderRemoveAllPhotosSubscription: any;
+  public photoUploaderRemoveChosenPhotoSubscription: any;
 
   public hasBaseDropZoneOver = false;
   public photoHasUploaded = false;
@@ -35,6 +36,8 @@ export class UploaderContentComponent implements OnInit {
     this.initUploader();
     this.photoUploaderRemoveAllPhotosSubscription = this.photoEventService.getPhotoUploaderRemoveAllPhotos()
       .subscribe(() => { this.removeAllPhotos(); });
+    this.photoUploaderRemoveChosenPhotoSubscription = this.photoEventService.getPhotoUploaderRemoveChosenPhoto()
+      .subscribe(fileToRemove => { this.removePhoto(fileToRemove); });
   }
 
   initUploader() {
@@ -141,5 +144,17 @@ export class UploaderContentComponent implements OnInit {
     this.localStorageService.clearStorage();
     this.photoHasUploaded = false;
     this.photoEventService.emitPhotoUploaded(false);
+  }
+
+  private removePhoto(fileItemToRemove: FileItem) {
+    this.uploader.removeFromQueue(fileItemToRemove);
+    const photoModel = this.localStorageService.getPhotoModel(fileItemToRemove.index);
+    this.localStorageService.removeChosenPhoto(photoModel);
+
+    if (this.uploader.queue.length < 1) {
+      this.localStorageService.clearStorage();
+      this.photoHasUploaded = false;
+      this.photoEventService.emitPhotoUploaded(false);
+    }
   }
 }

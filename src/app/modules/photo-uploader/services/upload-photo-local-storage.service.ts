@@ -17,11 +17,16 @@ export class UploadPhotoLocalStorageService {
 
   updatePhoto(photoUploaderModel: PhotoUploaderModel) {
     const photos: Array<PhotoUploaderModel> = this.getItem();
-
-    const findedPhotoToRermove = photos.find(x => x.index === photoUploaderModel.index);
-    this.removeFromArray(findedPhotoToRermove, photos);
+    this.removeChosenPhotoFromArray(photos, photoUploaderModel);
 
     photos.push(photoUploaderModel);
+    this.setItem(photos);
+  }
+
+  removeChosenPhoto(photoUploaderModel: PhotoUploaderModel) {
+    const photos: Array<PhotoUploaderModel> = this.getItem();
+    this.removeChosenPhotoFromArray(photos, photoUploaderModel);
+
     this.setItem(photos);
   }
 
@@ -53,6 +58,11 @@ export class UploadPhotoLocalStorageService {
 
   clearStorage() {
     this.removeItem();
+  }
+
+  private removeChosenPhotoFromArray(photos: PhotoUploaderModel[], photoUploaderModel: PhotoUploaderModel) {
+    const findedPhotoToRermove = photos.find(x => x.index === photoUploaderModel.index);
+    this.removeFromArray(findedPhotoToRermove, photos);
   }
 
   private isExistingItem(): boolean {

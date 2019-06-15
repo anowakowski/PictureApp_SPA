@@ -7,6 +7,7 @@ import { PhotoEventService } from '../../services/photoEvent.service';
 import { MatDialog } from '@angular/material';
 // tslint:disable-next-line:max-line-length
 import { DeleteConfirmationDialogComponent } from 'src/app/modules/photo-confirmation-panels/components/delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { FileItem } from 'ng2-file-upload';
 
 @Component({
   selector: 'app-uploader-content-card',
@@ -15,7 +16,7 @@ import { DeleteConfirmationDialogComponent } from 'src/app/modules/photo-confirm
 })
 export class UploaderContentCardComponent implements OnInit, OnDestroy {
 
-  @Input() fileInput: File;
+  @Input() fileItem: FileItem;
   @Input() photoUploaderModel: PhotoUploaderModel;
 
   public photoUploaderModelSubscription: any;
@@ -55,12 +56,12 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
   }
 
   prepareFilePreview() {
-    this.filePreviewPath = this.getSafeUrl(this.fileInput);
+    this.filePreviewPath = this.getSafeUrl(this.fileItem._file);
   }
 
   createUploadPhotoForm() {
     this.uploadPhotoForm = this.formBuilder.group({
-      photoTitle: [this.fileInput.name],
+      photoTitle: [this.fileItem._file.name],
       photoSubtitle: [''],
       photoDescription: ['']
     });
@@ -92,7 +93,11 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
       data: {photoTitle: this.photoUploaderModel.photoTitle}
     });
-    dialogRef.afterClosed().subscribe(result => {});
+    dialogRef.afterClosed().subscribe(isConfirmPhotoRemove => {
+      if (isConfirmPhotoRemove) {
+        this.photoEventService.emitphotoUploaderRemoveChosenPhoto(this.fileItem);
+      }
+    });
   }
 
   private syncPhotoChanges() {
