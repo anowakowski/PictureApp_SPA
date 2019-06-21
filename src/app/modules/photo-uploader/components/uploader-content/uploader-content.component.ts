@@ -8,6 +8,7 @@ import { UploadPhotoLocalStorageService } from '../../services/upload-photo-loca
 import { PhotoEventService } from '../../services/photoEvent.service';
 import { WarrningDialogComponent } from 'src/app/modules/photo-confirmation-panels/components/warrning-dialog/warrning-dialog.component';
 import { MatDialog } from '@angular/material';
+import { UploadPhotoFileItemService } from '../../services/upload-photo-file-item.service';
 
 @Component({
   selector: 'app-uploader-content',
@@ -30,12 +31,19 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
   constructor(
     private photoEventService: PhotoEventService,
     private localStorageService: UploadPhotoLocalStorageService,
+    private fileItemService: UploadPhotoFileItemService,
     private dialog: MatDialog) { }
 
   ngOnInit() {
     this.photoUploaderModels = new Array<PhotoUploaderModel>();
     this.initUploader();
     this.subscribeEvents();
+  }
+
+  ngOnDestroy(): void {
+    this.photoUploaderRemoveAllPhotosSubscription.unsubscribe();
+    this.photoUploaderRemoveChosenPhotoSubscription.unsubscribe();
+    this.photoUploaderPropagateNewPhotosSubscription.unsubscribe();
   }
 
   initUploader() {
@@ -52,16 +60,8 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
     this.propagateNewPhotosProcessing();
   }
 
-  ngOnDestroy(): void {
-    this.photoUploaderRemoveAllPhotosSubscription.unsubscribe();
-    this.photoUploaderRemoveChosenPhotoSubscription.unsubscribe();
-    this.photoUploaderPropagateNewPhotosSubscription.unsubscribe();
-  }
-
   GetPhotoUploaderModel(fileItem: FileItem): PhotoUploaderModel {
-    const photoUploaderModel = this.photoUploaderModels.find(x => x.index === fileItem.index);
-
-    return photoUploaderModel;
+    return this.fileItemService.GetPhotoUploaderModel(fileItem, this.photoUploaderModels);
   }
 
   fileOverBase(e: any): void {
@@ -88,7 +88,7 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
     this.photoHasUploaded = true;
     this.photoEventService.emitPhotoUploaded(true);
     this.photoEventService.emitPhotoUploaderCountOfAcctualPhotos(this.uploader.queue.length);
-    this.prepareIndexForPhotoUploader();
+    this.fileItemService.prepareIndexForPhotoUploader(this.uploader);
     this.preparePhotoUploaderModel();
   }
 
@@ -121,7 +121,7 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
   }
 
   private photoEditMode(fileItems: FileItem[], photoUploaderModel: PhotoUploaderModel) {
-    if (this.isTheLastAddedFiles(fileItems, photoUploaderModel)) {
+    if (this.fileItemService.isTheLastAddedFiles(fileItems, photoUploaderModel)) {
       this.checkIfAddingPhotoIsNotCurrentlyExisting(fileItems, photoUploaderModel);
       photoUploaderModel.isEditMode = true;
     } else {
@@ -130,19 +130,13 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
   }
 
   private checkIfAddingPhotoIsNotCurrentlyExisting(fileItems: FileItem[], photoUploaderModel: PhotoUploaderModel) {
+    const lastCurrentPhoto = this.fileItemService.getLastCurrentPhoto(fileItems, photoUploaderModel);
 
-    const lastCurrentPhoto = fileItems.find(x => x.index === photoUploaderModel.index);
-    const foundFiles = fileItems.filter(x => x.file.name === lastCurrentPhoto.file.name && x.file.size === lastCurrentPhoto.file.size);
-    const isTheSameFilesWasUploaded = foundFiles.length >= 2;
-
-    if (isTheSameFilesWasUploaded) {
+    // tslint:disable-next-line:max-line-length
+    if (this.fileItemService.checkIfAddingPhotoIsNotCurrentlyExistingInPhotoUploaderQueue(fileItems, photoUploaderModel, lastCurrentPhoto)) {
       this.openWarrningDialog();
       this.uploader.removeFromQueue(lastCurrentPhoto);
     }
-  }
-
-  private isTheLastAddedFiles(fileItems: FileItem[], photoUploaderModel: PhotoUploaderModel) {
-    return fileItems.length === photoUploaderModel.index;
   }
 
   private openWarrningDialog() {
@@ -150,15 +144,6 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
       data: {text: 'this photo has already been added'}
     });
     dialogRef.afterClosed().subscribe(isConfirmPhotoRemoveResult => {});
-  }
-
-  private prepareIndexForPhotoUploader() {
-    const fileItems = this.uploader.queue;
-    let index = 1;
-    fileItems.forEach(fileItem => {
-      fileItem.index = index;
-      index++;
-    });
   }
 
   private removeAllPhotos() {

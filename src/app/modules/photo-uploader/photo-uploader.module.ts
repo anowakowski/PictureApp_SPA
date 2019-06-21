@@ -15,6 +15,7 @@ import { UploadPhotoLocalStorageService } from './services/upload-photo-local-st
 // tslint:disable-next-line:max-line-length
 import { DeleteConfirmationDialogComponent } from '../photo-confirmation-panels/components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { PhotoConfirmationPanelsModule } from '../photo-confirmation-panels/photo-confirmation-panels.module';
+import { UploadPhotoFileItemService } from './services/upload-photo-file-item.service';
 
 
 const routes: Routes = [
@@ -48,7 +49,8 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   providers: [
-    UploadPhotoLocalStorageService
+    UploadPhotoLocalStorageService,
+    UploadPhotoFileItemService
   ]
 })
 export class PhotoUploaderModule { }
