@@ -17,11 +17,6 @@
   </div>
 </div>
 
-<label style="margin-top: 30px;" for="file-upload" class="photos-file-upload">
-  Select photos
-</label>
-<input id="file-upload" class="photos-file-upload" type="file" ng2FileSelect [uploader]="uploader" (change)="onChangePreviewImages()" multiple  />
-
 <div *ngIf="photoHasUploaded" style="margin-top: 10px;">
   <mat-divider></mat-divider>
 </div>

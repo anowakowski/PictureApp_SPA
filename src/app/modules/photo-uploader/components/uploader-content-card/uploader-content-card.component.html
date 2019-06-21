@@ -1,37 +1,40 @@
-<div style="margin-top: 30px;">
-  <form [formGroup]="uploadPhotoForm">
-  <mat-card class="uploader-photos-card" [ngClass]="{'uploader-photos-card-current': photoUploaderModel.isEditMode}" (click)="choosePhoto()">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>
-          <mat-form-field class="uploader-photos-card-inputs">
-              <input
+<div *ngIf="photoUploaderModel">
+  <div style="margin-top: 30px;">
+    <form [formGroup]="uploadPhotoForm">
+    <mat-card class="uploader-photos-card" [ngClass]="{'uploader-photos-card-current': photoUploaderModel.isEditMode}" (click)="choosePhoto()">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>
+            <mat-form-field class="uploader-photos-card-inputs">
+                <input
+                  matInput
+                  placeholder="add title to Photo"
+                  formControlName="photoTitle"
+                  (change)="changePhotoTitle($event)"
+                />
+             </mat-form-field>
+        </mat-card-title>
+      </mat-card-header>
+      <img mat-card-image [src]="filePreviewPath" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+          <mat-form-field class="uploader-photos-card-textarea">
+              <textarea
                 matInput
-                placeholder="add title to Photo"
-                formControlName="photoTitle"
-                (change)="changePhotoTitle($event)"
-              />
-           </mat-form-field>
-      </mat-card-title>
-    </mat-card-header>
-    <img mat-card-image [src]="filePreviewPath" alt="Photo of a Shiba Inu">
-    <mat-card-content>
-        <mat-form-field class="uploader-photos-card-textarea">
-            <textarea
-              matInput
-              placeholder="add photo description"
-              formControlName="photoDescription"
-              rows="1"
-              (change)="changePhotoDescription($event)"
-            ></textarea>
-        </mat-form-field> 
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-icon-button (click)="openDeleteConfirmationDialog()">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </mat-card-actions>
-  </mat-card>
-
-</form>
+                placeholder="add photo description"
+                formControlName="photoDescription"
+                rows="1"
+                (change)="changePhotoDescription($event)"
+              ></textarea>
+          </mat-form-field> 
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-icon-button (click)="openDeleteConfirmationDialog()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  
+  </form>
+  </div>
+  
 </div>

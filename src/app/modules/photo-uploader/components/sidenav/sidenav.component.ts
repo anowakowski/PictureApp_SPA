@@ -67,10 +67,12 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
   }
 
   updateInfoAboutCurrentPhotoToUpload(photo: PhotoUploaderModel) {
-    this.sidenavPhotoForm.controls['photoTitle'].setValue(photo.photoTitle);
-    this.sidenavPhotoForm.controls['photoDescription'].setValue(photo.photoDescription);
-    this.currentPhoto = photo;
-    this.preparePhotoTags();
+    if (photo !== undefined && photo !== null) {
+      this.sidenavPhotoForm.controls['photoTitle'].setValue(photo.photoTitle);
+      this.sidenavPhotoForm.controls['photoDescription'].setValue(photo.photoDescription);
+      this.currentPhoto = photo;
+      this.preparePhotoTags();
+    }
   }
 
   checkIfFieldIsValid(fieldName: string): boolean {

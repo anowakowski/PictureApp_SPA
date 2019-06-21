@@ -3,7 +3,6 @@ import { PhotoUploaderModel } from 'src/app/models/photo-uploader-model';
 import { Photo } from 'src/app/models/photo';
 import { FileItem } from 'ng2-file-upload';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -18,6 +17,7 @@ export class PhotoEventService {
   private photoUploaderCountOfAcctualPhotosEmiter: EventEmitter<number> = new EventEmitter();
   private photoUploaderRemoveAllPhotosEmiter: EventEmitter<void> = new EventEmitter();
   private photoUploaderRemoveChosenPhotoEmiter: EventEmitter<FileItem> = new EventEmitter();
+  private photoUploaderPropagateNewPhotosEmiter: EventEmitter<FileItem[]> = new EventEmitter();
 
   emitPhotoUploaded(isPhotoUploaded) {
     this.photoUploaded.emit(isPhotoUploaded);
@@ -73,5 +73,13 @@ export class PhotoEventService {
 
   getPhotoUploaderRemoveChosenPhoto() {
     return this.photoUploaderRemoveChosenPhotoEmiter;
+  }
+
+  emitPhotoUploaderPropagateNewPhotos(FileItems: FileItem[]) {
+    this.photoUploaderPropagateNewPhotosEmiter.emit(FileItems);
+  }
+
+  getPhotoUploaderPropagateNewPhotos() {
+    return this.photoUploaderPropagateNewPhotosEmiter;
   }
 }

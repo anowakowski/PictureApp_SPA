@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, OnDestroy } from '@angular/core';
 import { FileUploader, FileItem } from 'ng2-file-upload';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
@@ -14,7 +14,7 @@ import { MatDialog } from '@angular/material';
   templateUrl: './uploader-content.component.html',
   styleUrls: ['./uploader-content.component.scss']
 })
-export class UploaderContentComponent implements OnInit {
+export class UploaderContentComponent implements OnInit, OnDestroy {
 
   public uploader: FileUploader;
   baseUrl = environment.apiUrl;
@@ -22,6 +22,7 @@ export class UploaderContentComponent implements OnInit {
   photoUploaderModels: PhotoUploaderModel[];
   public photoUploaderRemoveAllPhotosSubscription: any;
   public photoUploaderRemoveChosenPhotoSubscription: any;
+  public photoUploaderPropagateNewPhotosSubscription: any;
 
   public hasBaseDropZoneOver = false;
   public photoHasUploaded = false;
@@ -34,10 +35,7 @@ export class UploaderContentComponent implements OnInit {
   ngOnInit() {
     this.photoUploaderModels = new Array<PhotoUploaderModel>();
     this.initUploader();
-    this.photoUploaderRemoveAllPhotosSubscription = this.photoEventService.getPhotoUploaderRemoveAllPhotos()
-      .subscribe(() => { this.removeAllPhotos(); });
-    this.photoUploaderRemoveChosenPhotoSubscription = this.photoEventService.getPhotoUploaderRemoveChosenPhoto()
-      .subscribe(fileToRemove => { this.removePhoto(fileToRemove); });
+    this.subscribeEvents();
   }
 
   initUploader() {
@@ -51,13 +49,13 @@ export class UploaderContentComponent implements OnInit {
   }
 
   onChangePreviewImages() {
-    this.photoHasUploaded = true;
+    this.propagateNewPhotosProcessing();
+  }
 
-    this.photoEventService.emitPhotoUploaded(true);
-    this.photoEventService.emitPhotoUploaderCountOfAcctualPhotos(this.uploader.queue.length);
-
-    this.prepareIndexForPhotoUploader();
-    this.preparePhotoUploaderModel();
+  ngOnDestroy(): void {
+    this.photoUploaderRemoveAllPhotosSubscription.unsubscribe();
+    this.photoUploaderRemoveChosenPhotoSubscription.unsubscribe();
+    this.photoUploaderPropagateNewPhotosSubscription.unsubscribe();
   }
 
   GetPhotoUploaderModel(fileItem: FileItem): PhotoUploaderModel {
@@ -68,6 +66,30 @@ export class UploaderContentComponent implements OnInit {
 
   fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
+  }
+
+  private subscribeEvents() {
+    this.photoUploaderRemoveAllPhotosSubscription = this.photoEventService.getPhotoUploaderRemoveAllPhotos()
+      .subscribe(() => { this.removeAllPhotos(); });
+    this.photoUploaderRemoveChosenPhotoSubscription = this.photoEventService.getPhotoUploaderRemoveChosenPhoto()
+      .subscribe(fileToRemove => { this.removePhoto(fileToRemove); });
+    this.photoUploaderPropagateNewPhotosSubscription = this.photoEventService.getPhotoUploaderPropagateNewPhotos()
+      .subscribe(fileItems => { this.updateUploaderQueue(fileItems); });
+  }
+
+  private updateUploaderQueue(fileItems: FileItem[]) {
+    if (fileItems.length > 0) {
+      [].push.apply(this.uploader.queue, fileItems);
+      this.propagateNewPhotosProcessing();
+    }
+  }
+
+  private propagateNewPhotosProcessing() {
+    this.photoHasUploaded = true;
+    this.photoEventService.emitPhotoUploaded(true);
+    this.photoEventService.emitPhotoUploaderCountOfAcctualPhotos(this.uploader.queue.length);
+    this.prepareIndexForPhotoUploader();
+    this.preparePhotoUploaderModel();
   }
 
   private preparePhotoUploaderModel() {

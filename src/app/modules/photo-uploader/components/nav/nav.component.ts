@@ -5,6 +5,7 @@ import { PhotoEventService } from '../../services/photoEvent.service';
 import { MatDialog } from '@angular/material';
 // tslint:disable-next-line:max-line-length
 import { DeleteConfirmationDialogComponent } from 'src/app/modules/photo-confirmation-panels/components/delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { FileUploader, FileItem } from 'ng2-file-upload';
 
 @Component({
   selector: 'app-nav',
@@ -17,6 +18,7 @@ export class NavComponent implements OnInit, OnDestroy {
   public photoUploaderCountOfAcctualPhotosSubscription: any;
   shoudShowUploadedBtn = false;
   photosCount: number;
+  public uploader: FileUploader;
 
   constructor(
     private router: Router,
@@ -26,10 +28,29 @@ export class NavComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscribeEvents();
+    this.initUploader();
   }
 
   ngOnDestroy(): void {
     this.photoUploaderModelSubscription.unsubscribe();
+    this.photoUploaderCountOfAcctualPhotosSubscription.unsubscribe();
+  }
+
+  initUploader() {
+    this.uploader = new FileUploader({
+      isHTML5: true,
+      allowedFileType: ['image'],
+      disableMultipart: true,
+      });
+  }
+
+  onChangePreviewImages() {
+    const fileItems: FileItem[] = this.uploader.queue;
+
+    if (fileItems.length > 0) {
+      this.photoEventService.emitPhotoUploaderPropagateNewPhotos(fileItems);
+      this.uploader.clearQueue();
+    }
   }
 
   setCountOfPhotos(photosCount: number) {

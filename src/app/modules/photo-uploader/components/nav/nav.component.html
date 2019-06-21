@@ -4,6 +4,10 @@
           VeilEye.com         
           <mat-icon>camera</mat-icon>
       </button>
+      <label style="margin-right: 10px;" for="file-upload" class="photos-file-upload">
+        Select photos
+      </label>
+      <input id="file-upload" class="photos-file-upload" type="file" ng2FileSelect [uploader]="uploader" (change)="onChangePreviewImages()" multiple  />      
       <button *ngIf="shoudShowUploadedBtn" mat-raised-button color="accent" style="margin-right: 10px;">
           upload {{photosCount}} photo
       </button>
