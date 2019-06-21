@@ -46,9 +46,10 @@ export class NavComponent implements OnInit, OnDestroy {
 
   onChangePreviewImages() {
     const fileItems: FileItem[] = this.uploader.queue;
+    const files = fileItems.map(({_file}) => _file);
 
     if (fileItems.length > 0) {
-      this.photoEventService.emitPhotoUploaderPropagateNewPhotos(fileItems);
+      this.photoEventService.emitPhotoUploaderPropagateNewPhotos(files);
       this.uploader.clearQueue();
     }
   }

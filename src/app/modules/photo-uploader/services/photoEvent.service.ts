@@ -17,7 +17,7 @@ export class PhotoEventService {
   private photoUploaderCountOfAcctualPhotosEmiter: EventEmitter<number> = new EventEmitter();
   private photoUploaderRemoveAllPhotosEmiter: EventEmitter<void> = new EventEmitter();
   private photoUploaderRemoveChosenPhotoEmiter: EventEmitter<FileItem> = new EventEmitter();
-  private photoUploaderPropagateNewPhotosEmiter: EventEmitter<FileItem[]> = new EventEmitter();
+  private photoUploaderPropagateNewPhotosEmiter: EventEmitter<File[]> = new EventEmitter();
 
   emitPhotoUploaded(isPhotoUploaded) {
     this.photoUploaded.emit(isPhotoUploaded);
@@ -75,8 +75,8 @@ export class PhotoEventService {
     return this.photoUploaderRemoveChosenPhotoEmiter;
   }
 
-  emitPhotoUploaderPropagateNewPhotos(FileItems: FileItem[]) {
-    this.photoUploaderPropagateNewPhotosEmiter.emit(FileItems);
+  emitPhotoUploaderPropagateNewPhotos(files: File[]) {
+    this.photoUploaderPropagateNewPhotosEmiter.emit(files);
   }
 
   getPhotoUploaderPropagateNewPhotos() {

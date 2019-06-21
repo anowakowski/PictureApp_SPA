@@ -74,12 +74,12 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
     this.photoUploaderRemoveChosenPhotoSubscription = this.photoEventService.getPhotoUploaderRemoveChosenPhoto()
       .subscribe(fileToRemove => { this.removePhoto(fileToRemove); });
     this.photoUploaderPropagateNewPhotosSubscription = this.photoEventService.getPhotoUploaderPropagateNewPhotos()
-      .subscribe(fileItems => { this.updateUploaderQueue(fileItems); });
+      .subscribe(files => { this.updateUploaderQueue(files); });
   }
 
-  private updateUploaderQueue(fileItems: FileItem[]) {
-    if (fileItems.length > 0) {
-      [].push.apply(this.uploader.queue, fileItems);
+  private updateUploaderQueue(files: File[]) {
+    if (files.length > 0) {
+      this.uploader.addToQueue(files);
       this.propagateNewPhotosProcessing();
     }
   }
