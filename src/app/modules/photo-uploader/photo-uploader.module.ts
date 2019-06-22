@@ -16,12 +16,15 @@ import { UploadPhotoLocalStorageService } from './services/upload-photo-local-st
 import { DeleteConfirmationDialogComponent } from '../photo-confirmation-panels/components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { PhotoConfirmationPanelsModule } from '../photo-confirmation-panels/photo-confirmation-panels.module';
 import { UploadPhotoFileItemService } from './services/upload-photo-file-item.service';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 
 const routes: Routes = [
   {
     path: '',
     component: PhotoUploaderComponent,
+    canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always',
     children: [
       { path: '', component: UploaderContentComponent }
     ]
