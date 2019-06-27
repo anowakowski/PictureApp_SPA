@@ -48,12 +48,16 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
 
   initUploader() {
     this.uploader = new FileUploader({
-      url: this.baseUrl,
+      url: this.baseUrl + 'auth/' + 'addNewPhoto',
       authToken: 'Bearer ' + localStorage.getItem('token'),
       isHTML5: true,
       allowedFileType: ['image'],
       disableMultipart: true,
+      autoUpload: false,
+      removeAfterUpload: false
       });
+
+      this.uploader.onAfterAddingFile = (file) => {file.withCredentials = false; };
   }
 
   onChangePreviewImages() {
@@ -66,15 +70,6 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
 
   fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
-  }
-
-  private subscribeEvents() {
-    this.photoUploaderRemoveAllPhotosSubscription = this.photoEventService.getPhotoUploaderRemoveAllPhotos()
-      .subscribe(() => { this.removeAllPhotos(); });
-    this.photoUploaderRemoveChosenPhotoSubscription = this.photoEventService.getPhotoUploaderRemoveChosenPhoto()
-      .subscribe(fileToRemove => { this.removePhoto(fileToRemove); });
-    this.photoUploaderPropagateNewPhotosSubscription = this.photoEventService.getPhotoUploaderPropagateNewPhotos()
-      .subscribe(files => { this.updateUploaderQueue(files); });
   }
 
   private updateUploaderQueue(files: File[]) {
@@ -90,6 +85,15 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
     this.photoEventService.emitPhotoUploaderCountOfAcctualPhotos(this.uploader.queue.length);
     this.fileItemService.prepareIndexForPhotoUploader(this.uploader);
     this.preparePhotoUploaderModel();
+    this.saveNewPhoto();
+  }
+
+  private saveNewPhoto() {
+    this.uploader.onBeforeUploadItem = (fileItem: any) => {
+      fileItem.formData.push({index: 1});
+    };
+
+    this.uploader.uploadAll();
   }
 
   private preparePhotoUploaderModel() {
@@ -163,5 +167,14 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
       this.photoHasUploaded = false;
       this.photoEventService.emitPhotoUploaded(false);
     }
+  }
+
+  private subscribeEvents() {
+    this.photoUploaderRemoveAllPhotosSubscription = this.photoEventService.getPhotoUploaderRemoveAllPhotos()
+      .subscribe(() => { this.removeAllPhotos(); });
+    this.photoUploaderRemoveChosenPhotoSubscription = this.photoEventService.getPhotoUploaderRemoveChosenPhoto()
+      .subscribe(fileToRemove => { this.removePhoto(fileToRemove); });
+    this.photoUploaderPropagateNewPhotosSubscription = this.photoEventService.getPhotoUploaderPropagateNewPhotos()
+      .subscribe(files => { this.updateUploaderQueue(files); });
   }
 }
