@@ -50,16 +50,12 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
 
   initUploader() {
     this.uploader = new FileUploader({
-      url: this.baseUrl + 'auth/' + 'addNewPhoto',
-      authToken: 'Bearer ' + localStorage.getItem('token'),
       isHTML5: true,
       allowedFileType: ['image'],
       disableMultipart: true,
       autoUpload: false,
       removeAfterUpload: false
     });
-
-    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
   }
 
   onChangePreviewImages() {
@@ -91,20 +87,23 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
   }
 
   private saveNewPhoto() {
-    // this.uploader.onBeforeUploadItem = (fileItem: any) => {
-    //   fileItem.formData.push({index: 1});
-    // };
-
-    // this.uploader.uploadAll();
-    const fd = new FormData();
-    fd.append('index', '1');
-    fd.append('photoFile', this.uploader.queue[0]._file);
-
-    this.uploadFileService.uploadFile(fd).subscribe(() => {
-
+    const formDataToPost = this.prepareNewPhotoDataToSave();
+    this.uploadFileService.uploadFile(formDataToPost).subscribe(() => {
+      // to do after save new picture
     }, error => {
       console.log(error);
     });
+  }
+
+  private prepareNewPhotoDataToSave() {
+    const formDataToPost = new FormData();
+    formDataToPost.append('index', '1');
+    // to refactor (its just for testing api functionality)
+    // move  into content-card
+    // save one new photo
+    // prepare spinner
+    formDataToPost.append('photoFile', this.uploader.queue[0]._file);
+    return formDataToPost;
   }
 
   private preparePhotoUploaderModel() {
