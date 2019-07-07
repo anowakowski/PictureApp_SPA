@@ -17,6 +17,7 @@ import { DeleteConfirmationDialogComponent } from '../photo-confirmation-panels/
 import { PhotoConfirmationPanelsModule } from '../photo-confirmation-panels/photo-confirmation-panels.module';
 import { UploadPhotoFileItemService } from './services/upload-photo-file-item.service';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { UploadFileService } from './services/upload-file.service';
 
 
 const routes: Routes = [
@@ -53,7 +54,8 @@ const routes: Routes = [
   ],
   providers: [
     UploadPhotoLocalStorageService,
-    UploadPhotoFileItemService
+    UploadPhotoFileItemService,
+    UploadFileService
   ]
 })
 export class PhotoUploaderModule { }

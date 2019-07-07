@@ -9,6 +9,7 @@ import { PhotoEventService } from '../../services/photoEvent.service';
 import { WarrningDialogComponent } from 'src/app/modules/photo-confirmation-panels/components/warrning-dialog/warrning-dialog.component';
 import { MatDialog } from '@angular/material';
 import { UploadPhotoFileItemService } from '../../services/upload-photo-file-item.service';
+import { UploadFileService } from '../../services/upload-file.service';
 
 @Component({
   selector: 'app-uploader-content',
@@ -32,7 +33,8 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
     private photoEventService: PhotoEventService,
     private localStorageService: UploadPhotoLocalStorageService,
     private fileItemService: UploadPhotoFileItemService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private uploadFileService: UploadFileService) { }
 
   ngOnInit() {
     this.photoUploaderModels = new Array<PhotoUploaderModel>();
@@ -55,9 +57,9 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
       disableMultipart: true,
       autoUpload: false,
       removeAfterUpload: false
-      });
+    });
 
-      this.uploader.onAfterAddingFile = (file) => {file.withCredentials = false; };
+    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
   }
 
   onChangePreviewImages() {
@@ -89,11 +91,20 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
   }
 
   private saveNewPhoto() {
-    this.uploader.onBeforeUploadItem = (fileItem: any) => {
-      fileItem.formData.push({index: 1});
-    };
+    // this.uploader.onBeforeUploadItem = (fileItem: any) => {
+    //   fileItem.formData.push({index: 1});
+    // };
 
-    this.uploader.uploadAll();
+    // this.uploader.uploadAll();
+    const fd = new FormData();
+    fd.append('index', '1');
+    fd.append('photoFile', this.uploader.queue[0]._file);
+
+    this.uploadFileService.uploadFile(fd).subscribe(() => {
+
+    }, error => {
+      console.log(error);
+    });
   }
 
   private preparePhotoUploaderModel() {
@@ -145,9 +156,9 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
 
   private openWarrningDialog() {
     const dialogRef = this.dialog.open(WarrningDialogComponent, {
-      data: {text: 'this photo has already been added'}
+      data: { text: 'this photo has already been added' }
     });
-    dialogRef.afterClosed().subscribe(isConfirmPhotoRemoveResult => {});
+    dialogRef.afterClosed().subscribe(isConfirmPhotoRemoveResult => { });
   }
 
   private removeAllPhotos() {
