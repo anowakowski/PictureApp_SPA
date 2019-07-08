@@ -29,14 +29,6 @@ import { PhotoCardComponent } from './components/photo-explore/components/photo-
 import { PhotoCommentButtomSheetComponent } from './components/photo-explore/components/photo-comment-buttom-sheet/photo-comment-buttom-sheet.component';
 import { PhotoUploaderComponent } from './components/sidenav/components/photo-uploader/photo-uploader.component';
 
-import { FileUploadModule } from 'ng2-file-upload';
-import { PhotoUploaderDialogComponent } from './components/photo-uploader-dialog/photo-uploader-dialog.component';
-// tslint:disable-next-line:max-line-length
-import { PhotoUploaderStepperComponent } from './components/photo-uploader-dialog/components/photo-uploader-stepper/photo-uploader-stepper.component';
-// tslint:disable-next-line:max-line-length
-import { PhotoUploaderAddphotoFirststepComponent } from './components/photo-uploader-dialog/components/photo-uploader-addphoto-firststep/photo-uploader-addphoto-firststep.component';
-// tslint:disable-next-line:max-line-length
-import { PhotoUploaderTagsDescPreviewSecondstepComponent } from './components/photo-uploader-dialog/components/photo-uploader-tags-desc-preview-secondstep/photo-uploader-tags-desc-preview-secondstep.component';
 // tslint:disable-next-line:max-line-length
 import { DeleteConfirmationDialogComponent } from '../photo-confirmation-panels/components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { PhotoConfirmationPanelsModule } from '../photo-confirmation-panels/photo-confirmation-panels.module';
@@ -67,16 +59,11 @@ const routes: Routes = [
     SidenavUserprofileChartComponent,
     EditUserPhotosComponent,
     PhotoCommentButtomSheetComponent,
-    PhotoUploaderComponent,
-    PhotoUploaderDialogComponent,
-    PhotoUploaderStepperComponent,
-    PhotoUploaderAddphotoFirststepComponent,
-    PhotoUploaderTagsDescPreviewSecondstepComponent
+    PhotoUploaderComponent
   ],
   entryComponents: [
     PhotoDetailDialogComponent,
-    PhotoCommentButtomSheetComponent,
-    PhotoUploaderDialogComponent,
+    PhotoCommentButtomSheetComponent
   ],
   imports: [
     CommonModule,
@@ -86,7 +73,6 @@ const routes: Routes = [
     ChartsModule,
     FormsModule,
     ReactiveFormsModule,
-    FileUploadModule,
     PhotoConfirmationPanelsModule,
     RouterModule.forChild(routes)
   ],

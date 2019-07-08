@@ -12,9 +12,7 @@ export class UploadPhotoFileItemService {
   // tslint:disable-next-line:max-line-length
   checkIfAddingPhotoIsNotCurrentlyExistingInPhotoUploaderQueue(fileItems: FileItem[], photoUploaderModel: PhotoUploaderModel, lastCurrentPhoto: FileItem) {
     const foundFiles = fileItems.filter(x => x.file.name === lastCurrentPhoto.file.name && x.file.size === lastCurrentPhoto.file.size);
-    const isTheSameFilesWasUploaded = foundFiles.length >= 2;
-
-    return isTheSameFilesWasUploaded;
+    return foundFiles.length >= 2;
   }
 
   getLastCurrentPhoto(fileItems: FileItem[], photoUploaderModel: PhotoUploaderModel): FileItem {
