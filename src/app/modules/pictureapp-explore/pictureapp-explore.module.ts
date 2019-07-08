@@ -27,7 +27,6 @@ import { PhotoDetailDialogComponent } from './components/photo-explore/component
 import { PhotoCardComponent } from './components/photo-explore/components/photo-card/photo-card.component';
 // tslint:disable-next-line:max-line-length
 import { PhotoCommentButtomSheetComponent } from './components/photo-explore/components/photo-comment-buttom-sheet/photo-comment-buttom-sheet.component';
-import { PhotoUploaderComponent } from './components/sidenav/components/photo-uploader/photo-uploader.component';
 
 // tslint:disable-next-line:max-line-length
 import { DeleteConfirmationDialogComponent } from '../photo-confirmation-panels/components/delete-confirmation-dialog/delete-confirmation-dialog.component';
@@ -58,8 +57,7 @@ const routes: Routes = [
     SidenavUserprofileCardComponent,
     SidenavUserprofileChartComponent,
     EditUserPhotosComponent,
-    PhotoCommentButtomSheetComponent,
-    PhotoUploaderComponent
+    PhotoCommentButtomSheetComponent
   ],
   entryComponents: [
     PhotoDetailDialogComponent,
