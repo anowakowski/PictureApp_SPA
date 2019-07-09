@@ -1,0 +1,51 @@
+<app-nav></app-nav> 
+<mat-drawer-container class="app-container" autosize>
+  <mat-drawer 
+    #drawer class="sidenav-content-elements mat-elevation-z10 sidenav-container-background-image"
+    [opened]="isUploadedPhoto"
+    mode='side'>
+    <div class="sidenav-element-flex-container">
+      <h5>Current chosen photo metadata</h5>
+      <div style="margin-bottom: 10px;">
+          <mat-divider></mat-divider>
+      </div>  
+      <form [formGroup]="sidenavPhotoForm" class="mb-3">
+          <mat-form-field class="sidenav-element-form-input">
+            <input matInput  
+              placeholder="photo title"
+              formControlName="photoTitle"
+              (change)="changePhotoTitle($event)">
+          </mat-form-field>
+          <mat-form-field class="sidenav-element-form-input">
+            <textarea matInput 
+            placeholder="photo description" 
+            formControlName="photoDescription" 
+            class="base-style"
+            rows="1"
+            (change)="changePhotoDescription($event)"
+            ></textarea>
+          </mat-form-field> 
+          <mat-form-field class="sidenav-content-element-form-tags">
+              <mat-chip-list #chipList>
+                <mat-chip *ngFor="let tag of tags" [selectable]="selectable" class="mat-chip-selected"
+                         [removable]="removable" (removed)="removeTag(tag)">
+                  {{tag}}
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="Add new tag..."
+                       [matChipInputFor]="chipList"
+                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                       [matChipInputAddOnBlur]="addOnBlur"
+                       (matChipInputTokenEnd)="addTag($event)">
+              </mat-chip-list>
+          </mat-form-field>              
+                        
+      </form>      
+    </div>
+   </mat-drawer>
+  <div class="app-sidenav-content">
+    <div class="wrapper">
+        <router-outlet></router-outlet>
+    </div>
+  </div>
+</mat-drawer-container>

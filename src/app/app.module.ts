@@ -25,6 +25,10 @@ const routes: Routes = [
       loadChildren: '../app/modules/register-login/register-login.module#RegisterLoginModule'
    },
    {
+      path: 'photo-uploader',
+      loadChildren: '../app/modules/photo-uploader/photo-uploader.module#PhotoUploaderModule'
+   },
+   {
       path: '',
       loadChildren: '../app/modules/pictureapp-explore/pictureapp-explore.module#PictureAppExploreModule'
    },

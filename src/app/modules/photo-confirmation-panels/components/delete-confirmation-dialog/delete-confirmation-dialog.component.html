@@ -1,0 +1,9 @@
+<mat-dialog-content>
+  <div class="example-container">
+    <mat-icon>delete</mat-icon> Are you sure to remove your <b>{{data.photoTitle}}</b> photo?
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-flat-button id="no-button" [mat-dialog-close]="false">NO</button>
+    <button mat-flat-button id="yes-button" [mat-dialog-close]="true">YES</button>
+</mat-dialog-actions>
