@@ -26,6 +26,7 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
   public filePreviewPath: SafeUrl;
   uploadPhotoForm: FormGroup;
   isEditMode = false;
+  isInUploading = false;
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -105,8 +106,9 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
 
   private saveNewPhoto() {
     const formDataToPost = this.prepareNewPhotoDataToSave();
+    this.isInUploading = true;
     this.uploadFileService.uploadFile(formDataToPost).subscribe(() => {
-      // to do after save new picture
+      this.isInUploading = false;
     }, error => {
       console.log(error);
     });
