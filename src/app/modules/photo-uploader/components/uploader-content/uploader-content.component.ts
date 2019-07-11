@@ -83,27 +83,6 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
     this.photoEventService.emitPhotoUploaderCountOfAcctualPhotos(this.uploader.queue.length);
     this.fileItemService.prepareIndexForPhotoUploader(this.uploader);
     this.preparePhotoUploaderModel();
-    this.saveNewPhoto();
-  }
-
-  private saveNewPhoto() {
-    const formDataToPost = this.prepareNewPhotoDataToSave();
-    this.uploadFileService.uploadFile(formDataToPost).subscribe(() => {
-      // to do after save new picture
-    }, error => {
-      console.log(error);
-    });
-  }
-
-  private prepareNewPhotoDataToSave() {
-    const formDataToPost = new FormData();
-    formDataToPost.append('index', '1');
-    // to refactor (its just for testing api functionality)
-    // move  into content-card
-    // save one new photo
-    // prepare spinner
-    formDataToPost.append('photoFile', this.uploader.queue[0]._file);
-    return formDataToPost;
   }
 
   private preparePhotoUploaderModel() {

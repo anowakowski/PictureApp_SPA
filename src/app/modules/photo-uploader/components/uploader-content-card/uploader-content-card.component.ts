@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material';
 // tslint:disable-next-line:max-line-length
 import { DeleteConfirmationDialogComponent } from 'src/app/modules/photo-confirmation-panels/components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { FileItem } from 'ng2-file-upload';
+import { UploadFileService } from '../../services/upload-file.service';
 
 @Component({
   selector: 'app-uploader-content-card',
@@ -31,13 +32,15 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private localStorageService: UploadPhotoLocalStorageService,
     private photoEventService: PhotoEventService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private uploadFileService: UploadFileService) { }
 
   ngOnInit() {
     this.prepareFilePreview();
     this.createUploadPhotoForm();
     this.propagateCurrentChosedPhoto();
     this.subscireEvents();
+    this.saveNewPhoto();
   }
 
   ngOnDestroy() {
@@ -98,6 +101,22 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
         this.photoEventService.emitphotoUploaderRemoveChosenPhoto(this.fileItem);
       }
     });
+  }
+
+  private saveNewPhoto() {
+    const formDataToPost = this.prepareNewPhotoDataToSave();
+    this.uploadFileService.uploadFile(formDataToPost).subscribe(() => {
+      // to do after save new picture
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  private prepareNewPhotoDataToSave() {
+    const formDataToPost = new FormData();
+    formDataToPost.append('index', this.photoUploaderModel.index.toString());
+    formDataToPost.append('photoFile', this.fileItem._file);
+    return formDataToPost;
   }
 
   private syncPhotoChanges() {
