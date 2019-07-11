@@ -32,9 +32,9 @@ export class LoginComponent implements OnInit {
       this.spinnerService.show();
       this.user = Object.assign({}, this.loginForm.value);
       this.authService.login(this.user).subscribe(() => {
-          this.snackbarAlertSerice.openSnackbar('login to app', 500, null, 'orange-register-login-snackbar');
           this.router.navigate(['']);
         }, error => {
+          this.spinnerService.hide();
           this.snackbarAlertSerice.openSnackbar(error, 7000, null, 'orange-register-login-snackbar');
         }, () => {
         });

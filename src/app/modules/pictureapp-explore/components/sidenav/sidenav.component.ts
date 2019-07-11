@@ -36,7 +36,9 @@ export class SidenavComponent implements OnInit {
 
   public testMessage: string;
 
-  @ViewChild(MatDrawer) drawer: MatDrawer;
+   // @ViewChild(MatDrawer) drawer: MatDrawer;
+
+  @ViewChild('MatDrawer', {static: true}) drawer: MatDrawer;
 
   ngOnInit() {
     this.currentChosenSection = DASHBOARD_SECTION;
