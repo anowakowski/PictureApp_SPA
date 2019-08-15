@@ -156,6 +156,8 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
       this.photoHasUploaded = false;
       this.photoEventService.emitPhotoUploaded(false);
     }
+
+    this.photoEventService.emitPhotoUploaderCountOfAcctualPhotos(this.uploader.queue.length);
   }
 
   private subscribeEvents() {
