@@ -116,7 +116,7 @@ export class UploaderContentCardComponent implements OnInit, OnDestroy {
 
   private prepareNewPhotoDataToSave() {
     const formDataToPost = new FormData();
-    formDataToPost.append('index', this.photoUploaderModel.index.toString());
+    formDataToPost.append('index', this.photoUploaderModel.id.toString());
     formDataToPost.append('photoFile', this.fileItem._file);
     return formDataToPost;
   }

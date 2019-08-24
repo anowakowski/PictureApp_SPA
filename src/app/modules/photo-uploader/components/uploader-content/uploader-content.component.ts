@@ -10,6 +10,7 @@ import { WarrningDialogComponent } from 'src/app/modules/photo-confirmation-pane
 import { MatDialog } from '@angular/material';
 import { UploadPhotoFileItemService } from '../../services/upload-photo-file-item.service';
 import { UploadFileService } from '../../services/upload-file.service';
+import { v4 as uuid } from 'uuid';
 
 @Component({
   selector: 'app-uploader-content',
@@ -108,6 +109,7 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
 
   private preparePhotoModel(fileItem: FileItem) {
     const photoUploaderModel = new PhotoUploaderModel();
+    photoUploaderModel.id = uuid();
     photoUploaderModel.index = fileItem.index;
     photoUploaderModel.photoTitle = fileItem.file.name;
     return photoUploaderModel;
