@@ -16,4 +16,8 @@ export class UploadFileService {
   public uploadFile(model: any) {
     return this.http.post(this.baseUrl + 'upload/', model);
   }
+
+  public removePhotos(model: any) {
+    return this.http.post(this.baseUrl + '', model);
+  }
 }

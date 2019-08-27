@@ -35,8 +35,12 @@ export class UploadPhotoLocalStorageService {
     if (photos != null) {
       return photos.find(x => x.index === index);
     }
-
     return null;
+  }
+
+  getAllPhotosIdsForRemoving(): string[] {
+    const photoModels: Array<PhotoUploaderModel> = this.getItem();
+    return photoModels.map(({id}) => id);
   }
 
   getCurrentChosedPhoto(): PhotoUploaderModel {

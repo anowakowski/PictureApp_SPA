@@ -142,10 +142,20 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
   }
 
   private removeAllPhotos() {
+    this.removePhotosFromServer();
     this.uploader.clearQueue();
     this.localStorageService.clearStorage();
     this.photoHasUploaded = false;
     this.photoEventService.emitPhotoUploaded(false);
+  }
+
+  private removePhotosFromServer() {
+    const selectedIdsForRemoving = this.localStorageService.getAllPhotosIdsForRemoving();
+    this.uploadFileService.removePhotos(selectedIdsForRemoving).subscribe(() => {
+      //
+    }, error => {
+      console.log(error);
+    });
   }
 
   private removePhoto(fileItemToRemove: FileItem) {
