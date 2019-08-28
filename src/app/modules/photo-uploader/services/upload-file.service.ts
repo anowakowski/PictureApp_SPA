@@ -7,17 +7,17 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UploadFileService {
-  baseUrl = environment.apiUrl + 'streaming/';
+  baseUrl = environment.apiUrl + 'upload/';
   jwtHelper = new JwtHelperService();
   decodedToken: any;
 
   constructor(private http: HttpClient) { }
 
   public uploadFile(model: any) {
-    return this.http.post(this.baseUrl + 'upload/', model);
+    return this.http.post(this.baseUrl + 'uploadStream/', model);
   }
 
   public removePhotos(ids: any) {
-    return this.http.post(this.baseUrl + 'removePendingUploads', ids);
+    return this.http.post(this.baseUrl + 'removePendingUploads/', ids);
   }
 }
