@@ -17,7 +17,7 @@ export class UploadFileService {
     return this.http.post(this.baseUrl + 'upload/', model);
   }
 
-  public removePhotos(model: any) {
-    return this.http.post(this.baseUrl + '', model);
+  public removePhotos(ids: any) {
+    return this.http.post(this.baseUrl + 'removePendingUploads', ids);
   }
 }
