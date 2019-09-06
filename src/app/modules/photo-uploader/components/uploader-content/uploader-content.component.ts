@@ -142,15 +142,14 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
   }
 
   private removeAllPhotos() {
-    this.removePhotosFromServer();
+    this.removePhotosFromServer(this.localStorageService.getAllPhotosIdsForRemoving());
     this.uploader.clearQueue();
     this.localStorageService.clearStorage();
     this.photoHasUploaded = false;
     this.photoEventService.emitPhotoUploaded(false);
   }
 
-  private removePhotosFromServer() {
-    const selectedIdsForRemoving = this.localStorageService.getAllPhotosIdsForRemoving();
+  private removePhotosFromServer(selectedIdsForRemoving: any[]) {
     this.uploadFileService.removePhotos(selectedIdsForRemoving).subscribe(() => {
       //
     }, error => {
@@ -160,16 +159,20 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
 
   private removePhoto(fileItemToRemove: FileItem) {
     this.uploader.removeFromQueue(fileItemToRemove);
+    this.removePhotosFromServer(this.localStorageService.getPhotoIdForRemoving(fileItemToRemove.index));
     const photoModel = this.localStorageService.getPhotoModel(fileItemToRemove.index);
     this.localStorageService.removeChosenPhoto(photoModel);
 
+    this.clearUploader();
+    this.photoEventService.emitPhotoUploaderCountOfAcctualPhotos(this.uploader.queue.length);
+  }
+
+  private clearUploader() {
     if (this.uploader.queue.length < 1) {
       this.localStorageService.clearStorage();
       this.photoHasUploaded = false;
       this.photoEventService.emitPhotoUploaded(false);
     }
-
-    this.photoEventService.emitPhotoUploaderCountOfAcctualPhotos(this.uploader.queue.length);
   }
 
   private subscribeEvents() {

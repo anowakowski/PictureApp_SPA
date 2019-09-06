@@ -43,6 +43,16 @@ export class UploadPhotoLocalStorageService {
     return photoModels.map(({id}) => id);
   }
 
+  getPhotoIdForRemoving(index: number ): string[] {
+    const photoModels: Array<PhotoUploaderModel> = this.getItem();
+    const idToRemove: string = photoModels.find(x => x.index === index).id;
+
+    const idArrayToRemove = new Array<string>();
+    idArrayToRemove.push(idToRemove);
+
+    return idArrayToRemove;
+  }
+
   getCurrentChosedPhoto(): PhotoUploaderModel {
     const photos = this.getItem();
     return photos.find(x => x.isEditMode);
