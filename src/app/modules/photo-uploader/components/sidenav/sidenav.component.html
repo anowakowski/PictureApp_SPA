@@ -8,7 +8,7 @@
     <div class="sidenav-element-flex-container">
 
         <div class="sidnav-userprofile sidenav-elemnt">
-            <mat-card style="background: #56454552;" class="sidenav-userprofile-card">
+            <mat-card class="sidenav-userprofile-card">
                 <mat-card-header >
                   <div 
                     
@@ -32,44 +32,52 @@
                 </mat-card-content>
             </mat-card>       
         </div>  
-      <div style="margin-top: 30px;">
-          <h5>Photo editing</h5>
-          <div style="margin-bottom: 10px;">
-              <mat-divider></mat-divider>
-          </div>  
-          <form [formGroup]="sidenavPhotoForm" class="mb-3">
-              <mat-form-field class="sidenav-element-form-input">
-                <input matInput  
-                
-                  placeholder="photo title"
-                  formControlName="photoTitle"
-                  (change)="changePhotoTitle($event)">
-              </mat-form-field>
-              <mat-form-field class="sidenav-element-form-input">
-                <textarea matInput 
-                placeholder="photo description" 
-                formControlName="photoDescription" 
-                class="base-style"
-                rows="2"
-                (change)="changePhotoDescription($event)"
-                ></textarea>
-              </mat-form-field> 
-              <mat-form-field class="sidenav-content-element-form-tags">
-                  <mat-chip-list #chipList>
-                    <mat-chip *ngFor="let tag of tags" [selectable]="selectable" class="mat-chip-selected"
-                             [removable]="removable" (removed)="removeTag(tag)">
-                      {{tag}}
-                      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                    </mat-chip>
-                    <input placeholder="Add new tag..."
-                           [matChipInputFor]="chipList"
-                           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                           [matChipInputAddOnBlur]="addOnBlur"
-                           (matChipInputTokenEnd)="addTag($event)">
-                  </mat-chip-list>
-              </mat-form-field>              
+      <div style="margin-top: 10px;">
+
+          <div class="sidnav-userprofile sidenav-elemnt">
+              <mat-card class="sidenav-userprofile-card">
+                  <mat-card-header >
+                    <mat-card-title >Photo editing</mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content>
+                      <form [formGroup]="sidenavPhotoForm" class="mb-3">
+                          <mat-form-field class="sidenav-element-form-input">
+                            <input matInput  
                             
-          </form>         
+                              placeholder="photo title"
+                              formControlName="photoTitle"
+                              (change)="changePhotoTitle($event)">
+                          </mat-form-field>
+                          <mat-form-field class="sidenav-element-form-input">
+                            <textarea matInput 
+                            placeholder="photo description" 
+                            formControlName="photoDescription" 
+                            class="base-style"
+                            rows="2"
+                            (change)="changePhotoDescription($event)"
+                            ></textarea>
+                          </mat-form-field> 
+                          <mat-form-field class="sidenav-content-element-form-tags">
+                              <mat-chip-list #chipList>
+                                <mat-chip *ngFor="let tag of tags" [selectable]="selectable" class="mat-chip-selected"
+                                         [removable]="removable" (removed)="removeTag(tag)">
+                                  {{tag}}
+                                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                </mat-chip>
+                                <input placeholder="Add new tag..."
+                                       [matChipInputFor]="chipList"
+                                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                       [matChipInputAddOnBlur]="addOnBlur"
+                                       (matChipInputTokenEnd)="addTag($event)">
+                              </mat-chip-list>
+                          </mat-form-field>              
+                                        
+                      </form>   
+                  </mat-card-content>
+              </mat-card>       
+          </div> 
+
+       
       </div>  
 
       <button class="sidenav-btn-cancelUploadPhotos sidenav-elemnt" color="warn" mat-raised-button>
