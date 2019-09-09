@@ -58,3 +58,63 @@ mat-drawer {
   background: #219e79;
   color: black;
 }
+
+
+.sidenav-btn-modelPanel {
+  position: absolute;
+  bottom: 10px;
+  width: 560px;
+  height: 40px;
+}
+
+
+/* 
+identity card start
+*/
+
+.sidnav-userprofile{
+  opacity: 0.7;
+}
+
+.sidenav-userprofile-card {
+  max-width: 600px;
+}
+
+.sidnav-userprofile-header-image {
+  background-size: cover;
+  width: 125px;
+  height: 125px;
+
+  transition:all 0.3s ease-in-out;
+  opacity:1;
+
+  outline: none;
+  border: 0;
+}
+
+.sidenav-userprofile-card:hover .sidnav-userprofile-header-image,
+.sidenav-userprofile-card:focus .sidnav-userprofile-header-image {
+  transform: scale(1.10);
+  opacity:0.7;
+}
+
+.sidenav-card-userprofile-content {
+  margin-left: 90px;
+}
+
+.sidenav-card-header {
+  margin-left: -6px
+}
+
+.sidenav-userprofile-subtitle-followers {
+  margin-top: 8px;
+  margin-left: 2px;
+}
+
+.sidenav-userprofile-subtitle-following {
+  margin-left: 2px;
+}
+
+/*
+identity card end
+*/
