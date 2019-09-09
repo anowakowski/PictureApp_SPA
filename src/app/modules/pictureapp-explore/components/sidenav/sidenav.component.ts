@@ -3,6 +3,7 @@ import { MatDrawer } from '@angular/material';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
+import { FileUploader } from 'ng2-file-upload';
 
 const SMALL_WIDTH_BREAKPOINT = 720;
 const CURRENT_BTN_COLOR = 'warn';
@@ -36,6 +37,9 @@ export class SidenavComponent implements OnInit {
 
   public testMessage: string;
 
+  public uploader: FileUploader;
+  public hasBaseDropZoneOver = false;
+
    // @ViewChild(MatDrawer) drawer: MatDrawer;
 
   @ViewChild('MatDrawer', {static: true}) drawer: MatDrawer;
@@ -44,6 +48,7 @@ export class SidenavComponent implements OnInit {
     this.currentChosenSection = DASHBOARD_SECTION;
     this.currentRouteSecction = this.router.url;
     this.setCurrentSectionByRoute();
+    this.initUploader();
   }
 
   isScreenSmall(): boolean {
@@ -66,6 +71,24 @@ export class SidenavComponent implements OnInit {
     this.setBasicColor();
 
     this.currentChosenSection = sectionNameToCurrent;
+  }
+
+  onChangePreviewImages() {
+
+  }
+
+  fileOverBase(e: any): void {
+    this.hasBaseDropZoneOver = e;
+  }
+
+  initUploader() {
+    this.uploader = new FileUploader({
+      isHTML5: true,
+      allowedFileType: ['image'],
+      disableMultipart: true,
+      autoUpload: false,
+      removeAfterUpload: false
+    });
   }
 
   private setBasicColor() {
