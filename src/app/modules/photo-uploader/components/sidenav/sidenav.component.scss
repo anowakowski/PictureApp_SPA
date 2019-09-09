@@ -6,8 +6,8 @@
 }
 
 .sidenav-container-background-image {
-  background: url("../../../../../assets/slonik_blackbackground_bnw.jpg"); // color karty pod slonia: #d8d2cd91
-  //background: url("../../../../../assets/blur_burred2_baseONJPG.jpg"); //color karty pod lasek: #eadfd6d1
+  //background: url("../../../../../assets/slonik_blackbackground_bnw.jpg"); // color karty pod slonia: #d8d2cd91
+  background: url("../../../../../assets/blur_burred2_baseONJPG.jpg"); //color karty pod lasek: #eadfd6d1
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
@@ -78,13 +78,13 @@ identity card start
 
 .sidenav-userprofile-card {
   max-width: 600px;
-  background: #d8d2cd91;
+  background: #eadfd6d1;
 }
 
 .sidnav-userprofile-header-image {
   background-size: cover;
-  width: 125px;
-  height: 125px;
+  width: 50px;
+  height: 50px;
 
   transition: all 0.3s ease-in-out;
   opacity: 1;
@@ -95,7 +95,8 @@ identity card start
 
 .sidenav-userprofile-card:hover .sidnav-userprofile-header-image,
 .sidenav-userprofile-card:focus .sidnav-userprofile-header-image {
-  transform: scale(1.2);
+  transform: scale(1.1);
+  opacity: 0.7;
 }
 
 .sidenav-card-userprofile-content {
