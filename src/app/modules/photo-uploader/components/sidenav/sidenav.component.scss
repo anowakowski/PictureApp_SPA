@@ -6,7 +6,8 @@
 }
 
 .sidenav-container-background-image {
-  background: url("../../../../../assets/blur_burred2_baseONJPG.jpg");
+  background: url("../../../../../assets/slonik_blackbackground_bnw.jpg"); // color karty pod slonia: #d8d2cd91
+  //background: url("../../../../../assets/blur_burred2_baseONJPG.jpg"); //color karty pod lasek: #eadfd6d1
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
@@ -64,6 +65,7 @@ mat-drawer {
   bottom: 10px;
   width: 560px;
   height: 37px;
+  margin-top: 5px;
 }
 
 /* 
@@ -76,7 +78,7 @@ identity card start
 
 .sidenav-userprofile-card {
   max-width: 600px;
-  background: #eadfd6d1;
+  background: #d8d2cd91;
 }
 
 .sidnav-userprofile-header-image {
@@ -98,7 +100,7 @@ identity card start
 
 .sidenav-card-userprofile-content {
   margin-left: 90px;
-  color: #3d9faf;
+  color: #111111;
   font-size: 18px;
   font-style: oblique;
 }
@@ -119,3 +121,16 @@ identity card start
 /*
 identity card end
 */
+
+
+
+
+.my-drop-zone {
+  border: dotted 3px lightgray;
+}
+.nv-file-over {
+  border: dotted 3px #f44336;
+} /* Default class applied to drop zones on over */
+.another-file-over-class {
+  border: dotted 3px green;
+}

@@ -32,7 +32,7 @@
                 </mat-card-content>
             </mat-card>       
         </div>  
-      <div style="margin-top: 10px;">
+      <div>
 
           <div class="sidnav-userprofile sidenav-elemnt">
               <mat-card class="sidenav-userprofile-card">
@@ -79,6 +79,20 @@
 
        
       </div>  
+      <div
+        ng2FileDrop
+        [ngClass]="{ 'nv-file-over': hasBaseDropZoneOver }"
+        (fileOver)="fileOverBase($event)"
+        [uploader]="uploader"
+        (onFileDrop)="onChangePreviewImages()"
+        style= "width: 100%; height: 250px; background: #d8d2cd91;"
+        class="well my-drop-zone nv-file-over card bg-faded p-3 text-center mb-3 ">
+      <div class="flex-container" style="margin-top: 15%;">
+        <mat-icon>cloud_upload</mat-icon>
+      </div>
+      Drop Photos Here
+    </div>
+
 
       <button class="sidenav-btn-cancelUploadPhotos sidenav-elemnt" color="warn" mat-raised-button>
           <mat-icon>grid_off</mat-icon> Cancel upload photos <mat-icon>cancel</mat-icon> 

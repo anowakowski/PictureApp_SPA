@@ -7,6 +7,7 @@ import { PhotoUploaderModel } from 'src/app/models/photo-uploader-model';
 import { PhotoEventService } from '../../services/photoEvent.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { User } from 'src/app/models/user';
+import { FileUploader } from 'ng2-file-upload';
 
 const SMALL_WIDTH_BREAKPOINT = 720;
 
@@ -34,6 +35,9 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
 
   public mainPhotoUrl: string;
 
+  public uploader: FileUploader;
+  public hasBaseDropZoneOver = false;
+
   constructor(
     private photoEventService: PhotoEventService,
     private formBuilder: FormBuilder,
@@ -48,9 +52,29 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
     this.getCurrentChosedPhotoFromLocalStorage();
     this.createSidenavPhotoForm();
     this.preparePhotoTags();
+    this.initUploader();
     this.tags = new Array<string>();
     const currentUserData: User = this.localStorageGlobalService.getItem('currentUserData');
     this.mainPhotoUrl = currentUserData.photoUrl;
+  }
+
+
+  onChangePreviewImages() {
+
+  }
+
+  fileOverBase(e: any): void {
+    this.hasBaseDropZoneOver = e;
+  }
+
+  initUploader() {
+    this.uploader = new FileUploader({
+      isHTML5: true,
+      allowedFileType: ['image'],
+      disableMultipart: true,
+      autoUpload: false,
+      removeAfterUpload: false
+    });
   }
 
   ngAfterViewChecked() {
