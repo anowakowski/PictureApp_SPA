@@ -1,8 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog } from '@angular/material';
-// tslint:disable-next-line:max-line-length
-import { PhotoUploaderContentDialogComponent } from 'src/app/modules/photo-confirmation-panels/components/photo-uploader-content-dialog/photo-uploader-content-dialog.component';
 
 @Component({
   selector: 'app-nav',
@@ -15,7 +13,7 @@ export class NavComponent implements OnInit {
   @Output() editSectionUser = new EventEmitter<void>();
   @Output() dashbordSection = new EventEmitter<void>();
 
-  constructor(private authService: AuthService, public dialog: MatDialog) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -35,18 +33,4 @@ export class NavComponent implements OnInit {
   emitDashboardAsCurrentSection() {
     this.dashbordSection.emit();
   }
-
-  openPhotoUploaderContentDialog() {
-    const dialogRef = this.dialog.open(PhotoUploaderContentDialogComponent, {
-      width: '700px',
-      height: '500px'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-
-  }
-
-
 }

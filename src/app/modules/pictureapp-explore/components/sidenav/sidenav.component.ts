@@ -37,9 +37,6 @@ export class SidenavComponent implements OnInit {
 
   public testMessage: string;
 
-  public uploader: FileUploader;
-  public hasBaseDropZoneOver = false;
-
    // @ViewChild(MatDrawer) drawer: MatDrawer;
 
   @ViewChild('MatDrawer', {static: true}) drawer: MatDrawer;
@@ -48,7 +45,6 @@ export class SidenavComponent implements OnInit {
     this.currentChosenSection = DASHBOARD_SECTION;
     this.currentRouteSecction = this.router.url;
     this.setCurrentSectionByRoute();
-    this.initUploader();
   }
 
   isScreenSmall(): boolean {
@@ -71,24 +67,6 @@ export class SidenavComponent implements OnInit {
     this.setBasicColor();
 
     this.currentChosenSection = sectionNameToCurrent;
-  }
-
-  onChangePreviewImages() {
-
-  }
-
-  fileOverBase(e: any): void {
-    this.hasBaseDropZoneOver = e;
-  }
-
-  initUploader() {
-    this.uploader = new FileUploader({
-      isHTML5: true,
-      allowedFileType: ['image'],
-      disableMultipart: true,
-      autoUpload: false,
-      removeAfterUpload: false
-    });
   }
 
   private setBasicColor() {
