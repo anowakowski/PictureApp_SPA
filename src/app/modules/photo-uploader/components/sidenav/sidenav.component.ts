@@ -5,6 +5,8 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { UploadPhotoLocalStorageService } from '../../services/upload-photo-local-storage.service';
 import { PhotoUploaderModel } from 'src/app/models/photo-uploader-model';
 import { PhotoEventService } from '../../services/photoEvent.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { User } from 'src/app/models/user';
 
 const SMALL_WIDTH_BREAKPOINT = 720;
 
@@ -30,11 +32,14 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
   tags: Array<string>;
   currentPhoto: PhotoUploaderModel;
 
+  public mainPhotoUrl: string;
+
   constructor(
     private photoEventService: PhotoEventService,
     private formBuilder: FormBuilder,
     private localStorageService: UploadPhotoLocalStorageService,
-    private cdr: ChangeDetectorRef) { }
+    private cdr: ChangeDetectorRef,
+    private localStorageGlobalService: LocalStorageService) { }
 
   private mediaMatcher: MediaQueryList =
   matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`);
@@ -44,6 +49,8 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
     this.createSidenavPhotoForm();
     this.preparePhotoTags();
     this.tags = new Array<string>();
+    const currentUserData: User = this.localStorageGlobalService.getItem('currentUserData');
+    this.mainPhotoUrl = currentUserData.photoUrl;
   }
 
   ngAfterViewChecked() {

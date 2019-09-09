@@ -60,11 +60,11 @@ mat-drawer {
 }
 
 
-.sidenav-btn-modelPanel {
+.sidenav-btn-cancelUploadPhotos {
   position: absolute;
   bottom: 10px;
   width: 560px;
-  height: 40px;
+  height: 37px;
 }
 
 
@@ -94,8 +94,7 @@ identity card start
 
 .sidenav-userprofile-card:hover .sidnav-userprofile-header-image,
 .sidenav-userprofile-card:focus .sidnav-userprofile-header-image {
-  transform: scale(1.10);
-  opacity:0.7;
+  transform: scale(1.2);
 }
 
 .sidenav-card-userprofile-content {
