@@ -3,6 +3,7 @@
   <mat-drawer 
     #drawer class="sidenav-content-elements mat-elevation-z10 sidenav-container-background-image"
     [opened]="isUploadedPhoto"
+    [disableClose]="true"
     mode='side'>
     <div class="sidenav-element-flex-container">
       <h5>Current chosen photo metadata</h5>
@@ -12,6 +13,7 @@
       <form [formGroup]="sidenavPhotoForm" class="mb-3">
           <mat-form-field class="sidenav-element-form-input">
             <input matInput  
+            
               placeholder="photo title"
               formControlName="photoTitle"
               (change)="changePhotoTitle($event)">
@@ -21,7 +23,7 @@
             placeholder="photo description" 
             formControlName="photoDescription" 
             class="base-style"
-            rows="1"
+            rows="2"
             (change)="changePhotoDescription($event)"
             ></textarea>
           </mat-form-field> 
