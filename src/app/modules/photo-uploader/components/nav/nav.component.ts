@@ -77,7 +77,7 @@ export class NavComponent implements OnInit, OnDestroy {
     });
     dialogRef.afterClosed().subscribe(isConfirmPhotoRemoveResult => {
       if (isConfirmPhotoRemoveResult) {
-        this.photoEventService.emitPhotoUploaderRemoveAllPhotos();
+        this.photoEventService.emitPhotoUploaderRemoveAllPhotos(false);
       }
     });
   }

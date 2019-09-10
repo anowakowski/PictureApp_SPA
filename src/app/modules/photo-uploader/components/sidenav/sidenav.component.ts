@@ -152,6 +152,10 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
     this.syncChanges();
   }
 
+  cancelUploadPhotos() {
+    this.photoEventService.emitPhotoUploaderRemoveAllPhotos(true);
+  }
+
   private syncChanges() {
     this.updateCurrentPhotoOnLocalStorage();
     this.photoEventService.emitPhotoModelUploaderToCardFromSidenav(this.currentPhoto);

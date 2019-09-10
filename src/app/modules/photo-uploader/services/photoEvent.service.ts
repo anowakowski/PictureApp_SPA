@@ -15,7 +15,7 @@ export class PhotoEventService {
   private photoUploaderModelToCardFromSidenavEmiter: EventEmitter<PhotoUploaderModel> = new EventEmitter();
   private photoUploaderModelChangeEditModeEmiter: EventEmitter<void> = new EventEmitter();
   private photoUploaderCountOfAcctualPhotosEmiter: EventEmitter<number> = new EventEmitter();
-  private photoUploaderRemoveAllPhotosEmiter: EventEmitter<void> = new EventEmitter();
+  private photoUploaderRemoveAllPhotosEmiter: EventEmitter<boolean> = new EventEmitter();
   private photoUploaderRemoveChosenPhotoEmiter: EventEmitter<FileItem> = new EventEmitter();
   private photoUploaderPropagateNewPhotosEmiter: EventEmitter<File[]> = new EventEmitter();
 
@@ -59,8 +59,8 @@ export class PhotoEventService {
     return this.photoUploaderCountOfAcctualPhotosEmiter;
   }
 
-  emitPhotoUploaderRemoveAllPhotos() {
-    this.photoUploaderRemoveAllPhotosEmiter.emit();
+  emitPhotoUploaderRemoveAllPhotos(isCancelUpload: boolean) {
+    this.photoUploaderRemoveAllPhotosEmiter.emit(isCancelUpload);
   }
 
   getPhotoUploaderRemoveAllPhotos() {

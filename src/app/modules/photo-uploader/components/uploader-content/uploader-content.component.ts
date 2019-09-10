@@ -77,8 +77,7 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
   }
 
   cancelUploadPhotos() {
-    this.removeAllPhotos();
-    this.router.navigate(['/']);
+    this.removeAllPhotos(true);
   }
 
   private calculateDropZoneHeight() {
@@ -159,12 +158,17 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(isConfirmPhotoRemoveResult => { });
   }
 
-  private removeAllPhotos() {
+  private removeAllPhotos(isCancelUpload: boolean) {
     this.removePhotosFromServer(this.localStorageService.getAllPhotosIdsForRemoving());
     this.uploader.clearQueue();
     this.localStorageService.clearStorage();
-    this.photoHasUploaded = false;
-    this.photoEventService.emitPhotoUploaded(false);
+
+    if (isCancelUpload) {
+      this.router.navigate(['/']);
+    } else {
+      this.photoHasUploaded = false;
+      this.photoEventService.emitPhotoUploaded(false);
+    }
   }
 
   private removePhotosFromServer(selectedIdsForRemoving: any[]) {
@@ -195,7 +199,7 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
 
   private subscribeEvents() {
     this.photoUploaderRemoveAllPhotosSubscription = this.photoEventService.getPhotoUploaderRemoveAllPhotos()
-      .subscribe(() => { this.removeAllPhotos(); });
+      .subscribe((isCancelUpload) => { this.removeAllPhotos(isCancelUpload); });
     this.photoUploaderRemoveChosenPhotoSubscription = this.photoEventService.getPhotoUploaderRemoveChosenPhoto()
       .subscribe(fileToRemove => { this.removePhoto(fileToRemove); });
     this.photoUploaderPropagateNewPhotosSubscription = this.photoEventService.getPhotoUploaderPropagateNewPhotos()
