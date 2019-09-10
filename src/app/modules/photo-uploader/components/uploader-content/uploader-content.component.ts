@@ -30,6 +30,8 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
   public hasBaseDropZoneOver = false;
   public photoHasUploaded = false;
 
+  public dropzoneHeight: string;
+
   constructor(
     private photoEventService: PhotoEventService,
     private localStorageService: UploadPhotoLocalStorageService,
@@ -41,6 +43,7 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
     this.photoUploaderModels = new Array<PhotoUploaderModel>();
     this.initUploader();
     this.subscribeEvents();
+    this.calculateDropZoneHeight();
   }
 
   ngOnDestroy(): void {
@@ -69,6 +72,14 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
 
   fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
+  }
+
+  private calculateDropZoneHeight() {
+    const resolutionToSubstract = 65;
+    const windowHeight = window.innerHeight;
+    const corretHeight = windowHeight - resolutionToSubstract;
+
+    this.dropzoneHeight = corretHeight.toString() + 'px';
   }
 
   private updateUploaderQueue(files: File[]) {
