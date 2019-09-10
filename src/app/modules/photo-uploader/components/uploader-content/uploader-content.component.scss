@@ -41,3 +41,34 @@ input[type="file"] {
   padding: 6px 12px;
   cursor: pointer;
 }
+
+
+body, html {
+  height: 100%;
+}
+
+.uploader-container-background_dropAndDrag  {
+  background: url("../../../../../assets/mountain1.jpg"); 
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;  
+  margin-bottom: -65px;
+}
+
+.uploader-content-btn-cancelUploadPhotos {
+  position: absolute;
+  bottom: 10px;
+  width: 600px;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.uploader-drop-and-drag {
+  opacity: 0.5;
+  height: 930px;
+  margin-top: 65px;
+  margin-bottom: 1px !important;
+}
+
+
