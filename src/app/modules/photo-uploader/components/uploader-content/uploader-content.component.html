@@ -22,15 +22,18 @@
     </div>
 </div>
 
-<!-- <div *ngIf="photoHasUploaded" style="margin-top: 10px;">
-  <mat-divider></mat-divider>
-</div> -->
-
-<div class="flex-container-photocard" fxLayout.xs="column" style="margin-top: 63px;">
-  <div *ngFor="let fileItem of uploader.queue">
-    <app-uploader-content-card [fileItem]='fileItem' [photoUploaderModel]='GetPhotoUploaderModel(fileItem)'></app-uploader-content-card>
+<div class="uploader-container-background_uploader" [ngStyle]="{ 'height': dropzoneHeight }">
+  <div class="flex-container-photocard" fxLayout.xs="column" style="margin-top: 65px;">
+    <div *ngFor="let fileItem of uploader.queue">
+      <app-uploader-content-card [fileItem]='fileItem' [photoUploaderModel]='GetPhotoUploaderModel(fileItem)'></app-uploader-content-card>
+    </div>
   </div>
 </div>
+
+
+<!-- <div *ngIf="photoHasUploaded" style="margin-top: 10px;">
+  <mat-divider></mat-divider>
+</div>  -->
 
 
 

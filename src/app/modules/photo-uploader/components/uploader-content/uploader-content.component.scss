@@ -62,6 +62,13 @@ input[type="file"] {
   margin-bottom: -65px;
 }
 
+.uploader-container-background_uploader  {
+  background: url("../../../../../assets/mountain1.jpg"); 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;  
+}
+
 .uploader-content-btn-cancelUploadPhotos {
   position: absolute;
   bottom: 10px;
