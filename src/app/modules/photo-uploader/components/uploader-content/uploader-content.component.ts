@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material';
 import { UploadPhotoFileItemService } from '../../services/upload-photo-file-item.service';
 import { UploadFileService } from '../../services/upload-file.service';
 import { v4 as uuid } from 'uuid';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-uploader-content',
@@ -37,7 +38,8 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
     private localStorageService: UploadPhotoLocalStorageService,
     private fileItemService: UploadPhotoFileItemService,
     private dialog: MatDialog,
-    private uploadFileService: UploadFileService) { }
+    private uploadFileService: UploadFileService,
+    private router: Router) { }
 
   ngOnInit() {
     this.photoUploaderModels = new Array<PhotoUploaderModel>();
@@ -72,6 +74,11 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
 
   fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
+  }
+
+  cancelUploadPhotos() {
+    this.removeAllPhotos();
+    this.router.navigate(['/']);
   }
 
   private calculateDropZoneHeight() {
