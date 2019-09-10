@@ -1,20 +1,21 @@
 <div *ngIf="!photoHasUploaded"
-  style="margin-top: 50px;"
-  class="flex-container"
-  fxLayout.xs="column">
+  style="margin-top: 25px;"
+>
   <div
     ng2FileDrop
     [ngClass]="{ 'nv-file-over': hasBaseDropZoneOver }"
     (fileOver)="fileOverBase($event)"
     [uploader]="uploader"
     (onFileDrop)="onChangePreviewImages()"
-    style= "width: 100%; height: 750px;"
-    class="well my-drop-zone nv-file-over card bg-faded p-3 text-center mb-3 ">
-    <div class="flex-container" style="margin-top: 25%;">
+    style="margin-left: -40px; margin-right: -40px; height: 500px;"
+    class="well my-drop-zone nv-file-over card bg-faded p-3 text-center mb-3">
+    <div class="flex-container" style="margin-top: 13%">
       <mat-icon>cloud_upload</mat-icon>
     </div>
     Drop Photos Here
   </div>
+
+
 </div>
 
 <div *ngIf="photoHasUploaded" style="margin-top: 10px;">
