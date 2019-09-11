@@ -83,7 +83,12 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
   private calculateDropZoneHeight() {
     const resolutionToSubstract = 65;
     const windowHeight = window.innerHeight;
-    const corretHeight = windowHeight - resolutionToSubstract;
+    const windowWidth = window.innerWidth;
+    let corretHeight = windowHeight - resolutionToSubstract;
+
+    if (this.uploader.queue.length > 1 && windowWidth < 1364) {
+      corretHeight += (308 * this.uploader.queue.length);
+    }
 
     this.dropzoneHeight = corretHeight.toString() + 'px';
   }
@@ -92,6 +97,7 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
     if (files.length > 0) {
       this.uploader.addToQueue(files);
       this.propagateNewPhotosProcessing();
+      this.calculateDropZoneHeight();
     }
   }
 

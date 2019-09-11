@@ -7,7 +7,7 @@ import { PhotoUploaderModel } from 'src/app/models/photo-uploader-model';
 import { PhotoEventService } from '../../services/photoEvent.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { User } from 'src/app/models/user';
-import { FileUploader } from 'ng2-file-upload';
+import { FileUploader, FileItem } from 'ng2-file-upload';
 
 const SMALL_WIDTH_BREAKPOINT = 720;
 
@@ -26,7 +26,9 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
 
   public photoUploaderModelSubscription: any;
   public isUploaderPhotoSubscription: any;
-  public isUploadedPhoto = false;
+  public photoUploaderCountOfAcctualPhotosSubscription: any;
+
+  public shouldShowSidenav = false;
 
   isEditMode: false;
   sidenavPhotoForm: FormGroup;
@@ -43,7 +45,8 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
     private formBuilder: FormBuilder,
     private localStorageService: UploadPhotoLocalStorageService,
     private cdr: ChangeDetectorRef,
-    private localStorageGlobalService: LocalStorageService) { }
+    private localStorageGlobalService: LocalStorageService,
+    private photoEvent: PhotoEventService) { }
 
   private mediaMatcher: MediaQueryList =
   matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`);
@@ -58,9 +61,10 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
     this.mainPhotoUrl = currentUserData.photoUrl;
   }
 
-
   onChangePreviewImages() {
-
+    const fileItem: FileItem = this.uploader.queue[0];
+    const files: Array<File> = this.prepareFilesToPropagate(fileItem);
+    this.propagateNewFile(files);
   }
 
   fileOverBase(e: any): void {
@@ -78,15 +82,13 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
   }
 
   ngAfterViewChecked() {
-    this.isUploaderPhotoSubscription = this.photoEventService.getPhotoUploaded()
-      .subscribe(isPhotoUploader => this.photoUploaded(isPhotoUploader));
-    this.photoUploaderModelSubscription = this.photoEventService.getPhotoModelUploader()
-      .subscribe(photoUploaderModel => this.updateInfoAboutCurrentPhotoToUpload(photoUploaderModel));
+    this.subscribeEvents();
   }
 
   ngOnDestroy() {
     this.isUploaderPhotoSubscription.unsubscribe();
     this.photoUploaderModelSubscription.unsubscribe();
+    this.photoUploaderCountOfAcctualPhotosSubscription.unsubscribe();
   }
 
   isScreenSmall(): boolean {
@@ -94,7 +96,7 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
   }
 
   photoUploaded(isPhotoUploaded: boolean) {
-    this.isUploadedPhoto = isPhotoUploaded;
+    this.shouldShowSidenav = isPhotoUploaded;
   }
 
   updateInfoAboutCurrentPhotoToUpload(photo: PhotoUploaderModel) {
@@ -156,6 +158,32 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
     this.photoEventService.emitPhotoUploaderRemoveAllPhotos(true);
   }
 
+  private HideOrShowSlidenavWhenResolutionIsToSmaller(photosCount: any) {
+    const windowWidth = window.innerWidth;
+
+    if (photosCount > 1 && windowWidth < 1364) {
+      this.shouldShowSidenav = false;
+    } else {
+      this.shouldShowSidenav = true;
+    }
+  }
+
+  private propagateNewFile(files: File[]): void {
+    if (files !== null) {
+      this.photoEventService.emitPhotoUploaderPropagateNewPhotos(files);
+    }
+  }
+
+  private prepareFilesToPropagate(fileItem: FileItem): Array<File> {
+    if (fileItem === null) {
+      return null;
+    }
+
+    const files: Array<File> = new Array<File>();
+    files.push(fileItem._file);
+    return files;
+  }
+
   private syncChanges() {
     this.updateCurrentPhotoOnLocalStorage();
     this.photoEventService.emitPhotoModelUploaderToCardFromSidenav(this.currentPhoto);
@@ -202,5 +230,14 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
       return false;
     }
     return true;
+  }
+
+  private subscribeEvents() {
+    this.isUploaderPhotoSubscription = this.photoEventService.getPhotoUploaded()
+      .subscribe(isPhotoUploader => this.photoUploaded(isPhotoUploader));
+    this.photoUploaderModelSubscription = this.photoEventService.getPhotoModelUploader()
+      .subscribe(photoUploaderModel => this.updateInfoAboutCurrentPhotoToUpload(photoUploaderModel));
+    this.photoUploaderCountOfAcctualPhotosSubscription = this.photoEventService.getPhotoUploaderCountOfAcctualPhotos()
+      .subscribe(photosCount => this.HideOrShowSlidenavWhenResolutionIsToSmaller(photosCount));
   }
 }
