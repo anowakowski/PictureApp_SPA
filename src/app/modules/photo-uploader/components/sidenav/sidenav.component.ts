@@ -161,7 +161,8 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
   private HideOrShowSlidenavWhenResolutionIsToSmaller(photosCount: any) {
     const windowWidth = window.innerWidth;
 
-    if (photosCount > 1 && windowWidth < 1364) {
+    if (photosCount > 1 && windowWidth < 1364
+        || windowWidth < 500) {
       this.shouldShowSidenav = false;
     } else {
       this.shouldShowSidenav = true;
