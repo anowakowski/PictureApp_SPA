@@ -26,7 +26,6 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
 
   public photoUploaderModelSubscription: any;
   public isUploaderPhotoSubscription: any;
-  public photoUploaderCountOfAcctualPhotosSubscription: any;
 
   public shouldShowSidenav = false;
 
@@ -88,15 +87,14 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
   ngOnDestroy() {
     this.isUploaderPhotoSubscription.unsubscribe();
     this.photoUploaderModelSubscription.unsubscribe();
-    this.photoUploaderCountOfAcctualPhotosSubscription.unsubscribe();
   }
 
-  isScreenSmall(): boolean {
-    return this.mediaMatcher.matches;
-  }
-
-  photoUploaded(isPhotoUploaded: boolean) {
-    this.shouldShowSidenav = isPhotoUploaded;
+  showSideNav() {
+    if (!this.isScreenSmall() && this.shouldShowSidenav) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   updateInfoAboutCurrentPhotoToUpload(photo: PhotoUploaderModel) {
@@ -158,15 +156,12 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
     this.photoEventService.emitPhotoUploaderRemoveAllPhotos(true);
   }
 
-  private HideOrShowSlidenavWhenResolutionIsToSmaller(photosCount: any) {
-    const windowWidth = window.innerWidth;
+  private isScreenSmall(): boolean {
+    return this.mediaMatcher.matches;
+  }
 
-    if (photosCount > 1 && windowWidth < 1364
-        || windowWidth < 500) {
-      this.shouldShowSidenav = false;
-    } else {
-      this.shouldShowSidenav = true;
-    }
+  private photoUploaded(isPhotoUploaded: boolean) {
+    this.shouldShowSidenav = isPhotoUploaded;
   }
 
   private propagateNewFile(files: File[]): void {
@@ -238,7 +233,5 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewChecked  {
       .subscribe(isPhotoUploader => this.photoUploaded(isPhotoUploader));
     this.photoUploaderModelSubscription = this.photoEventService.getPhotoModelUploader()
       .subscribe(photoUploaderModel => this.updateInfoAboutCurrentPhotoToUpload(photoUploaderModel));
-    this.photoUploaderCountOfAcctualPhotosSubscription = this.photoEventService.getPhotoUploaderCountOfAcctualPhotos()
-      .subscribe(photosCount => this.HideOrShowSlidenavWhenResolutionIsToSmaller(photosCount));
   }
 }
