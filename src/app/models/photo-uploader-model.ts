@@ -5,4 +5,5 @@ export class PhotoUploaderModel {
     photoTitle: string;
     photoDescription: string;
     photoTags: Array<string>;
+    
 }
