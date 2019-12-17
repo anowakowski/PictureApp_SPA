@@ -4,6 +4,5 @@ export class PhotoUploaderModel {
     index: number;
     photoTitle: string;
     photoDescription: string;
-    photoTags: Array<string>;
-    
+    photoTags: Array<string>;    
 }
