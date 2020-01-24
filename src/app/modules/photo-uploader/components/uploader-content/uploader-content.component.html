@@ -22,7 +22,7 @@
     </div>
 </div>
 
-<div class="uploader-container-background_uploader" [ngStyle]="{ 'height': dropzoneHeight }">
+<div *ngIf="photoHasUploaded" class="uploader-container-background_uploader" [ngStyle]="{ 'height': dropzoneHeight }">
   <div class="flex-container-photocard" fxLayout.xs="column" style="margin-top: 65px;">
     <div *ngFor="let fileItem of uploader.queue">
       <app-uploader-content-card [fileItem]='fileItem' [photoUploaderModel]='GetPhotoUploaderModel(fileItem)'></app-uploader-content-card>
