@@ -10,6 +10,8 @@ import { WarrningDialogComponent } from 'src/app/modules/photo-confirmation-pane
 import { MatDialog } from '@angular/material';
 import { UploadPhotoFileItemService } from '../../services/upload-photo-file-item.service';
 import { UploadFileService } from '../../services/upload-file.service';
+import { v4 as uuid } from 'uuid';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-uploader-content',
@@ -29,17 +31,21 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
   public hasBaseDropZoneOver = false;
   public photoHasUploaded = false;
 
+  public dropzoneHeight: string;
+
   constructor(
     private photoEventService: PhotoEventService,
     private localStorageService: UploadPhotoLocalStorageService,
     private fileItemService: UploadPhotoFileItemService,
     private dialog: MatDialog,
-    private uploadFileService: UploadFileService) { }
+    private uploadFileService: UploadFileService,
+    private router: Router) { }
 
   ngOnInit() {
     this.photoUploaderModels = new Array<PhotoUploaderModel>();
     this.initUploader();
     this.subscribeEvents();
+    this.calculateDropZoneHeight();
   }
 
   ngOnDestroy(): void {
@@ -70,10 +76,28 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
     this.hasBaseDropZoneOver = e;
   }
 
+  cancelUploadPhotos() {
+    this.removeAllPhotos(true);
+  }
+
+  private calculateDropZoneHeight() {
+    const resolutionToSubstract = 65;
+    const windowHeight = window.innerHeight;
+    const windowWidth = window.innerWidth;
+    let corretHeight = windowHeight - resolutionToSubstract;
+
+    if (this.uploader.queue.length > 1 && windowWidth < 1364) {
+      corretHeight += (308 * this.uploader.queue.length);
+    }
+
+    this.dropzoneHeight = corretHeight.toString() + 'px';
+  }
+
   private updateUploaderQueue(files: File[]) {
     if (files.length > 0) {
       this.uploader.addToQueue(files);
       this.propagateNewPhotosProcessing();
+      this.calculateDropZoneHeight();
     }
   }
 
@@ -83,27 +107,6 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
     this.photoEventService.emitPhotoUploaderCountOfAcctualPhotos(this.uploader.queue.length);
     this.fileItemService.prepareIndexForPhotoUploader(this.uploader);
     this.preparePhotoUploaderModel();
-    this.saveNewPhoto();
-  }
-
-  private saveNewPhoto() {
-    const formDataToPost = this.prepareNewPhotoDataToSave();
-    this.uploadFileService.uploadFile(formDataToPost).subscribe(() => {
-      // to do after save new picture
-    }, error => {
-      console.log(error);
-    });
-  }
-
-  private prepareNewPhotoDataToSave() {
-    const formDataToPost = new FormData();
-    formDataToPost.append('index', '1');
-    // to refactor (its just for testing api functionality)
-    // move  into content-card
-    // save one new photo
-    // prepare spinner
-    formDataToPost.append('photoFile', this.uploader.queue[0]._file);
-    return formDataToPost;
   }
 
   private preparePhotoUploaderModel() {
@@ -129,6 +132,7 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
 
   private preparePhotoModel(fileItem: FileItem) {
     const photoUploaderModel = new PhotoUploaderModel();
+    photoUploaderModel.id = uuid();
     photoUploaderModel.index = fileItem.index;
     photoUploaderModel.photoTitle = fileItem.file.name;
     return photoUploaderModel;
@@ -160,18 +164,38 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(isConfirmPhotoRemoveResult => { });
   }
 
-  private removeAllPhotos() {
+  private removeAllPhotos(isCancelUpload: boolean) {
+    this.removePhotosFromServer(this.localStorageService.getAllPhotosIdsForRemoving());
     this.uploader.clearQueue();
     this.localStorageService.clearStorage();
-    this.photoHasUploaded = false;
-    this.photoEventService.emitPhotoUploaded(false);
+
+    if (isCancelUpload) {
+      this.router.navigate(['/']);
+    } else {
+      this.photoHasUploaded = false;
+      this.photoEventService.emitPhotoUploaded(false);
+    }
+  }
+
+  private removePhotosFromServer(selectedIdsForRemoving: any[]) {
+    this.uploadFileService.removePhotos(selectedIdsForRemoving).subscribe(() => {
+      //
+    }, error => {
+      console.log(error);
+    });
   }
 
   private removePhoto(fileItemToRemove: FileItem) {
     this.uploader.removeFromQueue(fileItemToRemove);
+    this.removePhotosFromServer(this.localStorageService.getPhotoIdForRemoving(fileItemToRemove.index));
     const photoModel = this.localStorageService.getPhotoModel(fileItemToRemove.index);
     this.localStorageService.removeChosenPhoto(photoModel);
 
+    this.clearUploader();
+    this.photoEventService.emitPhotoUploaderCountOfAcctualPhotos(this.uploader.queue.length);
+  }
+
+  private clearUploader() {
     if (this.uploader.queue.length < 1) {
       this.localStorageService.clearStorage();
       this.photoHasUploaded = false;
@@ -181,7 +205,7 @@ export class UploaderContentComponent implements OnInit, OnDestroy {
 
   private subscribeEvents() {
     this.photoUploaderRemoveAllPhotosSubscription = this.photoEventService.getPhotoUploaderRemoveAllPhotos()
-      .subscribe(() => { this.removeAllPhotos(); });
+      .subscribe((isCancelUpload) => { this.removeAllPhotos(isCancelUpload); });
     this.photoUploaderRemoveChosenPhotoSubscription = this.photoEventService.getPhotoUploaderRemoveChosenPhoto()
       .subscribe(fileToRemove => { this.removePhoto(fileToRemove); });
     this.photoUploaderPropagateNewPhotosSubscription = this.photoEventService.getPhotoUploaderPropagateNewPhotos()

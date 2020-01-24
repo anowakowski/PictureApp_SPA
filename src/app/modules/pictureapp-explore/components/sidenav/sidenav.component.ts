@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatDrawer } from '@angular/material';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/user';
-import { UserService } from 'src/app/services/user.service';
 
 const SMALL_WIDTH_BREAKPOINT = 720;
 const CURRENT_BTN_COLOR = 'warn';

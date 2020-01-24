@@ -1,35 +1,38 @@
-<div *ngIf="!photoHasUploaded"
-  style="margin-top: 50px;"
-  class="flex-container"
-  fxLayout.xs="column">
-  <div
-    ng2FileDrop
-    [ngClass]="{ 'nv-file-over': hasBaseDropZoneOver }"
-    (fileOver)="fileOverBase($event)"
-    [uploader]="uploader"
-    (onFileDrop)="onChangePreviewImages()"
-    style= "width: 100%; height: 750px;"
-    class="well my-drop-zone nv-file-over card bg-faded p-3 text-center mb-3 ">
-    <div class="flex-container" style="margin-top: 25%;">
-      <mat-icon>cloud_upload</mat-icon>
+
+<div>
+  <div *ngIf="!photoHasUploaded" class="uploader-container-background_dropAndDrag">
+    <div
+      ng2FileDrop
+      [ngClass]="{ 'nv-file-over': hasBaseDropZoneOver }"
+      [ngStyle]="{ 'height': dropzoneHeight }"
+      (fileOver)="fileOverBase($event)"
+      [uploader]="uploader"
+      (onFileDrop)="onChangePreviewImages()"
+      class="well my-drop-zone nv-file-over card bg-faded p-3 text-center mb-3 uploader-drop-and-drag">
+      <div class="flex-container" style="margin-top: 15%">
+        <mat-icon>cloud_upload</mat-icon>
+      </div>
+      Drop Photos Here
     </div>
-    Drop Photos Here
+
+    <div class="flex-container">
+      <button color="primary" mat-raised-button color="warn" class="uploader-content-btn-cancelUploadPhotos" (click)="cancelUploadPhotos()">
+        <mat-icon>grid_off</mat-icon> Cancel upload photos <mat-icon>cancel</mat-icon> 
+      </button>
+    </div>
+</div>
+
+<div *ngIf="photoHasUploaded" class="uploader-container-background_uploader" [ngStyle]="{ 'height': dropzoneHeight }">
+  <div class="flex-container-photocard" fxLayout.xs="column" style="margin-top: 65px;">
+    <div *ngFor="let fileItem of uploader.queue">
+      <app-uploader-content-card [fileItem]='fileItem' [photoUploaderModel]='GetPhotoUploaderModel(fileItem)'></app-uploader-content-card>
+    </div>
   </div>
 </div>
 
-<div *ngIf="photoHasUploaded" style="margin-top: 10px;">
+
+<!-- <div *ngIf="photoHasUploaded" style="margin-top: 10px;">
   <mat-divider></mat-divider>
+</div>  -->
+  
 </div>
-
-<div class="flex-container-photocard" fxLayout.xs="column">
-  <div *ngFor="let fileItem of uploader.queue">
-    <app-uploader-content-card [fileItem]='fileItem' [photoUploaderModel]='GetPhotoUploaderModel(fileItem)'></app-uploader-content-card>
-  </div>
-</div>
-
-
-
-
-
-
-

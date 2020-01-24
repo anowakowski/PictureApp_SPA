@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-nav',
@@ -32,5 +33,4 @@ export class NavComponent implements OnInit {
   emitDashboardAsCurrentSection() {
     this.dashbordSection.emit();
   }
-
 }

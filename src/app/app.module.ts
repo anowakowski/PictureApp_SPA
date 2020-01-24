@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AuthService } from './services/auth.service';
 import { ErrorInterceptorProvider } from './interceptors/error.interceptor';
 import { RoutePathService } from './services/RoutePath.service';
+import { LocalStorageService } from './services/local-storage.service';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -55,7 +56,8 @@ const routes: Routes = [
    providers: [
       AuthService,
       RoutePathService,
-      ErrorInterceptorProvider
+      ErrorInterceptorProvider,
+      LocalStorageService
    ],
    bootstrap: [
       AppComponent

@@ -1,7 +1,23 @@
 <div *ngIf="photoUploaderModel">
   <div style="margin-top: 30px;">
     <form [formGroup]="uploadPhotoForm">
-    <mat-card class="uploader-photos-card" [ngClass]="{'uploader-photos-card-current': photoUploaderModel.isEditMode}" (click)="choosePhoto()">
+
+        <mat-card *ngIf="isInUploading" class="uploader-photos-card">
+          <img mat-card-image style="opacity: 0.3" [src]="filePreviewPath" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+        
+            <div style="margin-top: 15px; display: flex; justify-content: center; align-items: center">
+              <mat-progress-bar mode="query"></mat-progress-bar>
+            </div>
+        
+          </mat-card-content>
+          <mat-card-actions>
+          </mat-card-actions>
+        </mat-card>
+
+    
+
+    <mat-card *ngIf="!isInUploading" class="uploader-photos-card" [ngClass]="{'uploader-photos-card-current': photoUploaderModel.isEditMode}" (click)="choosePhoto()">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>
@@ -31,8 +47,11 @@
         <button mat-icon-button (click)="openDeleteConfirmationDialog()">
           <mat-icon>delete</mat-icon>
         </button>
+
       </mat-card-actions>
     </mat-card>
+
+
   
   </form>
   </div>

@@ -6,10 +6,11 @@
 }
 
 .sidenav-container-background-image {
-  background: url('../../../../../assets/karpacz_mountain.jpg') ;
+  //background: url("../../../../../assets/slonik_blackbackground_bnw.jpg"); // color karty pod slonia: #d8d2cd91
+  background: url("../../../../../assets/blur_burred2_baseONJPG.jpg"); //color karty pod lasek: #eadfd6d1
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: top;
 }
 
 .sidenav-container-background-image ::after {
@@ -23,7 +24,7 @@
 }
 
 mat-drawer {
-  width: 400px;
+  width: 600px;
 }
 
 .wrapper {
@@ -39,22 +40,99 @@ mat-drawer {
   margin-bottom: 10px;
 }
 
-.sidenav-element-flex-container{
+.sidenav-element-flex-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .sidenav-element-form-input {
-  width: 350px;
+  width: 500px;
 }
 
 .sidenav-content-element-form-tags {
   margin-top: 20px;
-  width: 350px;
+  width: 500px;
 }
 
 .mat-chip.mat-standard-chip::after {
   background: #219e79;
   color: black;
 }
+
+.sidenav-btn-cancelUploadPhotos {
+  position: absolute;
+  bottom: 10px;
+  width: 560px;
+  height: 37px;
+  margin-top: 5px;
+}
+
+/* 
+identity card start
+*/
+
+.sidnav-userprofile {
+  opacity: 0.9;
+}
+
+.sidenav-userprofile-card {
+  max-width: 600px;
+  background: #eadfd6d1;
+}
+
+.sidnav-userprofile-header-image {
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
+
+  outline: none;
+  border: 0;
+}
+
+.sidenav-userprofile-card:hover .sidnav-userprofile-header-image,
+.sidenav-userprofile-card:focus .sidnav-userprofile-header-image {
+  transform: scale(1.1);
+  opacity: 0.7;
+}
+
+.sidenav-card-userprofile-content {
+  margin-left: 90px;
+  color: #111111;
+  font-size: 18px;
+  font-style: oblique;
+}
+
+.sidenav-card-header {
+  margin-left: -6px;
+}
+
+.sidenav-userprofile-subtitle-followers {
+  margin-top: 8px;
+  margin-left: 2px;
+}
+
+.sidenav-userprofile-subtitle-following {
+  margin-left: 2px;
+}
+
+/*
+identity card end
+*/
+
+
+
+
+.my-drop-zone {
+  border: dotted 3px #7181b7;
+}
+.nv-file-over {
+  border: dotted 3px #2db121;
+} /* Default class applied to drop zones on over */
+.another-file-over-class {
+  border: dotted 3px green;
+}
+

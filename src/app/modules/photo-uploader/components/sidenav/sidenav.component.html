@@ -2,49 +2,102 @@
 <mat-drawer-container class="app-container" autosize>
   <mat-drawer 
     #drawer class="sidenav-content-elements mat-elevation-z10 sidenav-container-background-image"
-    [opened]="isUploadedPhoto"
+    [opened]="showSideNav()"
+    [disableClose]="true"
     mode='side'>
     <div class="sidenav-element-flex-container">
-      <h5>Current chosen photo metadata</h5>
-      <div style="margin-bottom: 10px;">
-          <mat-divider></mat-divider>
-      </div>  
-      <form [formGroup]="sidenavPhotoForm" class="mb-3">
-          <mat-form-field class="sidenav-element-form-input">
-            <input matInput  
-              placeholder="photo title"
-              formControlName="photoTitle"
-              (change)="changePhotoTitle($event)">
-          </mat-form-field>
-          <mat-form-field class="sidenav-element-form-input">
-            <textarea matInput 
-            placeholder="photo description" 
-            formControlName="photoDescription" 
-            class="base-style"
-            rows="1"
-            (change)="changePhotoDescription($event)"
-            ></textarea>
-          </mat-form-field> 
-          <mat-form-field class="sidenav-content-element-form-tags">
-              <mat-chip-list #chipList>
-                <mat-chip *ngFor="let tag of tags" [selectable]="selectable" class="mat-chip-selected"
-                         [removable]="removable" (removed)="removeTag(tag)">
-                  {{tag}}
-                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                </mat-chip>
-                <input placeholder="Add new tag..."
-                       [matChipInputFor]="chipList"
-                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                       [matChipInputAddOnBlur]="addOnBlur"
-                       (matChipInputTokenEnd)="addTag($event)">
-              </mat-chip-list>
-          </mat-form-field>              
-                        
-      </form>      
+
+        <div class="sidnav-userprofile sidenav-elemnt">
+            <mat-card class="sidenav-userprofile-card" style="height: 80px;">
+                <mat-card-header >
+                  <div 
+                    
+                    [ngStyle]="{ 'background-image': 'url(' + mainPhotoUrl + ')' }" 
+                    mat-card-avatar 
+                    class="sidnav-userprofile-header-image" 
+                    [routerLink]="['/editUserProfile']" 
+                   >
+                  </div>
+                  <mat-card-title class="sidenav-card-header">
+                    bleleeve
+                  </mat-card-title>
+                  <mat-card-subtitle>
+                      uploaded 100 photos
+                  </mat-card-subtitle>
+                </mat-card-header>
+            </mat-card>       
+        </div>  
+      <div>
+
+          <div class="sidnav-userprofile sidenav-elemnt">
+              <mat-card class="sidenav-userprofile-card">
+                  <mat-card-header >
+                    <mat-card-title><mat-icon>edit</mat-icon> Photo editing</mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content>
+                      <form [formGroup]="sidenavPhotoForm" class="mb-3">
+                          <mat-form-field class="sidenav-element-form-input">
+                            <input matInput  
+                            
+                              placeholder="photo title"
+                              formControlName="photoTitle"
+                              (change)="changePhotoTitle($event)">
+                          </mat-form-field>
+                          <mat-form-field class="sidenav-element-form-input">
+                            <textarea matInput 
+                            placeholder="photo description" 
+                            formControlName="photoDescription" 
+                            class="base-style"
+                            rows="2"
+                            (change)="changePhotoDescription($event)"
+                            ></textarea>
+                          </mat-form-field> 
+                          <mat-form-field class="sidenav-content-element-form-tags">
+                              <mat-chip-list #chipList>
+                                <mat-chip *ngFor="let tag of tags" [selectable]="selectable" class="mat-chip-selected"
+                                         [removable]="removable" (removed)="removeTag(tag)">
+                                  {{tag}}
+                                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                </mat-chip>
+                                <input placeholder="Add new tag..."
+                                       [matChipInputFor]="chipList"
+                                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                       [matChipInputAddOnBlur]="addOnBlur"
+                                       (matChipInputTokenEnd)="addTag($event)">
+                              </mat-chip-list>
+                          </mat-form-field>              
+                                        
+                      </form>   
+                  </mat-card-content>
+              </mat-card>       
+          </div> 
+      </div> 
+
+      <div class="sidenav-elemnt">
+        <div
+          ng2FileDrop
+          [ngClass]="{ 'nv-file-over': hasBaseDropZoneOver }"
+          (fileOver)="fileOverBase($event)"
+          [uploader]="uploader"
+          (onFileDrop)="onChangePreviewImages()"
+          style= "width: 100%; height: 100%; background: #eadfd6d1;"
+          class="well my-drop-zone nv-file-over card bg-faded p-3 text-center mb-3 ">
+          <div class="flex-container" style="margin-top: 1%;">
+            <mat-icon>cloud_upload</mat-icon>
+          </div>
+            Drop Photos Here
+        </div>
+      </div>
+     
+
+      <button class="sidenav-btn-cancelUploadPhotos sidenav-elemnt" color="warn" mat-raised-button (click)="cancelUploadPhotos()">
+          <mat-icon>grid_off</mat-icon> Cancel upload photos <mat-icon>cancel</mat-icon> 
+      </button>
+     
     </div>
    </mat-drawer>
   <div class="app-sidenav-content">
-    <div class="wrapper">
+    <div>
         <router-outlet></router-outlet>
     </div>
   </div>

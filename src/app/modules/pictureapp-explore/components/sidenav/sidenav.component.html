@@ -15,8 +15,12 @@
       <button class="sidenav-elemnt" color="{{userProfileColor}}" mat-raised-button [routerLink]="['/editUserProfile']" (click)="setBtnColor(userprofileSection)">
         <mat-icon>person</mat-icon> your profile
       </button>
+      <button class="sidenav-elemnt" color="accent" mat-raised-button [routerLink]="['/photo-uploader']">
+        <mat-icon>add_photo_alternate</mat-icon> upload new photos
+      </button>
       <div style="margin-top: 10px;"><app-sidenav-userprofile-card (editSectionUser)="reciveEditUserProfileAsCurrent()"></app-sidenav-userprofile-card></div>
       <div style="margin-top: 20px;"><app-sidenav-userprofile-chart></app-sidenav-userprofile-chart></div>
+
 
       <button class="sidenav-btn-modelPanel sidenav-elemnt" color="primary" mat-raised-button>
         <mat-icon>photo_camera</mat-icon> model find panel <mat-icon>nature_people</mat-icon> 

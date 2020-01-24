@@ -32,6 +32,8 @@ import { PhotoCommentButtomSheetComponent } from './components/photo-explore/com
 import { DeleteConfirmationDialogComponent } from '../photo-confirmation-panels/components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { PhotoConfirmationPanelsModule } from '../photo-confirmation-panels/photo-confirmation-panels.module';
 
+import { FileUploadModule } from 'ng2-file-upload';
+
 const routes: Routes = [
   { path: '',
     component: PictureExploreComponent,
@@ -72,6 +74,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     PhotoConfirmationPanelsModule,
+    FileUploadModule,
     RouterModule.forChild(routes)
   ],
   providers: [

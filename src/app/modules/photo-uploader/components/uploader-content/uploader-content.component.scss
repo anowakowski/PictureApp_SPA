@@ -17,15 +17,7 @@
 }
 
 
-.my-drop-zone {
-  border: dotted 3px lightgray;
-}
-.nv-file-over {
-  border: dotted 3px #f44336;
-} /* Default class applied to drop zones on over */
-.another-file-over-class {
-  border: dotted 3px green;
-}
+
 
 .example-header-image {
   background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
@@ -41,3 +33,49 @@ input[type="file"] {
   padding: 6px 12px;
   cursor: pointer;
 }
+
+
+
+// drop zone section
+.uploader-drop-and-drag {
+  opacity: 0.5;
+  margin-top: 63px;
+  margin-bottom: 1px !important;
+}
+
+.my-drop-zone {
+  border: dotted 3px #7181b7;
+}
+.nv-file-over {
+  border: dotted 3px #2db121;
+} 
+.another-file-over-class {
+  border: dotted 3px green;
+}
+
+.uploader-container-background_dropAndDrag  {
+  background: url("../../../../../assets/mountain1.jpg"); 
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;  
+  margin-bottom: -65px;
+}
+
+.uploader-container-background_uploader  {
+  background: url("../../../../../assets/mountain1.jpg"); 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;  
+}
+
+.uploader-content-btn-cancelUploadPhotos {
+  position: absolute;
+  bottom: 10px;
+  width: 600px;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+
+
